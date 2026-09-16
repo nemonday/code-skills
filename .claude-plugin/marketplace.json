@@ -1,0 +1,16 @@
+{
+  "name": "code-skills",
+  "description": "nemonday 的 skill 工厂：可安装的 Agent Skills 合集，Claude Code 为主力平台。",
+  "owner": {
+    "name": "nemonday",
+    "url": "https://github.com/nemonday"
+  },
+  "plugins": [
+    {
+      "name": "code-skills",
+      "source": "./",
+      "description": "Distributable Agent Skills, authored and polished for Claude Code. bug-corpus: archive fixed-bug knowledge and distill patterns for a future Runtime QA skill.",
+      "repository": "https://github.com/nemonday/code-skills"
+    }
+  ]
+}

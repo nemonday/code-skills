@@ -4,8 +4,16 @@ Skill 工厂：编写、打磨可分发给他人使用的 Agent Skills。Claude 
 
 ## 安装
 
-- **Claude Code（整仓）**：把本仓库作为 plugin 安装
-- **任意工具（单个）**：拷贝 `skills/<name>/` 文件夹到你的 skills 目录
+**Claude Code（整仓）**：
+
+```
+/plugin marketplace add nemonday/code-skills
+/plugin install code-skills@code-skills
+```
+
+装好后以 `/code-skills:bug-corpus` 调用。仓库目前是私有的，需先获得协作权限；改为公开后任何人可装。更新跟随 `plugin.json` 里的 `version`，发布时递增它。
+
+**任意工具（单个）**：拷贝 `skills/<name>/` 文件夹到你的 skills 目录
 
 ## Skills
 
