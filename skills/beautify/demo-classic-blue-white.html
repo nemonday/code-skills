@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="9h008CH7uLx1sR0EF7JLYU">
+<head data-page-node-id="NvEdiQaFIzLJjJRj4UcEY4">
+<meta charset="UTF-8" data-page-node-id="YslYCFK8r35ZIgIrGYtglN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="LDlu4ETA5e8PkG0xE7pDFt">
+<title>模板预览 - 经典·商务蓝白风</title>
+<style>
+  :root{
+    --bg-page:linear-gradient(180deg,#eaf3ff 0%,#f6f8fb 28%,#f3f7fc 100%);
+    --bg-card:#ffffff;
+    --bg-card-soft:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%);
+    --bg-chart:linear-gradient(180deg,#fbfdff,#f4f8ff);
+    --bg-insight:#f0f7ff;
+    --bg-table-header:#f5f8fc;
+    --bg-row-hover:#fbfdff;
+    --bg-filter:rgba(255,255,255,0.13);
+    --bg-warning-card:#fff8ee;
+    --bg-danger-card:#fff3f5;
+    --text-primary:#17233d;
+    --text-muted:#6b7a99;
+    --text-on-hero:#ffffff;
+    --border-default:#e4ecf7;
+    --border-chart:#edf3fb;
+    --scrollbar-thumb:#c9d8ee;
+    --line-chart-grid:#dce7f5;
+    --bar-primary:linear-gradient(180deg,#2994ff,#1769ff);
+    --bar-green:linear-gradient(180deg,#2ed99c,#16b979);
+    --bar-orange:linear-gradient(180deg,#ffc15a,#ff9f1c);
+    --bar-purple:linear-gradient(180deg,#9c86ff,#7c5cff);
+    --primary:#1769ff;
+    --primary2:#0a54d4;
+    --navy:#081f4f;
+    --green:#16b979;
+    --red:#ef4b5f;
+    --orange:#ff9f1c;
+    --purple:#7c5cff;
+    --shadow-sm:0 2px 6px rgba(13,71,161,0.06);
+    --shadow-md:0 6px 16px rgba(13,71,161,0.10);
+    --shadow-lg:0 10px 24px rgba(13,71,161,0.12);
+    --shadow-xl:0 18px 36px rgba(13,71,161,0.20);
+    --radius-md:10px;
+    --radius-lg:14px;
+    --radius-xl:16px;
+    --radius-pill:999px;
+    --ease:cubic-bezier(0.4,0,0.2,1);
+    --ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg-page);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    color:var(--text-primary);
+  }
+  .page{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
+
+  /* --- Nav --- */
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    height:56px;padding:0 4px;margin-bottom:20px;
+    background:transparent;font-size:13px;
+  }
+  .navbar .logo{font-weight:800;font-size:16px;color:var(--primary);letter-spacing:-.3px}
+  .navbar .logo span{color:#0a1428}
+  .navbar .nav-links{display:flex;gap:4px;align-items:center}
+  .navbar .nav-links a{
+    text-decoration:none;color:var(--text-muted);padding:8px 14px;border-radius:var(--radius-md);
+    transition:all 0.2s var(--ease);font-weight:500;
+  }
+  .navbar .nav-links a:hover{background:#eef4ff;color:var(--primary)}
+  .navbar .nav-links a.active{background:var(--primary);color:#fff}
+  .navbar .nav-right{display:flex;align-items:center;gap:12px}
+  .navbar .avatar{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+  /* --- Hero --- */
+  .hero{
+    background:linear-gradient(125deg,#081f4f 0%,#0d47a1 48%,#1787ff 100%);
+    border-radius:24px;
+    color:white;
+    padding:22px 26px 18px;
+    box-shadow:var(--shadow-xl);
+    position:relative;overflow:hidden;
+  }
+  .hero:before{content:"";position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.10)}
+  .hero:after{content:"";position:absolute;right:220px;bottom:-130px;width:260px;height:260px;border-radius:50%;background:rgba(0,210,255,.14)}
+  .hero-content{position:relative;z-index:1}
+  .hero h1{margin:0;font-size:28px;font-weight:800;letter-spacing:.3px}
+  .hero p{margin:8px 0 0;color:rgba(255,255,255,.78);font-size:14px}
+
+  /* --- Section --- */
+  .section-title{font-size:17px;font-weight:700;margin:32px 0 16px;color:var(--text-primary);display:flex;align-items:center;gap:10px}
+  .section-title small{font-size:12px;color:var(--text-muted);font-weight:400}
+  .section-title:after{content:"";flex:1;height:1px;background:var(--border-default)}
+
+  /* --- Card --- */
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border-default);
+    border-radius:var(--radius-xl);
+    box-shadow:var(--shadow-lg);
+    padding:16px;
+    transition:all 0.25s var(--ease);
+  }
+  .card:hover{box-shadow:var(--shadow-xl);transform:translateY(-2px)}
+  .card.soft{background:var(--bg-card-soft)}
+  .card h3{margin:0 0 12px;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .card h3 small{font-size:12px;color:var(--text-muted);font-weight:400}
+
+  /* --- Grid --- */
+  .grid{display:grid;gap:14px}
+  .col-2{grid-template-columns:1fr 1fr}
+  .col-3{grid-template-columns:1fr 1fr 1fr}
+  .col-4{grid-template-columns:1fr 1fr 1fr 1fr}
+  .col-8{grid-template-columns:repeat(8,1fr)}
+
+  /* --- Button --- */
+  .btn{
+    border:0;border-radius:var(--radius-md);padding:9px 16px;font-size:12px;font-weight:700;
+    cursor:pointer;transition:all 0.25s var(--ease);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .btn:active{transform:scale(0.97);transition-duration:0.15s}
+  .btn.primary{background:var(--primary);color:#fff}
+  .btn.primary:hover{background:var(--primary2);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .btn.primary:active{transform:translateY(0)}
+  .btn.secondary{background:#eef5ff;color:#2364b9}
+  .btn.secondary:hover{background:#d6e4ff;box-shadow:var(--shadow-sm)}
+  .btn-group{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* --- Input --- */
+  input,select{
+    border:1px solid var(--border-default);border-radius:var(--radius-md);padding:10px 12px;
+    font-size:13px;background:var(--bg-card);color:var(--text-primary);
+    transition:all 0.25s var(--ease);outline:none;appearance:none;-webkit-appearance:none;
+  }
+  input:focus,select:focus{border-color:#4a8eff;box-shadow:0 0 0 3px #eef4ff}
+  .select-wrap{position:relative;display:inline-block;min-width:140px}
+  .select-wrap:after{
+    content:"";position:absolute;right:12px;top:50%;pointer-events:none;
+    width:7px;height:7px;border-right:1.5px solid var(--text-muted);border-bottom:1.5px solid var(--text-muted);
+    transform:translateY(-70%) rotate(45deg);
+  }
+  .select-wrap select{width:100%;padding-right:30px;cursor:pointer}
+
+  /* --- Badge --- */
+  .badge{
+    display:inline-block;border-radius:var(--radius-pill);padding:3px 7px;font-size:11px;font-weight:700;
+  }
+  .badge.blue{background:#eef5ff;color:#2364b9}
+  .badge.green{background:#eafaf3;color:#16b979}
+  .badge.orange{background:#fff6e8;color:#ff9f1c}
+  .badge.red{background:#fff0f2;color:#ef4b5f}
+
+  /* --- Tab --- */
+  .tabs{display:flex;gap:8px;margin:12px 0}
+  .tab{
+    padding:6px 10px;border-radius:var(--radius-pill);font-size:12px;cursor:pointer;
+    background:#eef5ff;color:#3f5f8a;transition:all 0.25s var(--ease);
+    border:0;
+  }
+  .tab:hover{background:#d6e4ff}
+  .tab.active{background:var(--primary);color:#fff}
+
+  /* --- Tag --- */
+  .tag{
+    display:inline-block;padding:3px 7px;border-radius:6px;font-size:11px;font-weight:700;
+  }
+  .tag.green{background:#eafaf3;color:#16b979}
+  .tag.red{background:#fff0f2;color:#ef4b5f}
+  .tag.orange{background:#fff6e8;color:#ff9f1c}
+  .tag.blue{background:#eef5ff;color:#2364b9}
+
+  /* --- Table --- */
+  .table-wrap{overflow:auto;border:1px solid var(--border-default);border-radius:var(--radius-lg);margin-top:12px;background:white}
+  .table-wrap::-webkit-scrollbar{height:8px}
+  .table-wrap::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:99px}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+  th,td{padding:10px 9px;border-bottom:1px solid #edf2f9;text-align:left;white-space:nowrap}
+  th{background:var(--bg-table-header);color:#52627d;font-weight:750;font-size:11px}
+  tr:hover td{background:var(--bg-row-hover)}
+
+  /* --- Insight --- */
+  .insight{
+    margin-top:12px;padding:10px 12px;border-radius:var(--radius-md);
+    background:var(--bg-insight);color:#28517c;font-size:13px;border-left:4px solid var(--primary);
+  }
+
+  /* --- Delta --- */
+  .up{color:var(--green)}.down{color:var(--red)}.warn{color:var(--orange)}
+
+  /* --- KPI mock --- */
+  .kpi .num{font-size:28px;font-weight:850;margin:12px 0 6px;letter-spacing:-.5px;color:#102a56}
+  .kpi .num small{font-size:14px;color:var(--text-muted);font-weight:600}
+  .kpi .label{font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;margin-bottom:4px}
+  .kpi .delta{font-size:12px;display:flex;gap:8px;align-items:center}
+
+  /* --- Sparkline --- */
+  .spark{height:30px;margin-top:10px}
+  .spark svg{width:100%;height:100%}
+  .line-blue{stroke:var(--primary)}.line-green{stroke:var(--green)}.line-red{stroke:var(--red)}
+
+  /* --- Pill --- */
+  .pill{
+    border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);
+    padding:8px 12px;border-radius:999px;font-size:12px;display:inline-block;
+  }
+
+  /* --- Nav preview --- */
+  .nav-demo{display:flex;gap:16px;margin:12px 0;flex-wrap:wrap}
+  .nav-option{
+    flex:1;min-width:120px;padding:16px;border-radius:var(--radius-lg);
+    background:#0a1428;color:white;text-align:center;font-size:13px;cursor:pointer;
+    transition:all 0.25s var(--ease);
+  }
+  .nav-option:hover{background:#1e2a42;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .nav-option .nav-icon{font-size:24px;margin-bottom:6px;display:block}
+  .nav-option small{display:block;color:rgba(255,255,255,.58);font-size:11px;margin-top:4px}
+
+  /* --- Layout demo --- */
+  .layout-preview{
+    border:1px solid var(--border-default);border-radius:var(--radius-lg);overflow:hidden;margin:12px 0
+  }
+  .layout-preview .lp-nav{
+    display:flex;align-items:center;gap:16px;padding:0 16px;height:44px;
+    background:linear-gradient(135deg,#0a1428,#1e2a42);color:white;font-size:12px;
+  }
+  .layout-preview .lp-nav a{color:rgba(255,255,255,.7);text-decoration:none;padding:4px 8px;border-radius:6px;transition:all 0.2s}
+  .layout-preview .lp-nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+  .layout-preview .lp-nav a.active{color:#4a8eff}
+  .layout-preview .lp-body{display:flex;min-height:100px}
+  .layout-preview .lp-sidebar{
+    width:160px;background:linear-gradient(180deg,#0a1428,#1e2a42);padding:12px;font-size:12px;color:rgba(255,255,255,.7);
+  }
+  .layout-preview .lp-sidebar div{padding:6px 10px;border-radius:6px;margin-bottom:4px;transition:all 0.2s;cursor:default}
+  .layout-preview .lp-sidebar div:hover{background:rgba(255,255,255,.08);color:#fff}
+  .layout-preview .lp-sidebar div.active{color:#4a8eff}
+  .layout-preview .lp-content{flex:1;padding:16px;background:#f8faff;font-size:12px;color:var(--text-muted)}
+
+  /* --- Drill-down --- */
+  .drill-wrap{display:flex;flex-direction:column;gap:8px}
+  .drill-item{border:1px solid var(--border-default);border-radius:var(--radius-lg);overflow:hidden;transition:all 0.25s var(--ease)}
+  .drill-item:hover{border-color:#a8c8ff}
+  .drill-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 16px;cursor:pointer;user-select:none;
+    background:var(--bg-card);transition:all 0.2s var(--ease);
+  }
+  .drill-header:hover{background:#eef4ff}
+  .drill-header .left{display:flex;align-items:center;gap:12px}
+  .drill-header .left .icon{width:36px;height:36px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+  .drill-header .left .info h4{margin:0;font-size:14px;font-weight:600}
+  .drill-header .left .info span{font-size:12px;color:var(--text-muted)}
+  .drill-header .right{display:flex;align-items:center;gap:16px}
+  .drill-header .right .stat{text-align:right}
+  .drill-header .right .stat b{display:block;font-size:15px;color:var(--text-primary)}
+  .drill-header .right .stat small{font-size:11px;color:var(--text-muted)}
+  .drill-arrow{width:20px;height:20px;transition:transform 0.3s var(--ease);color:var(--text-muted);font-size:16px;text-align:center;line-height:20px}
+  .drill-arrow.open{transform:rotate(180deg)}
+  .drill-body{max-height:0;overflow:hidden;transition:max-height 0.35s var(--ease),padding 0.35s var(--ease);padding:0 16px;background:var(--bg-card-soft)}
+  .drill-body.open{max-height:400px;padding:0 16px 16px}
+  .drill-body table{margin:0}
+  .drill-body .sub-title{font-size:12px;font-weight:600;color:var(--text-muted);padding:12px 0 6px}
+
+  /* --- Accordion --- */
+  .accordion-wrap{display:flex;flex-direction:column;gap:6px}
+  .accordion-item{border:1px solid var(--border-default);border-radius:var(--radius-lg);overflow:hidden}
+  .accordion-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px;cursor:pointer;user-select:none;background:var(--bg-card);
+    transition:all 0.2s var(--ease);font-size:13px;font-weight:600;
+  }
+  .accordion-header:hover{background:#eef4ff}
+  .accordion-header .acc-arrow{transition:transform 0.3s var(--ease);color:var(--text-muted);font-size:12px}
+  .accordion-header .acc-arrow.open{transform:rotate(180deg)}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height 0.2s var(--ease);padding:0 16px;background:var(--bg-card-soft);font-size:13px;color:var(--text-muted);line-height:1.6}
+  .accordion-body.open{max-height:120px;padding:12px 16px}
+
+  /* --- Modal --- */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,40,.5);z-index:1000;justify-content:center;align-items:center;animation:fadeIn 0.2s}
+  .modal-overlay.show{display:flex}
+  .modal-box{background:var(--bg-card);border-radius:var(--radius-xl);width:420px;max-width:90vw;box-shadow:var(--shadow-xl);animation:slideUp 0.25s var(--ease)}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border-default)}
+  .modal-header h3{margin:0;font-size:15px;font-weight:600}
+  .modal-close{width:28px;height:28px;border-radius:50%;border:0;background:transparent;cursor:pointer;font-size:16px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+  .modal-close:hover{background:#f0f4fe;color:var(--text-primary)}
+  .modal-body{padding:20px;font-size:13px;color:var(--text-muted);line-height:1.6}
+  .modal-footer{display:flex;justify-content:flex-end;gap:10px;padding:12px 20px;border-top:1px solid var(--border-default)}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+  /* --- Dropdown --- */
+  .dropdown-wrap{position:relative;display:inline-block}
+  .dropdown-menu{
+    display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:160px;
+    background:var(--bg-card);border:1px solid var(--border-default);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-lg);z-index:100;padding:6px;animation:slideUp 0.15s var(--ease);
+  }
+  .dropdown-menu.show{display:block}
+  .dropdown-menu a{
+    display:block;padding:8px 12px;border-radius:var(--radius-md);font-size:13px;
+    text-decoration:none;color:var(--text-primary);transition:all 0.15s;
+  }
+  .dropdown-menu a:hover{background:#eef4ff;color:var(--primary)}
+  .dropdown-menu .divider{height:1px;background:var(--border-default);margin:6px 8px}
+
+  /* --- Tooltip --- */
+  .tooltip-wrap{position:relative;display:inline-flex;cursor:pointer}
+  .tooltip-bubble{
+    display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    background:#0a1428;color:#fff;font-size:11px;padding:6px 10px;border-radius:var(--radius-md);
+    white-space:nowrap;z-index:100;animation:slideUp 0.15s var(--ease);
+  }
+  .tooltip-bubble:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#0a1428}
+  .tooltip-wrap:hover .tooltip-bubble{display:block}
+
+  /* --- Floating Alert --- */
+  .floating-alert-container{position:fixed;top:24px;right:24px;z-index:2500;display:flex;flex-direction:column;gap:12px;width:380px;max-width:calc(100vw - 48px);pointer-events:none}
+  .floating-alert{pointer-events:auto;display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:#fffbe6;border:1px solid #ffe58f;border-left:4px solid #ff9f1c;border-radius:var(--radius-lg, 12px);box-shadow:var(--shadow-lg);animation:alertSlideInRight 0.3s var(--ease);transition:all 0.25s;position:relative}
+  .floating-alert.hide{opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none}
+  .floating-alert-icon{font-size:18px;line-height:1;flex-shrink:0;color:#ff9f1c;margin-top:2px}
+  .floating-alert-content{flex:1;display:flex;flex-direction:column;gap:4px}
+  .floating-alert-title{font-size:13px;font-weight:600;color:var(--text-primary);display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+  .floating-alert-body{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .floating-alert-close{background:transparent;border:none;color:#8c8c8c;font-size:14px;font-weight:bold;cursor:pointer;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;width:22px;height:22px;transition:all 0.15s;flex-shrink:0;line-height:1}
+  .floating-alert-close:hover{background:#f0f4fe;color:var(--text-primary)}
+  @keyframes alertSlideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+
+  /* --- Toast --- */
+  .toast-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2000;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+  .toast{
+    padding:12px 16px;border-radius:var(--radius-lg);font-size:13px;font-weight:500;
+    box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;min-width:260px;
+    animation:slideIn 0.3s var(--ease);pointer-events:auto;
+  }
+  .toast.success{background:#eafaf3;color:#0f6e56;border:1px solid #b2e6ce}
+  .toast.error{background:#fff0f2;color:#a32d2d;border:1px solid #f9bcc4}
+  .toast.info{background:#eef4ff;color:#0c447c;border:1px solid #b8d4ff}
+  @keyframes slideIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+  @keyframes toastOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(0.92)}}
+
+  /* --- Sidebar toggle demo --- */
+  .sidebar-demo-wrap{
+    display:flex;border:1px solid var(--border-default);border-radius:var(--radius-lg);overflow:hidden;min-height:140px;
+  }
+  .sidebar-demo-side{
+    width:160px;background:linear-gradient(180deg,#0a1428,#1e2a42);padding:12px;
+    transition:width 0.3s var(--ease),padding 0.3s var(--ease);overflow:hidden;flex-shrink:0;
+  }
+  .sidebar-demo-side.collapsed{width:48px;padding:12px 6px}
+  .sidebar-demo-side .sd-item{
+    display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--radius-md);
+    margin-bottom:4px;font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap;transition:all 0.2s;cursor:default;
+  }
+  .sidebar-demo-side .sd-item:hover{background:rgba(255,255,255,.08);color:#fff}
+  .sidebar-demo-side .sd-item.active{color:#4a8eff}
+  .sidebar-demo-side .sd-item .sd-icon{font-size:14px;flex-shrink:0;width:18px;text-align:center}
+  .sidebar-demo-side .sd-item .sd-label{transition:opacity 0.2s}
+  .sidebar-demo-side.collapsed .sd-item .sd-label{opacity:0;width:0;overflow:hidden}
+  .sidebar-demo-content{flex:1;padding:16px;background:#f8faff;font-size:12px;color:var(--text-muted)}
+  .sidebar-toggle-btn{
+    display:flex;align-items:center;justify-content:center;width:28px;height:28px;
+    border-radius:var(--radius-md);border:0;cursor:pointer;font-size:13px;transition:all 0.2s;
+  }
+  .sidebar-toggle-btn:hover{background:rgba(255,255,255,.12)}
+
+  /* --- Sortable table --- */
+  .sortable th{cursor:pointer;user-select:none}
+  .sortable th:hover{background:#eef4ff}
+  .sortable th .sort-icon{display:inline-block;margin-left:4px;font-size:10px;color:var(--text-muted);opacity:0.4}
+  .sortable th .sort-icon.active{opacity:1;color:var(--primary)}
+
+  /* --- Animation demo --- */
+  .anim-demo{display:flex;gap:12px;margin:12px 0}
+  .anim-box{width:44px;height:44px;border-radius:var(--radius-md);background:var(--primary);transition:all 0.35s var(--ease);cursor:pointer}
+  .anim-box:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+  .anim-box.bounce{transition-timing-function:var(--ease-bounce)}
+  .anim-box.bounce:hover{transform:translateY(-4px) scale(1.05)}
+
+  @media(max-width:700px){.col-2,.col-3,.col-4,.col-8{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+
+
+<style data-beautify="classic-blue-white">
+.beautify-root, body.beautify-full-page, body.beautify-root {
+  --bg-page: linear-gradient(180deg, #eaf3ff 0%, #f6f8fb 28%, #f3f7fc 100%);
+  --bg-card: #ffffff;
+  --bg-card-soft: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  --bg-chart: linear-gradient(180deg, #fbfdff, #f4f8ff);
+  --bg-insight: #f0f7ff;
+  --bg-table-header: #f5f8fc;
+  --bg-row-hover: #fbfdff;
+  --bg-filter: rgba(255,255,255,0.13);
+  --bg-warning-card: #fff8ee;
+  --bg-danger-card: #fff3f5;
+  --text-primary: #17233d;
+  --text-muted: #6b7a99;
+  --text-on-hero: #ffffff;
+  --border-default: #e4ecf7;
+  --border-chart: #edf3fb;
+  --scrollbar-thumb: #c9d8ee;
+  --line-chart-grid: #dce7f5;
+  --bar-primary: linear-gradient(180deg, #2994ff, #1769ff);
+  --bar-green: linear-gradient(180deg, #2ed99c, #16b979);
+  --bar-orange: linear-gradient(180deg, #ffc15a, #ff9f1c);
+  --bar-purple: linear-gradient(180deg, #9c86ff, #7c5cff);
+}
+
+/* Beautify - 经典-商务蓝白风 */
+.beautify-root .btn, .beautify-root .btn.primary {
+  background: #1769ff;
+  color: #ffffff;
+  border: transparent;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative; overflow: hidden;
+}
+.beautify-root .btn.primary:hover {
+  background: #0a54d4;
+  box-shadow: 0 6px 16px rgba(13, 71, 161, 0.10);
+  transform: translateY(-1px);
+}
+.beautify-root .btn.primary:active {
+  transform: translateY(0);
+  transition-duration: 0.15s;
+}
+.beautify-root .btn.secondary {
+  background: #eef5ff;
+  color: #2364b9;
+  border: transparent;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.beautify-root .btn.secondary:hover {
+  background: #d6e4ff;
+  box-shadow: 0 2px 6px rgba(13, 71, 161, 0.06);
+}
+.beautify-root .card {
+  background: #ffffff;
+  border: 1px solid #e4ecf7;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(13, 71, 161, 0.12);
+  padding: 16px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.beautify-root .card:hover {
+  box-shadow: 0 18px 36px rgba(13, 71, 161, 0.20);
+  transform: translateY(-2px);
+}
+.beautify-root .card.soft {
+  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+  border: 1px solid #e4ecf7;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(13, 71, 161, 0.12);
+  padding: undefined;
+}
+.beautify-root input, .beautify-root textarea {
+  background: #ffffff;
+  border: 1px solid #e4ecf7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--text-primary, inherit);
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.beautify-root input:focus, .beautify-root textarea:focus {
+  border-color: #4a8eff;
+  box-shadow: 0 0 0 3px #eef4ff;
+}
+.beautify-root select { background: #ffffff; color: var(--text-primary, #1d1d1f); border: 1px solid #e4ecf7; border-radius: 10px; padding: 10px 12px; font-size: 13px; outline: none; transition: all 0.2s; }
+.beautify-root select:focus { border-color: #4a8eff; box-shadow: 0 0 0 3px #eef4ff; }
+.beautify-root select option { background: var(--bg-card, #ffffff); color: var(--text-primary, #1d1d1f); padding: 8px; }
+.beautify-root .custom-select { position: relative; width: 100%; user-select: none; }
+.beautify-root .custom-select-trigger { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #ffffff; border: 1px solid #e4ecf7; border-radius: 10px; font-size: 13px; color: var(--text-primary, #1d1d1f); cursor: pointer; transition: all 0.2s;  }
+.beautify-root .custom-select-trigger:hover { background: #eef4ff; border-color: #1769ff; color: #1769ff; }
+.beautify-root .custom-select-options, .beautify-root .dropdown-menu, .beautify-root .dropdown-menu-box { display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: var(--bg-card, #ffffff); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid #e4ecf7; border-radius: 14px; box-shadow: 0 10px 24px rgba(13, 71, 161, 0.12); z-index: 200; padding: 6px; animation: selectSlideDown 0.2s ease; }
+.beautify-root .custom-select.open .custom-select-options, .beautify-root .dropdown-wrap.open .dropdown-menu, .beautify-root .dropdown-wrap.open .dropdown-menu-box { display: block; }
+.beautify-root .custom-select-option, .beautify-root .dropdown-item { padding: 8px 12px; border-radius: 10px; font-size: 13px; color: var(--text-primary, #1d1d1f); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
+.beautify-root .custom-select-option:hover, .beautify-root .custom-select-option.selected, .beautify-root .dropdown-item:hover { background: #eef4ff; color: #1769ff; font-weight: 500; }
+.beautify-root .custom-select-option.selected:after { content: "✓"; font-size: 12px; color: #1769ff; }
+.beautify-root table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12px; }
+.beautify-root th { background: #f0f4fe; color: #4a5775; font-weight: 750; padding: 10px 9px; border-bottom: 1px solid #e4ecf7; }
+.beautify-root td { padding: 10px 9px; border-bottom: 1px solid #e4ecf7; color: inherit; }
+.beautify-root tr:hover td { background: #f8faff; }
+.beautify-root .tab { border-radius: 999px; padding: 6px 10px; font-size: 12px; background: #eef5ff; color: #3f5f8a; cursor: pointer; border: 0; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.beautify-root .tab:hover { background: #d6e4ff; }
+.beautify-root .tab.active { background: #1769ff; color: #ffffff; }
+.beautify-root .badge { display: inline-block; border-radius: 999px; padding: 3px 7px; font-size: 11px; font-weight: 700; }
+.beautify-root .badge { background: #eef5ff; color: #2364b9; }
+.beautify-root .badge.green, .beautify-root .badge.success { background: #eafaf3; color: #16b979; }
+.beautify-root .badge.orange, .beautify-root .badge.warning { background: #fff6e8; color: #ff9f1c; }
+.beautify-root .badge.red, .beautify-root .badge.danger { background: #fff0f2; color: #ef4b5f; }
+.beautify-root .insight { background: #eef5ff; color: #28517c; border-left: 4px solid #1769ff; border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+.beautify-root .accordion-item { border: 1px solid #e4ecf7; border-radius: 14px; overflow: hidden; }
+.beautify-root .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; background: #ffffff; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+.beautify-root .accordion-header:hover { background: #eef4ff; }
+.beautify-root .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 0 16px; background: #f8faff; font-size: 13px; color: #4a5775; line-height: 1.6; }
+.beautify-root .accordion-body.open { max-height: 120px; padding: 12px 16px; }
+.beautify-root .accordion-header .acc-arrow { transition: transform 0.3s; color: #6b7a99; font-size: 12px; }
+.beautify-root .accordion-header .acc-arrow.open { transform: rotate(180deg); }
+.beautify-root .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 20, 40, 0.5); z-index: 1000; justify-content: center; align-items: center; animation: modalFadeIn 0.2s; }
+.beautify-root .modal-overlay.show { display: flex; }
+.beautify-root .modal-box { background: #ffffff; border-radius: 16px; width: 420px; max-width: 90vw; box-shadow: 0 18px 36px rgba(13, 71, 161, 0.20); animation: modalSlideUp 0.25s; }
+.beautify-root .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border-default, #e4ecf7); }
+.beautify-root .modal-body { padding: 20px; font-size: 13px; color: var(--text-muted, #6b7a99); line-height: 1.6; }
+.beautify-root .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 12px 20px; border-top: 1px solid var(--border-default, #e4ecf7); }
+.beautify-root .modal-close { width: 28px; height: 28px; border-radius: 50%; border: 0; background: transparent; cursor: pointer; font-size: 16px; color: var(--text-muted, #6b7a99); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.beautify-root .modal-close:hover { background: rgba(0,0,0,0.05); }
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.beautify-root .tooltip-wrap { position: relative; display: inline-flex; cursor: pointer; }
+.beautify-root .tooltip-bubble { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #0a1428; color: #ffffff; font-size: 11px; padding: 6px 10px; border-radius: 10px; white-space: nowrap; z-index: 100; }
+.beautify-root .tooltip-bubble:after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #0a1428; }
+.beautify-root .tooltip-wrap:hover .tooltip-bubble { display: block; }
+.beautify-root .toast-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
+.beautify-root .toast { padding: 12px 16px; border-radius: 14px; font-size: 13px; font-weight: 500; box-shadow: 0 10px 24px rgba(13, 71, 161, 0.12); display: flex; align-items: center; gap: 10px; min-width: 260px; pointer-events: auto; }
+.beautify-root .toast.success { background: #eafaf3; color: #0f6e56; border: 1px solid #b2e6ce; }
+.beautify-root .toast.error { background: #fff0f2; color: #a32d2d; border: 1px solid #f9bcc4; }
+.beautify-root .toast.info { background: #eef5ff; color: #0c447c; border: 1px solid #b8d4ff; }
+@keyframes toastSlideIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+@keyframes toastOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.92); } }
+.beautify-root .toast { animation: toastSlideIn 0.3s; }
+.beautify-root .floating-alert-container { position: fixed; top: 24px; right: 24px; z-index: 2500; display: flex; flex-direction: column; gap: 12px; width: 380px; max-width: calc(100vw - 48px); pointer-events: none; }
+.beautify-root .floating-alert { pointer-events: auto; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #ffffff; border: 1px solid #ffe58f; border-left: 4px solid #ff9f1c; border-radius: 14px; box-shadow: 0 10px 24px rgba(13, 71, 161, 0.12); backdrop-filter: none; -webkit-backdrop-filter: none; animation: alertSlideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1); transition: all 0.25s; position: relative; }
+.beautify-root .floating-alert.hide { opacity: 0; transform: translateY(-10px) scale(0.95); pointer-events: none; }
+.beautify-root .floating-alert-icon { font-size: 18px; line-height: 1; flex-shrink: 0; color: #ff9f1c; margin-top: 2px; }
+.beautify-root .floating-alert-content { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.beautify-root .floating-alert-title { font-size: 13px; font-weight: 600; color: #1e2a42; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.beautify-root .floating-alert-body { font-size: 12px; color: #4a5775; line-height: 1.5; }
+.beautify-root .floating-alert-close { background: transparent; border: none; color: #8b9dc0; font-size: 14px; font-weight: bold; cursor: pointer; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; transition: all 0.15s; flex-shrink: 0; box-shadow: none; line-height: 1; }
+.beautify-root .floating-alert-close:hover { background: #f0f4fe; color: #1e2a42; }
+.beautify-root .floating-alert-close:active { transform: scale(0.92); }
+.beautify-root .floating-alert.warning { background: #fffbe6; border-color: #ffe58f; border-left-color: #ff9f1c; }
+.beautify-root .floating-alert.info { background: #eef5ff; border-color: #b8d4ff; border-left-color: #1769ff; }
+.beautify-root .floating-alert.danger { background: #fff0f2; border-color: #f9bcc4; border-left-color: #ef4b5f; }
+@keyframes alertSlideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes appleAlertFadeIn { from { opacity: 0; transform: translateY(-12px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes pixelAlertPop { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+.beautify-root .up, .beautify-root .rise { color: #16b979; }
+.beautify-root .down, .beautify-root .fall { color: #ef4b5f; }
+.beautify-root .warn { color: #ff9f1c; }
+.beautify-root .progress-bar, .beautify-root .glass-progress-bar { width: 100%; height: 8px; background: #e4ecf7; border: none; border-radius: 999px; overflow: hidden; position: relative; box-shadow: none; }
+.beautify-root .progress-fill, .beautify-root .glass-progress-fill { height: 100%; background: linear-gradient(90deg, #4a8eff, #0a54d4); border-radius: 999px; transition: width 0.6s ease; position: relative; overflow: hidden; }
+.beautify-root .leaderboard-list { display: flex; flex-direction: column; gap: 10px; }
+.beautify-root .leaderboard-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #ffffff; border: 1px solid #e4ecf7; border-radius: 10px; box-shadow: none;  transition: all 0.2s; }
+.beautify-root .leaderboard-item:hover { background: var(--primary-light); transform: translateY(-2px);  }
+.beautify-root .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-weight: bold; font-size: 13px; margin-right: 12px; flex-shrink: 0; }
+.beautify-root .rank-badge.rank-1 { background: #fef3c7; color: #d97706; border: 1px solid #fde68a; }
+.beautify-root .rank-badge.rank-2 { background: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb; }
+.beautify-root .rank-badge.rank-3 { background: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; }
+.beautify-root .rank-badge.rank-other { background: #f0f4fe; color: #4a5775; border: none; }
+.beautify-root .rank-medal { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-weight: 800; font-size: 13px; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+.beautify-root .rank-medal.gold { background: linear-gradient(135deg, #fef08a, #f59e0b); color: #78350f; border: 1px solid #fcd34d; }
+.beautify-root .rank-medal.silver { background: linear-gradient(135deg, #f3f4f6, #9ca3af); color: #1f2937; border: 1px solid #e5e7eb; }
+.beautify-root .rank-medal.bronze { background: linear-gradient(135deg, #ffedd5, #ea580c); color: #7c2d12; border: 1px solid #fed7aa; }
+.beautify-root .rank-medal.normal { background: #f3f4f6; color: #6b7280; font-weight: 600; }
+.beautify-root .sf-rank { font-size: 20px; font-weight: 700; color: var(--text-muted, #86868b); width: 32px; flex-shrink: 0; font-feature-settings: "tnum"; }
+.beautify-root .sf-rank.rank-1 { color: #1d1d1f; font-weight: 800; }
+.beautify-root .sf-rank.rank-2 { color: #424245; font-weight: 800; }
+.beautify-root .sf-rank.rank-3 { color: #6e6e73; font-weight: 700; }
+.beautify-root .app-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.beautify-root .glass-rank { width: 32px; height: 32px; border-radius: 50%; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.8); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; }
+.beautify-root .glass-rank.rank-1 { background: rgba(52, 211, 153, 0.25); color: #065f46; box-shadow: 0 0 12px rgba(52, 211, 153, 0.4); }
+.beautify-root .glass-rank.rank-2 { background: rgba(16, 185, 129, 0.18); color: #047857; }
+.beautify-root .glass-rank.rank-3 { background: rgba(110, 231, 183, 0.2); color: #064e3b; }
+.beautify-root .glass-rank.rank-other { background: rgba(243, 244, 246, 0.5); color: #4b5563; }
+.beautify-root .stat-card { background: #ffffff; border: 1px solid #e4ecf7; border-radius: 14px; padding: 16px 20px; box-shadow: none;  display: flex; flex-direction: column; gap: 6px; position: relative; overflow: hidden; transition: all 0.25s; }
+.beautify-root .stat-card:hover { transform: translateY(-2px); }
+.beautify-root .stat-card .stat-label { font-size: 12px; color: #6b7a99; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+.beautify-root .stat-card .stat-value { font-size: 26px; font-weight: 700; color: #0a1428; letter-spacing: -0.01em; margin: 2px 0; }
+.beautify-root .stat-card .stat-trend { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.beautify-root .steps-wrap { display: flex; justify-content: space-between; position: relative; width: 100%; margin: 16px 0; padding: 0 10px; }
+.beautify-root .step-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; flex: 1; z-index: 2; position: relative; color: var(--text-muted); font-size: 12px; }
+.beautify-root .step-number { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #e4ecf7; color: #4a5775; border: none; transition: all 0.25s; flex-shrink: 0; }
+.beautify-root .step-item.active .step-number { background: #1769ff; color: #ffffff; box-shadow: none; }
+.beautify-root .step-item.active { color: var(--text-primary); font-weight: 600; }
+.beautify-root .step-item.active .step-title { color: var(--text-primary); font-weight: 700; }
+.beautify-root .step-content { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.beautify-root .step-title { font-size: 13px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+.beautify-root .step-desc { font-size: 11px; color: var(--text-muted); opacity: 0.8; white-space: nowrap; }
+.beautify-root .steps-line { position: absolute; top: 16px; left: 12%; right: 12%; height: 2px; background: #e4ecf7; z-index: 1; }
+.beautify-root .switch { position: relative; display: inline-block; width: 44px; height: 24px; user-select: none; vertical-align: middle; }
+.beautify-root .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.beautify-root .switch-slider { position: absolute; cursor: pointer; inset: 0; background-color: #c9d8ee; transition: .3s; border-radius: 999px; border: none; }
+.beautify-root .switch-slider:before { position: absolute; content: ""; height: calc(24px - 6px); width: calc(24px - 6px); left: 3px; bottom: 3px; background-color: #ffffff; transition: .3s; border-radius: 50%; }
+.beautify-root .switch input:checked + .switch-slider { background: #1769ff; }
+.beautify-root .switch input:checked + .switch-slider:before { transform: translateX(calc(44px - 24px)); }
+</style>
+
+
+</head>
+<body class="beautify-root beautify-full-page" data-page-node-id="b40838eLw1Zm2qYF3PBN9k">
+<div class="page" data-page-node-id="72mhZAQsKrrdZg18LD8o5D">
+
+  <!-- Nav -->
+  <nav class="navbar" data-page-node-id="Z8lzKm2CICo7HYFor6LGBV">
+    <div class="logo" data-page-node-id="M7JfTeH28ZuRUWHD2TF0KW">Beautify<span data-page-node-id="EYuUPW2IBaQ7bfnO8dsZfs">.</span></div>
+    <div class="nav-links" data-page-node-id="kv2agqLP7DrHFvVJKDjAkf">
+      <a href="#" class="active" data-page-node-id="buMBimJ2qcO3GP540vG5kV">模板预览</a>
+      <a href="#" data-page-node-id="Jo0tUTHA4lcZNt5vtbQvNm">模板列表</a>
+      <a href="#" data-page-node-id="rDCLKP8cez9AyJ8jFotcLr">使用指南</a>
+      <a href="#" data-page-node-id="K5b4MTMne0jCVV8gHB3XU7">关于</a>
+    </div>
+    <div class="nav-right" data-page-node-id="eJtwf0IKkyhBsLCFjcVjTp">
+      <span class="badge blue" data-page-node-id="S8pWyDCeE0EpQgtjiMImfY">v1.0</span>
+      <div class="avatar" data-page-node-id="2yP8RKpvzqj21ZxBWvKOCm">U</div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero" data-page-node-id="jAlTOndikcT3RaxoCxkDOw">
+    <div class="hero-content" data-page-node-id="GydUhrEZbRCDjIgdOzWgCN">
+      <h1 data-page-node-id="HYh1G3nkTWFuAyBxmZZ6LB">经典·商务蓝白风</h1>
+      <p data-page-node-id="1lLkhK9kQQqBFNZDZnJVv8">「Beautify」模板 #1 — 沉稳可信的蓝白配色，适合企业内部系统、后台管理、数据看板</p>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap" data-page-node-id="MBfqWNyzG0BUWuZWD9aHsa">
+        <span class="pill" data-page-node-id="UfpzK81ppix6wONKQfGsGC">主色 #1769ff</span>
+        <span class="pill" data-page-node-id="l59w3k7ao2UrBsqTVqbdPf">辅色 #0d47a1</span>
+        <span class="pill" data-page-node-id="NieX8Mgr2iCGyVtMKIIiYH">配色 5 套</span>
+        <span class="pill" data-page-node-id="dDZrNmfoe268whH0o3vUUf">组件 12 个</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设计原子 -->
+  <div class="section-title" data-page-node-id="BIQyixnN4VqmvDqWIslmdU">设计原子 <small data-page-node-id="YAmHe9CfMv7jgGGJXkWwls">Design Tokens — 整个模板的基础零件</small></div>
+  <div class="grid col-2" data-page-node-id="qbkx08swrn6SUGaIiFZK1g">
+    <div class="card" data-page-node-id="EgiIAPxvkEEFoa1aUnyNjq">
+      <h3 data-page-node-id="rNMjadBlgh6jyJVLMBIRqV">色彩系统 <small data-page-node-id="Pa4SqYIct7fBszIBIjZATF">6 套颜色</small></h3>
+      <div style="display:flex;flex-direction:column;gap:8px" data-page-node-id="OuIwQzrHpZay6CWBgkYCRM">
+        <div data-page-node-id="LD3OJUmp8u8h2QBH8B4to6"><span style="font-size:12px;font-weight:600" data-page-node-id="0FF2Ed7bDDsHH6eqru7FOD">主色</span><div style="display:flex;gap:4px;margin-top:4px" data-page-node-id="EEIhteKezBso0LeRMSfsI1">
+          <span style="width:32px;height:24px;border-radius:4px;background:#eef4ff;border:1px solid #ddd" data-page-node-id="FVwaDuGQHfIvgj2Ns1bzOk"></span>
+          <span style="width:32px;height:24px;border-radius:4px;background:#d6e4ff;border:1px solid #ddd" data-page-node-id="UFpIdAENfssLDbEmF6pAhG"></span>
+          <span style="width:32px;height:24px;border-radius:4px;background:#a8c8ff;border:1px solid #ddd" data-page-node-id="N5CHiHrSMKcD0OaUpd5fU3"></span>
+          <span style="width:32px;height:24px;border-radius:4px;background:#4a8eff;border:1px solid #ddd" data-page-node-id="cLEbIhi3AmlMsvFiOtC80E"></span>
+          <span style="width:32px;height:24px;border-radius:4px;background:#1769ff" data-page-node-id="NJTR5cvZSQsjJuNo3sQhwZ"></span>
+          <span style="width:32px;height:24px;border-radius:4px;background:#0a54d4" data-page-node-id="QKViGe135VHhuDipqZNdYg"></span>
+          <span style="width:32px;height:24px;border-radius:4px;background:#052e7a" data-page-node-id="elPPhASg5Lm29XP5o65eAD"></span>
+        </div></div>
+        <div data-page-node-id="IA3cZDlIEdcjFXFELKSZpl"><span style="font-size:12px;font-weight:600" data-page-node-id="jBhwmBDDAK0z6CPP2JQ1vK">语义色</span><div style="display:flex;gap:6px;margin-top:4px" data-page-node-id="n1INpBHrKDmzD2FBiyBD4M">
+          <span class="badge green" data-page-node-id="Tk6e3rVXb45bMVZyPTuGFn">成功</span>
+          <span class="badge orange" data-page-node-id="M6yGASmaNHmMgZB4uCAM7Z">警告</span>
+          <span class="badge red" data-page-node-id="f87SGP3aAR58P1YQDhAbIB">危险</span>
+          <span class="badge blue" data-page-node-id="p8cZJZBTYXJGJ0UhAjDVeu">信息</span>
+        </div></div>
+      </div>
+    </div>
+    <div class="card" data-page-node-id="NDsu5EoinVM9qILTg1SGeO">
+      <h3 data-page-node-id="UZ9MDpaIOP4EvRV8wCa3Cm">字体 & 间距 <small data-page-node-id="naMMXzsJgSbX3xRsQ4ap1E">字号梯级 + 间距系统</small></h3>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:12px" data-page-node-id="RmnHHbhwQK5pDMB119yE9n">
+        <div data-page-node-id="72oPu0mpurMjjbG2uqeWW9"><span style="font-weight:600" data-page-node-id="sKWhwGRz0i6oDNeeAZHhhG">字号：</span>11px · 12px · 13px · 14px · 17px · 22px · 28px · 32px</div>
+        <div data-page-node-id="kWIPC6hElXtyseZ4o4v3Lv"><span style="font-weight:600" data-page-node-id="5TjHcKnBQT3jgIFwmDG7MM">间距：</span>4px · 8px · 12px · 16px · 20px · 24px · 32px</div>
+        <div data-page-node-id="rQaIxfCukx5WIHKWsUFJ3E"><span style="font-weight:600" data-page-node-id="rupmlm0dv2bDPTD6gzNRiW">圆角：</span>6px · 10px · 14px · 16px · 999px · 24px</div>
+        <div data-page-node-id="KGOngqe150eQkFYNtWvXFM"><span style="font-weight:600" data-page-node-id="8EMMXGx9k0gCVFWiTzChVB">阴影：</span>4 级深度，从柔和到厚重</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 组件 -->
+  <div class="section-title" data-page-node-id="TwXqekkKonRff253oUDoU2">组件样式 <small data-page-node-id="TAF6pwZjvFwCcLChXnUmpd">Components — 按钮、卡片、输入框等现成零件</small></div>
+
+  <div class="grid col-2" style="margin-bottom:14px" data-page-node-id="fmHatopJAtT1BE9XpkQFAG">
+    <div class="card" data-page-node-id="dLaVDanyHdFVwFniitk9oY">
+      <h3 data-page-node-id="gW7npjrbBA1sM1llMlE4k4">按钮 <small data-page-node-id="7pMQGDRkcg9IVBKb8kEGB7">Button — 2 种变体</small></h3>
+      <div class="btn-group" data-page-node-id="2wv7ytKl7HqdpcQJrcGfKp">
+        <button class="btn primary" data-page-node-id="tHPe6qfBgACvBCRNd1hrrx">主要按钮</button>
+        <button class="btn secondary" data-page-node-id="gGC7l7dICQPuoaZdjaPgHG">次要按钮</button>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:var(--text-muted)" data-page-node-id="0JZ2mtbvohMMjNYOrDjiOA">
+        ✦ 悬停上浮 + 阴影加深 ✦ 点击缩放 0.97 ✦ 过渡 0.25s
+      </div>
+    </div>
+    <div class="card" data-page-node-id="A1fhFPtSqB06xySfhmHYsq">
+      <h3 data-page-node-id="jvAj1wE9906LNjLFHGcCkP">输入框 <small data-page-node-id="gforiaFOyp0aXjvIHSmqsV">Input — 表单元素</small></h3>
+      <div style="display:flex;flex-direction:column;gap:10px" data-page-node-id="SjlWXL7XEQsaDqIlh4MNVD">
+        <input type="text" placeholder="点击输入文字..." value="示例文本" data-page-node-id="uncVaIUOmDh0VvEV4Iv43v" />
+        <div class="select-wrap" data-page-node-id="cIIOL7GfbcNfxgKK7p5LFn"><select data-page-node-id="sIbo3HJDYCWMl5gB3f9uBc"><option data-page-node-id="CzDEUq5JEjgZyF5EQiCsPd">选项一</option><option data-page-node-id="ElEu4CmigrzQCAOd3CsoMh">选项二</option></select></div>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-muted)" data-page-node-id="SbAxVLFPYCHwLyT6nHqtWf">✦ 聚焦时蓝色边框 + 光晕</div>
+    </div>
+  </div>
+
+  <div class="grid col-3" style="margin-bottom:14px" data-page-node-id="E3Rhgc3DvpYDQ6Q4LE9nzr">
+    <div class="card" data-page-node-id="WvBKWbldsv4tc2jQertK00">
+      <h3 data-page-node-id="gbb8zFMvVAYHHRY5DdaG8k">标签 <small data-page-node-id="l1JNCBmCFq8XWOVZX68xgA">Tag</small></h3>
+      <div style="display:flex;gap:6px;flex-wrap:wrap" data-page-node-id="2QEHEJjYBbO916DTjbrsLe">
+        <span class="tag green" data-page-node-id="ulkqPuHwb7as9BA4xbxGIe">高转化</span>
+        <span class="tag red" data-page-node-id="kttxiUaiNWLHCCY0kHhlJ5">需关注</span>
+        <span class="tag orange" data-page-node-id="Ps1qz9HuU35EaHdDSY0hF5">预警</span>
+        <span class="tag blue" data-page-node-id="Vs0SbRdh0gY6RSWZWCMCmH">推荐</span>
+      </div>
+    </div>
+    <div class="card" data-page-node-id="sd6PDCwOZpjBnKHHct23Wf">
+      <h3 data-page-node-id="JtrjM7kDvFnL91seZQqShb">标记 <small data-page-node-id="fhuDYuyz55FFSLZ1SVD6PO">Badge</small></h3>
+      <div style="display:flex;gap:6px;flex-wrap:wrap" data-page-node-id="WhHEhqOZlmU2dMQofOK3ky">
+        <span class="badge blue" data-page-node-id="OBfJpo5BOTi1XGAUXGAMQL">达标</span>
+        <span class="badge green" data-page-node-id="kAv0OE6LCkKYeLukA8sGu3">优秀</span>
+        <span class="badge orange" data-page-node-id="p0gnQAK8v5MmO1vIv1Mq7x">关注</span>
+        <span class="badge red" data-page-node-id="VcIRcchFjRscCH57zJ11a1">异常</span>
+      </div>
+    </div>
+    <div class="card" data-page-node-id="Qn6KJSk6iEtMJjthp99CEX">
+      <h3 data-page-node-id="IPGluQZtio9py86AtkZHZd">切换标签 <small data-page-node-id="R0IeXzgTpFluPgwfUD1pK4">Tab</small></h3>
+      <div class="tabs" style="margin:0" data-page-node-id="h3WIDZr8PvwqIKPaY9GLSx">
+        <span class="tab active" data-page-node-id="gznvqcEKWSssXXIZOWx5T3">按日</span>
+        <span class="tab" data-page-node-id="hsBMuV7nuA0m4OqtppSEgD">按周</span>
+        <span class="tab" data-page-node-id="4oNZq3obQChounoU0R0UtP">按月</span>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-muted)" data-page-node-id="Yvp0MYxVxNcENNILTd8F2o">✦ 悬停变浅蓝 ✦ 选中变蓝底白字</div>
+    </div>
+  </div>
+
+  <div class="grid col-2" style="margin-bottom:14px" data-page-node-id="CNWzeJea3kRc3bugT6Qf6L">
+    <div class="card" data-page-node-id="mWwKmcH0dHUwIJauzomEK3">
+      <h3 data-page-node-id="cpFIh40gh1DWr8Y6qdykIF">卡片 <small data-page-node-id="ikCfplewx2ozkzLsjAhEgR">Card — 2 种变体</small></h3>
+      <div style="display:flex;flex-direction:column;gap:10px" data-page-node-id="YaVrt9tl1zTCEAc0aQpCi3">
+        <div style="padding:12px;border-radius:var(--radius-md);background:var(--bg-card);border:1px solid var(--border-default);font-size:12px" data-page-node-id="wiQMpPGdA13HyJXfBA1ZTr">
+          <b data-page-node-id="NbDZjvucLJlHlxiIyEGCGT">默认卡片</b><br data-page-node-id="DieW5LAfk9AmDgLtJWcFyF"><span style="color:var(--text-muted)" data-page-node-id="9rx9URMu3gP86heoK91LyO">白底 · 蓝灰描边 · 阴影</span>
+        </div>
+        <div style="padding:12px;border-radius:var(--radius-md);background:var(--bg-card-soft);border:1px solid var(--border-default);font-size:12px" data-page-node-id="qsJGurCBQs8foPZeJd28Mo">
+          <b data-page-node-id="dWSU8D9XlNxjnpB32deY7D">柔和卡片</b><br data-page-node-id="HNHDh2ZdybPuoJBjfsHf9C"><span style="color:var(--text-muted)" data-page-node-id="q1Bi3gzH7xekQzFGupBPbS">渐变底色 · 适合图表区</span>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-muted)" data-page-node-id="7yP3D30uiYLgvodAnEBDWY">✦ 悬停上浮 2px + 阴影加深</div>
+    </div>
+    <div class="card" data-page-node-id="twPHIbLiZ8aeXD69lylFko">
+      <h3 data-page-node-id="vDHhCkVAIBdEEkdj0imNEB">智能提示 <small data-page-node-id="RzEgzW5v353P2ZY3lNy9db">Insight</small></h3>
+      <div class="insight" data-page-node-id="xQavrl1kyKOxv2dQNo4ZPv">
+        智能结论：本月销售额环比提升 12.4%，但近 7 天转化率轻微下滑，建议重点复盘高咨询低转化商品与响应时效。
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心数据指标卡 (Stat Cards Showcase) -->
+  <div class="section-title" data-page-node-id="j2cug5QNjIxbqdGEskl0Er">核心数据指标卡 <small data-page-node-id="mse6MC3klT38FpDQsnuZnD">Stat Cards & KPI Grid</small></div>
+  <div class="grid col-4" style="margin-bottom:16px" data-page-node-id="OJqUmJrw1pWjofTDAUBPHQ">
+    <div class="stat-card" data-page-node-id="enLBaR8g1hOJJgiaqkKkZc">
+      <div class="stat-label" data-page-node-id="Vi7YClnn8SitQPweX7gBEc">
+        <span data-page-node-id="uESmSeDbGyrDQ3O2AdVWhl">季度销售总额 GMV</span>
+        <span class="badge green" data-page-node-id="v4Wq9YjdZglyOmliITL2TN">+18.5% ▲</span>
+      </div>
+      <div class="stat-value" data-page-node-id="KtDQR93GqWGvpgPiAgi23A">¥ 4,425.8 万</div>
+      <div class="progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="UiKHhVaPeHDQcWTLwBYjSn">
+        <div class="progress-fill" style="width:88.5%;" data-page-node-id="zzTKTBv2QxIsT5VuCehhsA"></div>
+      </div>
+    </div>
+    <div class="stat-card" data-page-node-id="v2sursDj379SBxePOef7Dl">
+      <div class="stat-label" data-page-node-id="ur29krGzGAgF2arkGjYSFX">
+        <span data-page-node-id="3QCyhrMvOb2j8rzdptqnlv">企业签约客户 Accounts</span>
+        <span class="badge green" data-page-node-id="dcxJhkkc2DkCCwAb6tndRI">+12.4% ▲</span>
+      </div>
+      <div class="stat-value" data-page-node-id="DUQ54sddTDJpxfuplAKqoA">1,280 家</div>
+      <div class="progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="1gJEijfED38FeyZf8lJIaF">
+        <div class="progress-fill" style="width:78%;" data-page-node-id="xdneQGrlKIBUxPWUdigVcf"></div>
+      </div>
+    </div>
+    <div class="stat-card" data-page-node-id="qRHdwdmJhGNGN7TjDrKY94">
+      <div class="stat-label" data-page-node-id="zJHL9NDzRJBBuIJzZA3ycf">
+        <span data-page-node-id="DQz1WQLGxgyCXokoppC5rA">平均响应时长 Latency</span>
+        <span class="badge blue" data-page-node-id="k0ywqRuKekyM8Qn5dopd1s">28.4s 优</span>
+      </div>
+      <div class="stat-value" data-page-node-id="New58yvhLrOLY7ufnFOe4o">28.4 秒</div>
+      <div class="progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="OmNU5Rh2Uf9iCX0yAWauOF">
+        <div class="progress-fill" style="width:92%; background:#16b979;" data-page-node-id="mJe0hAHyVZpzWpYUVNyHB3"></div>
+      </div>
+    </div>
+    <div class="stat-card" data-page-node-id="ZIwj9turVmgv9oQ6g0NQjQ">
+      <div class="stat-label" data-page-node-id="N8Q5wiETnFkSynsbnGiNqe">
+        <span data-page-node-id="OnnhGEQCG26JhYq2QhT72N">30秒应答满意率 SLA</span>
+        <span class="badge green" data-page-node-id="bFbTBoEMJzVcMb3TqKQZXP">4.95 / 5.0</span>
+      </div>
+      <div class="stat-value" data-page-node-id="Da50b46AzrUJfCjoOXAidj">96.2%</div>
+      <div class="progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="ScYzNqU6DmrPHC1Ap9siDJ">
+        <div class="progress-fill" style="width:96.2%;" data-page-node-id="NOergPRj2CyABIy7yWIi7l"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 排行榜、指标卡与进度条 -->
+  <div class="section-title" data-page-node-id="EAuV7T4KPCWoRkkpZCWmoj">排行榜与进阶指标 <small data-page-node-id="4YQ7ebMNNRAxWPPhJJ6iXl">Leaderboard & Metrics — 实时战报、进度条与开关控制</small></div>
+
+  <div class="grid col-2" style="margin-bottom:14px" data-page-node-id="mq50W4WWDdNI4fxepBzuUX">
+    <!-- 实时战队排行榜 (企业级 Structured Grid 战报表) -->
+    <div class="card" data-page-node-id="Lcgw1Ya9FpwHVBNEvIaTTx">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px" data-page-node-id="kWEakctn3E3iGZVZbGOwmx">
+        <h3 data-page-node-id="JPIoPZCsVT6bis76SIKhPg">🏆 销售战队大区绩效榜 <small data-page-node-id="XCe0GgKOHwhcAGSM8kOqXH">BI Leaderboard — 实时业绩战报</small></h3>
+        <span class="badge default" data-page-node-id="8wIAFHeVrKq6elaren8JQN">更新于 14:30</span>
+      </div>
+      <div class="table-wrap" style="border:1px solid var(--border-default); border-radius:var(--radius-md); overflow:hidden; margin-top:8px" data-page-node-id="D51XyIVaAynuCpPhCfhguQ">
+        <table style="width:100%; border-collapse:collapse; font-size:12px; text-align:left" data-page-node-id="2QcYa9qE4SIZ102xRfnBee">
+          <thead style="background:var(--bg-table-header); color:#52627d; font-weight:700" data-page-node-id="TX3w3BqlaFQr4VAvw3Xza1">
+            <tr data-page-node-id="LYgYKXrcHrFlYPF9tc61MJ">
+              <th style="padding:10px 12px; width:50px; text-align:center" data-page-node-id="r31T6RRIfYqFVknRK3JvSr">名次</th>
+              <th style="padding:10px 12px" data-page-node-id="YjEkj4T6lkEMRVDIRkK1jo">大区战队 / 负责人</th>
+              <th style="padding:10px 12px" data-page-node-id="uVJhfVI5NYOspOA5zuaDnK">核心渠道</th>
+              <th style="padding:10px 12px; width:140px" data-page-node-id="A27YRN88K9IJztrgeDsi81">目标达成率</th>
+              <th style="padding:10px 12px; text-align:right" data-page-node-id="9G9FILzWbwb79AHRv76k4u">GMV 成交额</th>
+              <th style="padding:10px 12px; text-align:center; width:80px" data-page-node-id="CuEV1lbsjwG6WNM0T25JzC">状态</th>
+            </tr>
+          </thead>
+          <tbody data-page-node-id="tdJDk06j1JgZ2nPRJn9gaq">
+            <tr style="border-bottom:1px solid #edf2f9" data-page-node-id="mMVjlYDTPR2U3PDV5k5wzt">
+              <td style="padding:12px; text-align:center" data-page-node-id="HEOWDIW9lr5PkoCJCmd2VA"><span class="rank-medal gold" data-page-node-id="4MJEtClxfevacKhRgp7M92">1</span></td>
+              <td style="padding:12px" data-page-node-id="mXYbL75Q2lkwtYZWDWuYrt">
+                <div style="font-weight:700; color:#102a56; font-size:13px" data-page-node-id="Ra2dd7HsNzL8Rd2txOS0Dp">华东大区战队</div>
+                <small style="color:var(--text-muted)" data-page-node-id="gpXqEmyWaVeQOTkD6rFLvD">队长: 张明 · 成员 28 人</small>
+              </td>
+              <td style="padding:12px" data-page-node-id="kt3udUhYtAJxJ8USqbGuF2"><span class="tag blue" data-page-node-id="qsFCTih5PfkThEsnAB9BHx">天猫 & 京东</span></td>
+              <td style="padding:12px" data-page-node-id="adjX1vylBhuQRmHIL9DsrA">
+                <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px" data-page-node-id="tKUD4sQsxVjcjHjYWWqv1J">
+                  <span style="font-weight:600; color:var(--primary)" data-page-node-id="u6rE2GQwQLl6sF3dO5P6MN">128.5%</span>
+                  <span style="color:var(--text-muted)" data-page-node-id="RpyNi6mb1cOmLjqDLgDMjc">超额 28%</span>
+                </div>
+                <div class="progress-bar" data-page-node-id="Ff28uDD9LtbQNToMFtPuoQ"><div class="progress-fill" style="width:100%" data-page-node-id="gDEhWCbMt8lPr0eeFCkBiy"></div></div>
+              </td>
+              <td style="padding:12px; text-align:right; font-weight:700; color:#102a56; font-size:14px" data-page-node-id="IotUrVNAF806iv3ePCyr1C">¥ 4,116万</td>
+              <td style="padding:12px; text-align:center" data-page-node-id="OwmN8oNskSQwdNMQPSec7o"><span class="tag green" data-page-node-id="912Tx9KFHChFUOOQzcVC8h">超额完成</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid #edf2f9" data-page-node-id="u2r1KVb7WJfmQ0kXE1nIOs">
+              <td style="padding:12px; text-align:center" data-page-node-id="YuqUSPA3Fm0MFaLO31ymaW"><span class="rank-medal silver" data-page-node-id="OeCKJpHrHfQGjRMKUp0btP">2</span></td>
+              <td style="padding:12px" data-page-node-id="rnopGE3XH9bkEOHfALVSHG">
+                <div style="font-weight:700; color:#102a56; font-size:13px" data-page-node-id="Iyb8FhgHwjGXwAoBZyX7aD">华南精锐战队</div>
+                <small style="color:var(--text-muted)" data-page-node-id="SpPthiP6wy9OwQElVwmIs6">队长: 李华 · 成员 22 人</small>
+              </td>
+              <td style="padding:12px" data-page-node-id="wDhdXjEcpTVgD02L11d989"><span class="tag blue" data-page-node-id="jE7RxHVqJtnnValAafxPTe">自营专卖店</span></td>
+              <td style="padding:12px" data-page-node-id="3kYBrnvQdri3DTFTIcqaBF">
+                <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px" data-page-node-id="4THVlcEU9YbQbtpBjW6XFG">
+                  <span style="font-weight:600; color:var(--primary)" data-page-node-id="1oFAE9gCC3pnUyBnpyMp4p">92.4%</span>
+                  <span style="color:var(--text-muted)" data-page-node-id="EKhJvrv8TMd8D0hgeprA2K">差 7.6%</span>
+                </div>
+                <div class="progress-bar" data-page-node-id="Mk1sUgWiiPSaAkaWXOZVI8"><div class="progress-fill" style="width:92.4%" data-page-node-id="9fGDIRiqgaIuIeZcgsyV4v"></div></div>
+              </td>
+              <td style="padding:12px; text-align:right; font-weight:700; color:#102a56; font-size:14px" data-page-node-id="gvqy3Ul2BYdDXExfNul3p4">¥ 2,840万</td>
+              <td style="padding:12px; text-align:center" data-page-node-id="eS5rAAwqmKxHyd6mBcGVvj"><span class="tag green" data-page-node-id="Bmebxmroo7ZwTOafiIkMdy">达标</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid #edf2f9" data-page-node-id="QxezvN7ZZ8sGdH29oCda4x">
+              <td style="padding:12px; text-align:center" data-page-node-id="3ja4FUxbuh3Gz2EEUJGZL7"><span class="rank-medal bronze" data-page-node-id="cskNttWtLUinJATRCLMyzs">3</span></td>
+              <td style="padding:12px" data-page-node-id="PSpNeA06Hpyprxmlh771FB">
+                <div style="font-weight:700; color:#102a56; font-size:13px" data-page-node-id="EV1QfPBEBh3noEGEil0Xon">华北先锋队</div>
+                <small style="color:var(--text-muted)" data-page-node-id="mc0kwNd4XQf1Hxe7sFvWkx">队长: 王雷 · 成员 18 人</small>
+              </td>
+              <td style="padding:12px" data-page-node-id="nFVLxnANUhEW2wvHIywkM2"><span class="tag orange" data-page-node-id="ItUWa1x8SwOtJ9QjG5w3uU">抖音 & 拼多多</span></td>
+              <td style="padding:12px" data-page-node-id="eJEpQNI9PduVDHuaSvBbPD">
+                <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px" data-page-node-id="8Hli7C7F8hrQYKQhHyfTva">
+                  <span style="font-weight:600; color:var(--primary)" data-page-node-id="tZ85OQEJzSgcCCnZWlbYcV">78.0%</span>
+                  <span style="color:var(--text-muted)" data-page-node-id="venCAa4mAJMAU4XZcwxW4A">冲刺中</span>
+                </div>
+                <div class="progress-bar" data-page-node-id="7Q8ib0J9zeUd3DSomsDomV"><div class="progress-fill" style="width:78%" data-page-node-id="QbBi4ZP6TCBPoDdSzh62fN"></div></div>
+              </td>
+              <td style="padding:12px; text-align:right; font-weight:700; color:#102a56; font-size:14px" data-page-node-id="z03kBGgtUOqdJTbFRHbAzz">¥ 1,856万</td>
+              <td style="padding:12px; text-align:center" data-page-node-id="MIPkFWEnEXKUDSLbwhENsf"><span class="tag orange" data-page-node-id="SjcV0h4FjyqoEeOWDEFK3V">冲刺</span></td>
+            </tr>
+            <tr data-page-node-id="GIeqXiGcQAvAWDXtnTzKJB">
+              <td style="padding:12px; text-align:center" data-page-node-id="TceUC9lpkHA4ZUEdT7ALgU"><span class="rank-medal normal" data-page-node-id="HiEGPaz7h6lbDmDmrbPl3s">4</span></td>
+              <td style="padding:12px" data-page-node-id="0sEPjzc2g6koF2IOaUxLFQ">
+                <div style="font-weight:700; color:#102a56; font-size:13px" data-page-node-id="zCXySfvZPNzTtponqAdHAB">西南开拓队</div>
+                <small style="color:var(--text-muted)" data-page-node-id="jjGhdaKWNrsZ5WcIiQtaNa">队长: 赵强 · 成员 15 人</small>
+              </td>
+              <td style="padding:12px" data-page-node-id="yA2QZtVllgahjQDvpnrWDg"><span class="tag default" data-page-node-id="fXFZODTJFCAeFp7er3y2dP">微信小程序</span></td>
+              <td style="padding:12px" data-page-node-id="GJUtlCNERwkckwW5KOPQ83">
+                <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px" data-page-node-id="hEeHnpM76LTknkBbMB7KAV">
+                  <span style="font-weight:600; color:var(--primary)" data-page-node-id="yWXc9sF2WFAAiHzoOqr8nJ">64.5%</span>
+                  <span style="color:var(--text-muted)" data-page-node-id="tuE2XryQLiE7Xr68CNm6jS">正常</span>
+                </div>
+                <div class="progress-bar" data-page-node-id="9oEA6HGAeWkGKBdseULp6t"><div class="progress-fill" style="width:64.5%" data-page-node-id="Abc1qXKEXaBSLKv5SUrv3g"></div></div>
+              </td>
+              <td style="padding:12px; text-align:right; font-weight:700; color:#102a56; font-size:14px" data-page-node-id="e94SEwdtblPUsgN7Nkcmag">¥ 1,220万</td>
+              <td style="padding:12px; text-align:center" data-page-node-id="qqXWQ4TBaZdk0WckC1pWCK"><span class="tag default" data-page-node-id="83efrDHbrWIfzmRakgbzBD">稳健</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 核心 KPI 矩阵与控制台 (Enterprise BI Console) -->
+    <div class="card" data-page-node-id="yx9Z2d5rb0TMHw1oxRoqD7">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px" data-page-node-id="5OkQ61EzekEqAqeWUHVikE">
+        <h3 data-page-node-id="EpbWDtAAdiCQ3iFol0ANyP">📊 运营控制台与核心 KPI 矩阵 <small data-page-node-id="hFHk7Rmdj6lAtRRzdORTqu">Operations Console</small></h3>
+        <span class="badge green" data-page-node-id="949NJkkvC3U0VOakt3dSlA">● 实时监控中</span>
+      </div>
+
+      <!-- 3 列 KPI 矩阵 -->
+      <div class="grid col-3" style="margin-bottom:14px; gap:10px" data-page-node-id="lYXGxBDBTyCvw557FuDWOc">
+        <div class="stat-card" style="padding:12px 14px" data-page-node-id="Vck7V6R0MedLbPmKqECDYs">
+          <div class="stat-label" data-page-node-id="dgOBHrHLUxzh7uuniVfZmx"><span data-page-node-id="BZnAs89Fneap3gZcgg1BH5">本月目标达成率</span><span class="tag green" data-page-node-id="3vmcysGbZPvbAREZbQKHP1">+12.4%</span></div>
+          <div class="stat-value" style="font-size:22px" data-page-node-id="WUr6jsjuMmNwVai28uEsDs">88.5%</div>
+          <div class="progress-bar" style="height:6px" data-page-node-id="Nq8rZlSAEMAZZ8NPDioBon"><div class="progress-fill" style="width:88.5%" data-page-node-id="35GC657yDaKQCsThpCk5cx"></div></div>
+          <small style="font-size:11px; color:var(--text-muted); margin-top:2px" data-page-node-id="xrCAvKD2lEw3GHT8f68IdW">已完成 ¥4,425万 / 目标 ¥5,000万</small>
+        </div>
+        <div class="stat-card" style="padding:12px 14px" data-page-node-id="XPYefbEQINSE2yvZQNmp5N">
+          <div class="stat-label" data-page-node-id="HhklfaieFlSLqABuPGdvet"><span data-page-node-id="8FTljLjWRPwCzrSYrVDT38">平均响应时长</span><span class="tag blue" data-page-node-id="6b59U4EG5tCapTTkCARxgm">优</span></div>
+          <div class="stat-value" style="font-size:22px" data-page-node-id="jLYvvocLuhNv7SfvFaIcil">28.4s</div>
+          <div class="progress-bar" style="height:6px" data-page-node-id="H5nigHHx2DQWlDEE6QED9v"><div class="progress-fill" style="width:92%; background:#16b979" data-page-node-id="jZOTmhBtVGUPXD2w9eXsnN"></div></div>
+          <small style="font-size:11px; color:var(--text-muted); margin-top:2px" data-page-node-id="MXAaAWxiBHRI07RoS3R3BC">环比缩短 4.2 秒 · 行业前 5%</small>
+        </div>
+        <div class="stat-card" style="padding:12px 14px" data-page-node-id="LqQMlRfRE29vYSCxek3dCo">
+          <div class="stat-label" data-page-node-id="XZhBUiNGAcYO9kaSioJm0n"><span data-page-node-id="ETcmbqv4lNoJ5y2LVlamiT">30秒应答率</span><span class="tag green" data-page-node-id="kcjtBawVH9ggGsZ3OZmzUd">高于大盘</span></div>
+          <div class="stat-value" style="font-size:22px" data-page-node-id="fdrjVfREA5VpWfnLaKo6l5">96.2%</div>
+          <div class="progress-bar" style="height:6px" data-page-node-id="cfl2dgkkTQqlJ8lNkDaf6w"><div class="progress-fill" style="width:96.2%" data-page-node-id="LeIbULWlM9WmBjW4K8yAhu"></div></div>
+          <small style="font-size:11px; color:var(--text-muted); margin-top:2px" data-page-node-id="ZrZHjW7GdgIrE6GOBiafan">满意度评分: 4.95 / 5.0</small>
+        </div>
+      </div>
+
+      <!-- 控制开关行 -->
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 14px; background:var(--bg-card-soft); border:1px solid var(--border-default); border-radius:var(--radius-md)" data-page-node-id="r2ZkqEppKo9jZlP4kvEKO3">
+        <div data-page-node-id="K3FO7DP9iceDWJz7uFSowk">
+          <div style="font-size:13px; font-weight:700; color:#102a56" data-page-node-id="i9UxGq1ensmoYeOPxiE4KI">⚡ 开启 AI 智能排班与风险自动预警引擎</div>
+          <small style="color:var(--text-muted); font-size:11px" data-page-node-id="JqiIeRYXgfD78VPEcJUCip">检测到高峰期流量自动调配云端客服坐席</small>
+        </div>
+        <label class="switch" data-page-node-id="kJYSYOCIy5EY6ofysII1OJ">
+          <input type="checkbox" checked data-page-node-id="TVCpfCt2rYcXwC3bCJiIsG">
+          <span class="switch-slider" data-page-node-id="lbvO0sRjG60xNZaomLvXfQ"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 独立全宽步骤条：服务工单流转全链路 -->
+  <div class="card" style="margin-bottom:14px" data-page-node-id="6LoJ4Y6nsfgAuyUt7bRSIW">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px" data-page-node-id="6r93pF0GfbCJgAeJuesOmu">
+      <h3 data-page-node-id="h4zfQ7JnDggzHNBSvRn9yV">📋 服务工单全链路流转状态追溯 <small data-page-node-id="vFuu26RD86xnOreRHMJPGs">Ticket Resolution Stepper — 实时节点监控</small></h3>
+      <div style="display:flex; gap:8px" data-page-node-id="FWLHfQzCWsSXvBF56yNCsc">
+        <span class="badge blue" data-page-node-id="MHfQjnJFCrHrQFBMum6Hkb">工单号: #TK-20260817</span>
+        <span class="tag green" data-page-node-id="RSzGN7W1Gla14MJFqjOjVU">处理中</span>
+      </div>
+    </div>
+
+    <div class="steps-wrap" style="padding:10px 20px" data-page-node-id="j8BaO7PLDKO9fqycDYDLZN">
+      <div class="steps-line" style="top:16px; left:8%; right:8%" data-page-node-id="om2oU99FA1B5LgvOKLb9wp"></div>
+      <div class="step-item active" data-page-node-id="saU5zdlaxAyenD5a9OVNWS">
+        <div class="step-number" data-page-node-id="kMxMmPIaSgr5PtFQHpL3o1">1</div>
+        <div class="step-content" data-page-node-id="edECOtwXhFpOUWSgzvodSS">
+          <div class="step-title" data-page-node-id="RCGN5leojOM0QAyLBkYspl">客户发起咨询</div>
+          <div class="step-desc" data-page-node-id="SF7pSr3VUPFvGgRHy8hUsE">10:15:20 · 自动接单</div>
+        </div>
+      </div>
+      <div class="step-item active" data-page-node-id="R8R2LwGYkpbCxclnROrF4k">
+        <div class="step-number" data-page-node-id="bSaP3H7syiYzi23KduNWro">2</div>
+        <div class="step-content" data-page-node-id="141tXmRcFfhClGQDdefvPq">
+          <div class="step-title" data-page-node-id="ouPDy0xhgK2fG675aZizy4">AI 意图识别分发</div>
+          <div class="step-desc" data-page-node-id="UYfajJWKm4V3BNvlPz7bX6">10:15:22 · 匹配知识库</div>
+        </div>
+      </div>
+      <div class="step-item active" data-page-node-id="HxU6SOuT9RJ2H0AGwhiqAg">
+        <div class="step-number" data-page-node-id="NrhfwhupgF4C9ePjtdGJRs">3</div>
+        <div class="step-content" data-page-node-id="Q6Azp0NH4B1libyyvQX3fe">
+          <div class="step-title" data-page-node-id="yx0FOZtoba8dexuZoQlLzR">专席坐席接管</div>
+          <div class="step-desc" data-page-node-id="0ga5lNA0A4NWLZOriBIOR7">10:16:05 · 正在解答中</div>
+        </div>
+      </div>
+      <div class="step-item" data-page-node-id="BEBat6g1RwoCMtAh7GUydk">
+        <div class="step-number" data-page-node-id="UlPMVBZMrWaDQzzAVMziK9">4</div>
+        <div class="step-content" data-page-node-id="jMwsOsd9zpZ4zjSy7mgm90">
+          <div class="step-title" data-page-node-id="dCnWjHe8P7T0vyOf8CHq1H">评价归档与结单</div>
+          <div class="step-desc" data-page-node-id="XzbXaAzMkr5NfEh1McBxMy">等待处理完成</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 表格 -->
+  <div class="section-title" data-page-node-id="nK27BLJeThGTqWfuJqLPr3">表格样式 <small data-page-node-id="BFW1JjjrxZ0JyeHiVyipes">Table — 数据展示</small></div>
+  <div class="card" data-page-node-id="NXKCpwno2WmYDm8WBnqPaS">
+    <div class="table-wrap" data-page-node-id="dLA66pnBB0QoF04GEzIug2">
+      <table data-page-node-id="j4JfzHoL3AlLPmVYqEQjmc">
+        <thead data-page-node-id="avmRhCth7DZDsaBBlkEhA5"><tr data-page-node-id="rfKnoDcnVrKSIBKDH6kW09"><th data-page-node-id="0Zy9IKuZF9iWJZjDMKWvrH">排名</th><th data-page-node-id="SH3AvUFOQDunADoew7OLZJ">店铺名称</th><th data-page-node-id="RixrrxuwTUBYc6uoqbWYAk">平台</th><th data-page-node-id="pVSR8HjGAASea8Yk4jT74T">销售额</th><th data-page-node-id="V38vypK0NdsAO15WfxPhWp">转化率</th><th data-page-node-id="ZZTKHNQUxtWTxKTPyE1PQB">满意度</th><th data-page-node-id="GDvORaeICAB2bJ8uyCvvIu">30秒应答率</th><th data-page-node-id="807DR5lw4bkVrzqmSd4kvg">平均响应</th></tr></thead>
+        <tbody data-page-node-id="sds7kam0Ah2YwoqWgW5IVc">
+          <tr data-page-node-id="vtR9jiMdMXHggl653Stm8Y"><td data-page-node-id="9xGQvC6GeTtcbDzIHnVMWH"><b data-page-node-id="ewfttZeAiwQk5Ct5KteSQc">1</b></td><td data-page-node-id="CPnKRPURCtLtV6zq5L1YVL">京东旗舰店A</td><td data-page-node-id="ITIpc9vAP4rgBvRKFol4Vv">京东</td><td data-page-node-id="SdRYIvjWfLGJz4YPx4QceE">¥2,180万</td><td class="up" data-page-node-id="3qJrVHYwCtKWzSsCDxzVCr">28.6%</td><td data-page-node-id="TZe9YGBlpEyRXIjA3ZAiZ6">97.2%</td><td data-page-node-id="dmms1TuqTjwm84ngCtuNjV">94.1%</td><td data-page-node-id="gUtvXPM0rmHNGm92qrIBtj">32s</td></tr>
+          <tr data-page-node-id="0VnymfzsuJrJ1gDCTNpBhQ"><td data-page-node-id="X6j9kGyimB3PHmAfcZUxx9"><b data-page-node-id="aGaJLSplZrnhzCAyKA4J3Y">2</b></td><td data-page-node-id="ciMCpAxUTQ1GuK2Q6QtGQf">天猫旗舰店B</td><td data-page-node-id="noCk6nImG9c1pYXrEndCeS">天猫</td><td data-page-node-id="jqujUbehEt4IUgllqAymh3">¥1,936万</td><td data-page-node-id="Bu3kmmEdGOJoeDhS729RnT">27.1%</td><td data-page-node-id="e9Z7XMORb6AZLHC7OB23il">96.5%</td><td data-page-node-id="rlkKpKFMLbZrnfxG99vKO1">92.3%</td><td data-page-node-id="gcu4dHlImzHIXgLR7Ls4ds">37s</td></tr>
+          <tr data-page-node-id="QGltdvxJe52jK0Oj7gWZLT"><td data-page-node-id="vO2Yi9Ca6Q7XvBp5WmOHnz"><b data-page-node-id="SFIFkgRmZ2kUG6VbijMey1">3</b></td><td data-page-node-id="dIIoqnbnYOV8xkVitSZgDw">京东专卖店C</td><td data-page-node-id="QzVZVsWoQFXRa1TEVAWlXR">京东</td><td data-page-node-id="87OEyLkowSQbNwDrf67gup">¥1,220万</td><td class="warn" data-page-node-id="fgmEkagP1r6VuDgslGfD2g">22.9%</td><td data-page-node-id="2DnIRZFMNFB0yoL8czqvCD">95.2%</td><td data-page-node-id="8eVKCVybJ6V26wGEyX5UJi">89.7%</td><td class="warn" data-page-node-id="K31PYxSs8i7Yf186ELW7FS">45s</td></tr>
+          <tr data-page-node-id="6z1nLqcwHko2aIbfovAxo0"><td data-page-node-id="WahFPLPVy04g1zmdyUbwz8"><b data-page-node-id="BPsy90TppkElFo07uKyOhn">4</b></td><td data-page-node-id="rhEAswbBngX1DoJeT0VaF9">其他平台</td><td data-page-node-id="VPSl5xnmaCH2FqKtRDvRHx">其他</td><td data-page-node-id="CqQ6MgRGs9YZQ8UGAO43Gp">¥636万</td><td class="down" data-page-node-id="1rfw8MjxNspztOSDfkd5hq">19.3%</td><td data-page-node-id="mpIjDfqP1uBhOLtV9uwqcW">94.7%</td><td class="down" data-page-node-id="kOfeLfOGDdaBFnh15WP2Gn">86.2%</td><td class="warn" data-page-node-id="jYFsFsucF5mx3EW9RSxkvn">48.7s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:8px;font-size:12px;color:var(--text-muted)" data-page-node-id="C12Ad8WNk3oAZDXKbb65CM">✦ 表头深蓝灰背景 ✦ 行悬停高亮 ✦ 数值升降颜色标记</div>
+  </div>
+
+  <!-- 布局适配 -->
+  <div class="section-title" data-page-node-id="KoO2Pb2EaU5MNkK4XmKESd">布局适配 <small data-page-node-id="Id5S5wCRrkLSyXiEhltqKd">Layout Adapters — 不管导航在哪，风格保持一致</small></div>
+  <div class="card" data-page-node-id="pQfD66BnQvE6n2ls5wGdAj">
+    <h3 data-page-node-id="2BTrrlmf3UC1gTP0P22x7q">导航栏适配 <small data-page-node-id="GifX8YFiEGdGgJUIegoqlB">导航在顶部 / 左侧 / 右侧 / 无导航</small></h3>
+    <div style="display:flex;flex-direction:column;gap:16px" data-page-node-id="DIy5MCQJL7jiq5v3dUqCqt">
+
+      <div data-page-node-id="igZqlDEtuwYKXe7rhNQIVE">
+        <div style="font-size:12px;font-weight:600;margin-bottom:6px" data-page-node-id="cXiLfzFB7TELkniJPQLdxP">▸ 顶部导航</div>
+        <div class="layout-preview" data-page-node-id="2077DJ2kQeuQ8fdCMB4zUw">
+          <div class="lp-nav" data-page-node-id="FtotfzNmWP7XITiFF7C0j7">
+            <span style="font-weight:700;color:#4a8eff" data-page-node-id="eDBKfEC8Fveo1zIGvgDRnr">Logo</span>
+            <a href="#" class="active" data-page-node-id="wdenXXKg7jz3rmE9ORtynH">首页</a>
+            <a href="#" data-page-node-id="FiJWlnv5Z7pY4b3TG2tnr6">数据看板</a>
+            <a href="#" data-page-node-id="1Mc8hilqy7pwLTUC7BrwwE">客服管理</a>
+            <a href="#" data-page-node-id="0amSGbBnHKHoSNTehNPGBB">设置</a>
+          </div>
+          <div class="lp-body" data-page-node-id="aSYMiunZKR55uTW008KiVA">
+            <div class="lp-content" style="padding:20px;text-align:center;color:var(--text-muted)" data-page-node-id="z1Ie0FFd3iDizkWGTUcdih">页面内容区域</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-page-node-id="Z9RJaCZ5fRTl4xtw5PqSf9">
+        <div style="font-size:12px;font-weight:600;margin-bottom:6px" data-page-node-id="FpRHUMCiTaIVD2fGpa1TSi">▸ 左侧导航</div>
+        <div class="layout-preview" data-page-node-id="lsobuvfJHvwVtwpbLPq9Az">
+          <div class="lp-body" data-page-node-id="gwaQwdJniucG7lJ8KPrbnC">
+            <div class="lp-sidebar" data-page-node-id="wwJlFpdp26TBCeLxHAcPKo">
+              <div class="active" data-page-node-id="CXsAi0hdOCDv2qFOCAhGDH">📊 数据看板</div>
+              <div data-page-node-id="ooR20vUerFoWLsw52MMlch">👥 客服管理</div>
+              <div data-page-node-id="cLuxW2cupuxkteJa6715IV">📦 商品管理</div>
+              <div data-page-node-id="1LeKFA6dpKPhAe38wybLXp">⚙️ 设置</div>
+            </div>
+            <div class="lp-content" style="padding:20px;text-align:center;color:var(--text-muted)" data-page-node-id="j4vhUh4A3sUBeB9SE14BHC">页面内容区域</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:12px;padding:10px 12px;border-radius:var(--radius-md);background:#eef4ff;font-size:12px;color:#28517c" data-page-node-id="oVPZWPVHSLpQR8Hs0mJtLz">
+      💡 模板会自动识别页面导航位置，套用对应的深色导航样式，保持整体风格统一。
+    </div>
+  </div>
+
+  <!-- 数据下钻 -->
+  <div class="section-title" data-page-node-id="g8FDXsmjCdZmhKFhSWURx3">数据下钻 <small data-page-node-id="XQEWmTVGPt4LFIaMuHzLsJ">Drill-down — 点击展开，层层深入</small></div>
+  <div class="card" data-page-node-id="GIWZrqxIobRWB58ykBwa1p">
+    <h3 data-page-node-id="bEpX4gzqwv49O6eRkur9UD">平台 → 店铺 下钻 <small data-page-node-id="BjGijlNvgZTUpO54dnI1Vn">点击任一平台，展开其下属店铺数据</small></h3>
+    <div class="drill-wrap" data-page-node-id="g6irsjwqcDEK4IJCTgDqJg">
+
+      <div class="drill-item" data-page-node-id="O74UkWv2awE2O0wqUtnxz1">
+        <div class="drill-header" onclick="toggleDrill(this)" data-page-node-id="WpeBPG3jH242H0F4nxNUyp">
+          <div class="left" data-page-node-id="P6NIhauEcAguSVTKTXkLkl">
+            <div class="icon" style="background:#1769ff" data-page-node-id="zEXsizqN6MkCcEUJ2MmkH3">京</div>
+            <div class="info" data-page-node-id="m9uhnUaNBm3T2FDCeMQkZn"><h4 data-page-node-id="3dLJ2mQJQU6HHx6UYaplwS">京东</h4><span data-page-node-id="MHg8ebKGyxtXD9mVBT9ru2">店铺 3 个 · 销售额 ¥6,428万</span></div>
+          </div>
+          <div class="right" data-page-node-id="AvSPzz8H1Jmmef56jaG1fw">
+            <div class="stat" data-page-node-id="slIArWy0ATEu4ABKYUXkiC"><b data-page-node-id="PNPyhDZ4yc61L0WGuga5y0">96.8%</b><small data-page-node-id="mNTZMob56CqFMGSaRGMDrH">满意度</small></div>
+            <div class="stat" data-page-node-id="KgualtbPYj9jPdBbwzZ63E"><b data-page-node-id="AED9gNR6DtbvZ4A7nqYuDu">93.2%</b><small data-page-node-id="H82ihcc4XC8rKdEr0r5VMH">30秒应答率</small></div>
+            <div class="drill-arrow" data-page-node-id="FKGdKuFG5JepPsGVcufut9">▼</div>
+          </div>
+        </div>
+        <div class="drill-body" data-page-node-id="qkHHvpVcAN7F8Zfryxyv37">
+          <div class="sub-title" data-page-node-id="TD5S7r5znu1K5dAuvqwTvl">▸ 下属店铺</div>
+          <table data-page-node-id="UhFc18rupaGmo4EhKSa6TW">
+            <thead data-page-node-id="hb2RV6YGmSVZlcNczXLGhT"><tr data-page-node-id="guNXGnUskyOymoqkC0VE0A"><th data-page-node-id="gF0Nprmi1we8IvqzqXLgqs">店铺名称</th><th data-page-node-id="wzsYz2kc3C8H4uihSNJAX1">销售额</th><th data-page-node-id="J2N9Arv2D4Y1hmz3hhQHw2">转化率</th><th data-page-node-id="UD8EmmB1dEIM4U6YHtCG61">满意度</th><th data-page-node-id="znqdHfc8QpmYD9Q8ARyFVl">30秒应答率</th><th data-page-node-id="yDS4Me8AfWZhTHxplmSvp0">平均响应</th></tr></thead>
+            <tbody data-page-node-id="xEZ6NEy77LIAK1nivr6rpP">
+              <tr data-page-node-id="UixZuEoIt9zWcdJJYCe23p"><td data-page-node-id="wGHrNIfWehtqNTCPxHd2Ry"><b data-page-node-id="jQbU9zx7W1sZWn3FGUK24f">京东旗舰店A</b></td><td data-page-node-id="fW3EvECLT3SGIHn9PwRQfq">¥2,180万</td><td class="up" data-page-node-id="yEHsgqkbyJbwvnTADEyeJL">28.6%</td><td data-page-node-id="KcvlP9QRo1rw7EsVHC2tXl">97.2%</td><td data-page-node-id="BFdw3A7AF4q7ajkF79aLX7">94.1%</td><td data-page-node-id="ffLE0GVi0p5uLpp2Wh8Gv3">32s</td></tr>
+              <tr data-page-node-id="AKYNqkjB0HhxPHoe0NY77k"><td data-page-node-id="dXaNTa7DGJv6ttkpiu3RCN"><b data-page-node-id="m0fSS7hKzSuk4GsNpPzZDO">京东专卖店C</b></td><td data-page-node-id="T6i5V6TnpKTiTz9iYXzUR5">¥1,220万</td><td data-page-node-id="br2M5uvkHU8JHGXBee4T69">25.4%</td><td data-page-node-id="DT9rjeNHaoIHdJEfslq76S">96.1%</td><td data-page-node-id="vUs0EG3Gcz7FFJyWWM6YSG">91.8%</td><td data-page-node-id="ymunGupmLJlfAyehCiuZfg">39s</td></tr>
+              <tr data-page-node-id="PbIHmW9RtTWJFJJc3TIMGy"><td data-page-node-id="DnB7gkVuAZdJY3KKw2jn8e"><b data-page-node-id="P9xUifCHnVMqfAsAq6Djad">京东自营旗舰店</b></td><td data-page-node-id="Xs2lE9xgY0Dh17F7LwrOKQ">¥3,028万</td><td class="up" data-page-node-id="mWJkuEXEJQK52BWocAFOW1">31.2%</td><td data-page-node-id="2AqDy6RyMCTMWLB7ywA9Ts">98.0%</td><td data-page-node-id="MdKwOBBjhDKGoRudUViC5H">95.6%</td><td data-page-node-id="HlbAO5Dpk5KeRIyX8Tt9Qr">28s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="drill-item" data-page-node-id="Ak8uf73UFzxsFwQOFg99Il">
+        <div class="drill-header" onclick="toggleDrill(this)" data-page-node-id="RhKQ0VeugBMgMyz7c4qiMl">
+          <div class="left" data-page-node-id="7iQkX6HZDk74ybdgT1o85R">
+            <div class="icon" style="background:#ff9f1c" data-page-node-id="GHUBvkFQxQxt1eYlDyHdof">猫</div>
+            <div class="info" data-page-node-id="KbGU7XpIvb0syJjMS5geFF"><h4 data-page-node-id="WREbZa01eHZ3dUebLCKIhA">天猫</h4><span data-page-node-id="fkViEqrU24R2dPdbeM2XXP">店铺 2 个 · 销售额 ¥5,792万</span></div>
+          </div>
+          <div class="right" data-page-node-id="sSXm6HvMxPhUie7tfGGNfa">
+            <div class="stat" data-page-node-id="YaTG6KDFVUjUWu1MSbVzzU"><b data-page-node-id="z6kWpjrMQ9YYPKb88dgZdA">95.9%</b><small data-page-node-id="txEiccAi9agC3WtqzTD5Xg">满意度</small></div>
+            <div class="stat" data-page-node-id="JFbWwiHrIf3Z7omQZkOjMo"><b data-page-node-id="hn421apkg2miKpbFBG3ZDu">91.4%</b><small data-page-node-id="e74Fi76lzbARLjWlWnvz1s">30秒应答率</small></div>
+            <div class="drill-arrow" data-page-node-id="FXRMU5tLXu4REhqLvb3E5t">▼</div>
+          </div>
+        </div>
+        <div class="drill-body" data-page-node-id="jp89LEWuNiwcuOJRvyzE1o">
+          <div class="sub-title" data-page-node-id="hnyuH4Sfeh3RZOGiPGHtTt">▸ 下属店铺</div>
+          <table data-page-node-id="UMJcpHJFt1xN6a78KlCeWv">
+            <thead data-page-node-id="znZ0QeCKxV56DBcufO8BoN"><tr data-page-node-id="TE5pWLLIyDH9ukAK4Wrskc"><th data-page-node-id="DW8sMKQRjICiPFuJTGyJZ4">店铺名称</th><th data-page-node-id="F5ROCNk1h3IoGA4N4rjELT">销售额</th><th data-page-node-id="m0CGBy1oVXqSHVrfFKvOj9">转化率</th><th data-page-node-id="ODMNZreCCos8kFUmaG8W9K">满意度</th><th data-page-node-id="9HFwi6rclADF2k05VOk66A">30秒应答率</th><th data-page-node-id="iYw8UeeMgsFWKKX02oM2TH">平均响应</th></tr></thead>
+            <tbody data-page-node-id="H3GtAvbpSqXLr3rzFOGYQU">
+              <tr data-page-node-id="e0qGNW71DbbGuKctP9Sdkw"><td data-page-node-id="Lxg979BAHtHI9N40QyP9ei"><b data-page-node-id="SduhYI1m9saywSPlgkyRlX">天猫旗舰店B</b></td><td data-page-node-id="hQ7XQHH1FIo4H7o58EwAr3">¥1,936万</td><td data-page-node-id="Y4v2YQXfBXqnhuL70qmNCm">27.1%</td><td data-page-node-id="iyOr71sSXODhEWOjGs7VEI">96.5%</td><td data-page-node-id="J4FhkFHCZnPouOyekW9OKz">92.3%</td><td data-page-node-id="h1Del88wu9K0AYYppNiDGW">37s</td></tr>
+              <tr data-page-node-id="3XpF0jz3Wtu73V4DgP2MVT"><td data-page-node-id="6A0OaDShBF54WzjD9r1LrB"><b data-page-node-id="HnY9s0F7B7vpx9nkduVjX5">天猫专卖店D</b></td><td data-page-node-id="YIGGqfERCJg3E2QiaD0Y2n">¥980万</td><td class="warn" data-page-node-id="H3DfT92Fb16IkOcZPEmehx">22.9%</td><td data-page-node-id="Z2XZjkQGjsAaGgS49eEjrd">95.2%</td><td data-page-node-id="RnWuykY7HsLKzxawBcgAoE">89.7%</td><td class="warn" data-page-node-id="w0BWDcNY6nK5NHGcBBs8tA">45s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="drill-item" data-page-node-id="FN1dGJBq0qB1B7S33NeKw6">
+        <div class="drill-header" onclick="toggleDrill(this)" data-page-node-id="1IZugbDT6OZNNKM1rSVH7z">
+          <div class="left" data-page-node-id="hvG1lCFKG57RNQaRgIadZZ">
+            <div class="icon" style="background:#16b979" data-page-node-id="m8jIwBtyCmbx8WgjZKH13C">其</div>
+            <div class="info" data-page-node-id="8C07wN2pXYxVVVGwS2Pufv"><h4 data-page-node-id="UFZrYTphMO9Wu73SxWwvNe">其他平台</h4><span data-page-node-id="I2XUMjriN19eSLkLnRTq5T">店铺 1 个 · 销售额 ¥636万</span></div>
+          </div>
+          <div class="right" data-page-node-id="8dtvfw7KyBwxUf3Q8UXxXH">
+            <div class="stat" data-page-node-id="YsHMwkND6peMPoZcAiAa7w"><b data-page-node-id="v2aoDz9XjHYJk86zrBANjF">94.7%</b><small data-page-node-id="yY1cn6PajwvrC0WUvRA0Qy">满意度</small></div>
+            <div class="stat" data-page-node-id="AGESzs5EiOyzSYaCXEEY1g"><b data-page-node-id="OMq2XReZhk8Khzmra2pnEi">86.2%</b><small data-page-node-id="hXeBmuesXTx3bYx6UDjPzJ">30秒应答率</small></div>
+            <div class="drill-arrow" data-page-node-id="OIx7R4x0J61xBF0lUncBOf">▼</div>
+          </div>
+        </div>
+        <div class="drill-body" data-page-node-id="d69aN3FTNG27WXHYZFYeCL">
+          <div class="sub-title" data-page-node-id="ZIHtynhvta7XTDfpMpBNI2">▸ 下属店铺</div>
+          <table data-page-node-id="l7r0S1Pj4Esbqyg1GgFkG2">
+            <thead data-page-node-id="Xb6GHh1yevaTPWh3961NoU"><tr data-page-node-id="SHFpmvd0FKQHoyyYjNesk1"><th data-page-node-id="cYg0cNbr9bN0nZSXm7hNSq">店铺名称</th><th data-page-node-id="8kb1NoaJe9ivR1c3ARGo4S">销售额</th><th data-page-node-id="zn2sPSBgUOcKtkCsPxm9dT">转化率</th><th data-page-node-id="yF2MjnJLdi5Y6r8kKzlIxL">满意度</th><th data-page-node-id="EQ4XRFLEkzpJF7Dx6tzN6v">30秒应答率</th><th data-page-node-id="BRd3cFGpcID4Tq7CVqaKTy">平均响应</th></tr></thead>
+            <tbody data-page-node-id="GPBkYduYCB3iwQx0K27mDq">
+              <tr data-page-node-id="aZzhiSEAzcAkUL7J3y2t9c"><td data-page-node-id="YaJOZoIWVaZy4xZmzAd76u"><b data-page-node-id="Fnr6OHw7uFg0q2ZigM3py6">店铺X</b></td><td data-page-node-id="B0meaJ510oiLevx1g2cpJF">¥636万</td><td class="down" data-page-node-id="o2SoQ7JHKYY8SEVaOovdxx">19.3%</td><td data-page-node-id="uC1YO8IAIMQHBcczV01d0Z">94.7%</td><td class="down" data-page-node-id="KxjhxGvTCIWsQV6ofW8y33">86.2%</td><td class="warn" data-page-node-id="V6TehBcMTJvVgzBkbiSnNs">48.7s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:12px;padding:10px 12px;border-radius:var(--radius-md);background:#eef4ff;font-size:12px;color:#28517c" data-page-node-id="v8jXQzgQT4v5yFkFPL6898">
+      💡 点击任意平台行展开详情，再次点击收起。展开收起的动画平滑过渡，适合嵌套多层数据下钻。
+    </div>
+  </div>
+
+  <!-- 更多交互 -->
+  <div class="section-title" data-page-node-id="2nQGtHItFTB7tulpbGKX8f">更多交互组件 <small data-page-node-id="QzK8jq5NImBBN9TaYbT0Xc">Interactions — 常见业务系统交互全收录</small></div>
+
+  <div class="grid col-2" style="margin-bottom:14px" data-page-node-id="G3CqXWEC12U2gyjZWILzDs">
+    <div class="card" data-page-node-id="AbPCZjuUZfF9YAfEx3Jjwy">
+      <h3 data-page-node-id="IX90CRLZk6QEhqU1dRGc04">折叠面板 <small data-page-node-id="VelClX2BTDj7G5FE7QiUdK">Accordion</small></h3>
+      <div class="accordion-wrap" data-page-node-id="K3Ibv2TRQKde4Rs4RDCw3G">
+        <div class="accordion-item" data-page-node-id="cWZLTEM53HsoQd83JAWOD2">
+          <div class="accordion-header" onclick="toggleAccordion(this)" data-page-node-id="hjn9jCZdJYqMscAkSaPlBN">
+            <span data-page-node-id="m47U3yHr6fphAlygOxRvCJ">📋 客服排班规则</span>
+            <span class="acc-arrow" data-page-node-id="zn9MJyCpX5GA5OjDEMVpiH">▼</span>
+          </div>
+          <div class="accordion-body" data-page-node-id="K9zRlRDzjOfCbEqz2MzQM4">早班 08:00-16:00 · 中班 12:00-20:00 · 晚班 16:00-24:00。每班至少 4 人在线，晚高峰弹性增加 2 人。</div>
+        </div>
+        <div class="accordion-item" data-page-node-id="WhEvkVtDkdRQfepyRoTnvL">
+          <div class="accordion-header" onclick="toggleAccordion(this)" data-page-node-id="5hMYVJi180D7HG26He3FEN">
+            <span data-page-node-id="flQHjXQAn0DleD3XvNmfzb">⚙️ 自动回复设置</span>
+            <span class="acc-arrow" data-page-node-id="B1VO8dS8ngpFlbSGlTf2qP">▼</span>
+          </div>
+          <div class="accordion-body" data-page-node-id="Sy2FrYBMwTdiepNS6ECqH9">首次响应自动发送问候语，常见问题启用关键词匹配自动回复，超时 3 分钟未回复触发预警。</div>
+        </div>
+        <div class="accordion-item" data-page-node-id="K38bSDxXslIcmeYoLfSPCy">
+          <div class="accordion-header" onclick="toggleAccordion(this)" data-page-node-id="TA3OhoBYdejD1HBbKFn1PU">
+            <span data-page-node-id="lv2QH1x65PyC9qgby23dVL">📊 数据统计口径</span>
+            <span class="acc-arrow" data-page-node-id="BevhATfaAiRPM740SBcEYd">▼</span>
+          </div>
+          <div class="accordion-body" data-page-node-id="nK6Lw0Md7XqjuWakoqV4I8">销售额 = 付款金额 · 转化率 = 下单人数 / 询单人数 · 满意度 = 好评数 / 评价总数 · 响应时间 = 首次回复时长中位数。</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-page-node-id="XkGKPGYDyc1wFGnpjE1VE4">
+      <h3 data-page-node-id="dVMiuSVzlAgxpefn562vFx">弹窗 <small data-page-node-id="RPhMmvAANEEx9Ok8SA7msZ">Modal / Dialog</small></h3>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start" data-page-node-id="PzgsmyhQc6FLRaoz2jozuv">
+        <div class="btn-group" data-page-node-id="4FKcRbUO1GMjYeAFpE67sy">
+          <button class="btn primary" onclick="openModal('info')" data-page-node-id="rZwhImEiL3tDlT0mglQidD">信息弹窗</button>
+          <button class="btn secondary" onclick="openModal('confirm')" data-page-node-id="FK4crKDxNA3aVWXtFw0lRW">确认弹窗</button>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted)" data-page-node-id="d8ZaqsO1TzDKrLzqzvQW3N">✦ 点击按钮弹出居中弹窗 ✦ 点击遮罩或关闭按钮关闭 ✦ 带入场动画</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid col-2" style="margin-bottom:14px" data-page-node-id="2o2aIWvD2pJXPNGHsBdKLd">
+    <div class="card" data-page-node-id="5Oh3wFLnQaURh1GamFMSSM">
+      <h3 data-page-node-id="vQVECbTO74SQqci6N9AtL6">下拉菜单 <small data-page-node-id="DAAdz8DpXlGdi0cCAHM9FT">Dropdown Menu</small></h3>
+      <div class="dropdown-wrap" data-page-node-id="B3U9ybaxWO6aiSwE8R1GI6">
+        <button class="btn secondary" onclick="toggleDropdown(this)" data-page-node-id="taNHrtlOJgBREENbAxva8E">更多操作 ▼</button>
+        <div class="dropdown-menu" data-page-node-id="SkPMRekSX4cStyXDLQPnJj">
+          <a href="#" data-page-node-id="qinurrtrOusqWk73i5MhHZ">导出为 Excel</a>
+          <a href="#" data-page-node-id="riHqMHBKfuFoAyMlnNQHdt">导出为 PDF</a>
+          <div class="divider" data-page-node-id="zDqmCqvFlMqVjmyYOwo4Fm"></div>
+          <a href="#" data-page-node-id="WfeCFJiXjuIN9dV6denvDw">保存为模板</a>
+          <a href="#" data-page-node-id="HlSYx9MwWix5SByHkuKL1I">分享看板</a>
+          <div class="divider" data-page-node-id="B2SC6d8kyVfaolNLiP8nGF"></div>
+          <a href="#" style="color:var(--red)" data-page-node-id="qjlsj7pXVCfy5sUB58Xtph">删除</a>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:12px" data-page-node-id="E9zeDhC9BAkFUijpWnasBA">✦ 点击按钮展开下拉 ✦ 再次点击关闭 ✦ 带分隔线和危险操作选项</div>
+    </div>
+    <div class="card" data-page-node-id="CCWaUGyKDXuTHur1Iny4bj">
+      <h3 data-page-node-id="OKq9R96cUQiZelpDeC76DR">提示浮层 <small data-page-node-id="dFUs5mtUWfwsbtifcVmRvm">Tooltip</small></h3>
+      <div style="display:flex;gap:16px;flex-wrap:wrap" data-page-node-id="oLnbUbNF4nCYZh3iRiwf2d">
+        <div class="tooltip-wrap" data-page-node-id="bSXzFT4K3vwjqc0AzTUSqs">
+          <span class="badge blue" data-page-node-id="596XexFBH7mQIdA1Ay7Hz6">满意度</span>
+          <span class="tooltip-bubble" data-page-node-id="r3sWNipzTNDIV151cByeHf">基于近 30 天评价数据计算</span>
+        </div>
+        <div class="tooltip-wrap" data-page-node-id="6UChfu7alvEuhpWrSgY5U4">
+          <span class="badge green" data-page-node-id="b512T1WI4XrWfkf7gR0zCA">转化率</span>
+          <span class="tooltip-bubble" data-page-node-id="1J6Q5nUygpqF0O0JuQoByx">下单人数 / 询单人数 × 100%</span>
+        </div>
+        <div class="tooltip-wrap" data-page-node-id="nUHFgSaxRjHcrcVL4tAqPy">
+          <span class="badge orange" data-page-node-id="CsZ8eTCpzXMDoNMC7IDnqQ">响应时间</span>
+          <span class="tooltip-bubble" data-page-node-id="CjAJMLIEp2XEYZkvcx0tSy">首次回复时长的中位数</span>
+        </div>
+        <div class="tooltip-wrap" data-page-node-id="JkzvLB9vbldJ4BSZAY1Tyv">
+          <span class="badge red" data-page-node-id="m2e69RnUHpHGdIfcEAHqGH">差评率</span>
+          <span class="tooltip-bubble" data-page-node-id="nwH1DtLbWUtfDC8EES1aWX">差评数 / 评价总数 × 100%</span>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:12px" data-page-node-id="nOTX21dR0OGiPMwdmwzzj9">✦ 鼠标悬停显示提示 ✦ 自动计算位置 ✦ 深色背景白色文字</div>
+    </div>
+  </div>
+
+  <div class="grid col-2" style="margin-bottom:14px" data-page-node-id="9Oceuwzxr6D9uy5dyEC85f">
+    <div class="card" data-page-node-id="g5GVYpFZDs7qiRCjIYvyvJ">
+      <h3 data-page-node-id="nMwCMOEts26CgpnGqIvCTC">通知提示 <small data-page-node-id="hyjefqLaYskBW3kZkyBfpN">Toast & Floating Alert</small></h3>
+      <div class="btn-group" style="flex-wrap:wrap" data-page-node-id="PWJcvuquuKXrq83MFordU6">
+        <button class="btn primary" onclick="showToast('success')" data-page-node-id="TAS43HUsXjA44TQRcdyi9Q">成功提示</button>
+        <button class="btn secondary" onclick="showToast('error')" data-page-node-id="chjNIm5JVsSkCk0egrgNLF">错误提示</button>
+        <button class="btn secondary" onclick="triggerFloatingAlert('warning')" data-page-node-id="NfXiv4nCvL4a7PKYGCwQVV">右上角警告 ⚠️</button>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:12px" data-page-node-id="3l8CBNYtT1QkTKANfPrqkW">✦ 居中 Toast 与 右上角非阻塞浮动警告 ✦ 支持手动叉掉 ✦ 不阻塞页面操作</div>
+    </div>
+    <div class="card" data-page-node-id="J4DmIWYVUQ9lIfMSelKqSe">
+      <h3 data-page-node-id="LLSENolRHLQ3pnoDHcpcYt">侧边栏折叠 <small data-page-node-id="0GONUp9pvnmkPuaqlN55fK">Sidebar Collapse</small></h3>
+      <div class="sidebar-demo-wrap" data-page-node-id="8ImL0KhaqycfdGicf3yftW">
+        <div class="sidebar-demo-side" id="sidebarDemo" data-page-node-id="SjUTOlPRYaCoCvslI6c1Xp">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px" data-page-node-id="fu9xgvP9GFPXFGmU4uOrj4">
+            <span style="color:#4a8eff;font-weight:700;font-size:13px;white-space:nowrap" data-page-node-id="HrQ0sSrZB3Hsz9hEr4cBsy">导航</span>
+            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" style="color:rgba(255,255,255,.6)" data-page-node-id="JMhiJZgbRiAcQsDn9eLB8Y">◀</button>
+          </div>
+          <div class="sd-item active" data-page-node-id="APFwYnDPP2PSmEhDY2WTZ9"><span class="sd-icon" data-page-node-id="Sr0SHZKVqcGd7XI9SzM5ek">📊</span><span class="sd-label" data-page-node-id="J05RUSiiYCGNrKb8DKG0Z8">数据看板</span></div>
+          <div class="sd-item" data-page-node-id="JfJbMxTHOCMruyt4JovHMX"><span class="sd-icon" data-page-node-id="cVHazEoVAkDCv4phsxuhEi">👥</span><span class="sd-label" data-page-node-id="GwgAssEnqwNxbYHUR9uXK9">客服管理</span></div>
+          <div class="sd-item" data-page-node-id="gLSrFIGjDbPKb9CKyzn5q6"><span class="sd-icon" data-page-node-id="DffQqeV6RNNYKCLigSs4dc">📦</span><span class="sd-label" data-page-node-id="8dGRM0InTbcHF6womCEbUB">商品管理</span></div>
+          <div class="sd-item" data-page-node-id="gYzWO2FE55qYLmDj809TUf"><span class="sd-icon" data-page-node-id="mwEbvZkOUEnfIO2TklGnNe">⚙️</span><span class="sd-label" data-page-node-id="RpcgILvg7uQYGY8TlfeHGA">系统设置</span></div>
+        </div>
+        <div class="sidebar-demo-content" style="display:flex;align-items:center;justify-content:center" data-page-node-id="zEH1MrbLGLd5AqGkv4474c">点击 ◀ 折叠侧边栏</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px" data-page-node-id="rTdNUnxknuiLcMzQzaH15Q">
+    <h3 data-page-node-id="EhgLpdhqHoEDXJarhBo52S">表格排序 <small data-page-node-id="PO9MSaIpQk5CyT6JC2ilHp">Sortable Table — 点击表头排序</small></h3>
+    <div class="table-wrap" data-page-node-id="hdORzdVtOFjIUuXyJmuMIv">
+      <table class="sortable" id="sortableTable" data-page-node-id="lbmYjyQZRbpwDCGAuiKoKa">
+        <thead data-page-node-id="6fFyN95iycEDF9qgHakpt4"><tr data-page-node-id="BGf4FaEpxdWbK1FONwhhUa">
+          <th onclick="sortTable(0)" data-page-node-id="NGBzHRw0AUIOjRMHcw5jGK">店铺名称 <span class="sort-icon" data-page-node-id="G3kplVEh3t9Q8MDJz9IOzF">▲▼</span></th>
+          <th onclick="sortTable(1)" data-page-node-id="xoO1tICJf7OqlfGsnVANjw">销售额 <span class="sort-icon" data-page-node-id="pDTcVJMzmJXxwQxSY7QUY7">▲▼</span></th>
+          <th onclick="sortTable(2)" data-page-node-id="Rrk7OgTUOmSDVDpNQ3Othi">转化率 <span class="sort-icon" data-page-node-id="1YoXlLqilb6BJFQw65ngYp">▲▼</span></th>
+          <th onclick="sortTable(3)" data-page-node-id="gVxMvp2toe7M4tHmZSQ47U">满意度 <span class="sort-icon" data-page-node-id="zn0ivvRU4bNHKjJvHPx9Q2">▲▼</span></th>
+          <th onclick="sortTable(4)" data-page-node-id="25PBIugtXBzuOwusfvBA7p">响应时间 <span class="sort-icon" data-page-node-id="MxKMMI2LiKzi640jp80Qvw">▲▼</span></th>
+        </tr></thead>
+        <tbody data-page-node-id="7sjgrEPUeMCHok8EEKPJ4K">
+          <tr data-page-node-id="Bs7VmE7C1FrB20MVyW5UbK"><td data-page-node-id="PXOGbJEasIJMjlUdzQZ4og">京东旗舰店A</td><td data-page-node-id="GJ4sEJCI4voLjfYPMoGE2C">¥2,180万</td><td class="up" data-page-node-id="TCOtRq4MJOgiVAMrVgKFkc">28.6%</td><td data-page-node-id="5hLDlysE01ip5XUPgWX5zz">97.2%</td><td data-page-node-id="ExZM4bzIM3Mix4CEfphD4c">32s</td></tr>
+          <tr data-page-node-id="GsI9JW2VOuHtA7qHaGJd2W"><td data-page-node-id="1r3fX20iGIXNWCLFbL7kx4">天猫旗舰店B</td><td data-page-node-id="AtukaX92sfZMRpIk9Xd34H">¥1,936万</td><td data-page-node-id="2cKXd11zXTJioDY23vkGNg">27.1%</td><td data-page-node-id="bicPEYRj2oa4NkMMg74T73">96.5%</td><td data-page-node-id="zdC84ZqWWrCZKoyNR9Zzgz">37s</td></tr>
+          <tr data-page-node-id="s6rKXFz8N8wCRpAScqLfyK"><td data-page-node-id="CmteEKBgqrED6fNFuvejgU">京东专卖店C</td><td data-page-node-id="PHQ7cBhdoLDrJh3Xle9aLl">¥1,220万</td><td class="warn" data-page-node-id="A73eW9oTub3WDsRmSbk1oD">22.9%</td><td data-page-node-id="12aDIVE2xkKR5v9zuyLI9X">95.2%</td><td class="warn" data-page-node-id="3kyYT1kkxsZb0Kpiqd8vCe">45s</td></tr>
+          <tr data-page-node-id="E3p92nmVOTmOpHBpMAd5aA"><td data-page-node-id="bHkhPqdoX0MlKR12tXhiJn">其他平台</td><td data-page-node-id="T0iZuoA0GjHbFKrD0qLq3L">¥636万</td><td class="down" data-page-node-id="8nTIqM2WtL7twrwsZ0OVEF">19.3%</td><td data-page-node-id="dqL6EanELibZ0am4UrwthS">94.7%</td><td class="warn" data-page-node-id="GjIzB3moKXdanTnWZxdR5E">48.7s</td></tr>
+          <tr data-page-node-id="OmnOfsO0xyAGzxFEKK5pRN"><td data-page-node-id="svGnSCB25IDBesGA2Lt3sM">天猫专卖店D</td><td data-page-node-id="ncxQbiOHhPQ2UiHB4xLcFr">¥980万</td><td data-page-node-id="Ips81TInN4zgp06323aD3a">25.4%</td><td data-page-node-id="OOc5lzRkGPWJe8DVkglTyV">96.1%</td><td data-page-node-id="RwA3pjPdxfpGVRA2Q3RMz3">39s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:12px;color:var(--text-muted);margin-top:8px" data-page-node-id="8StJ2I4iFuVmeGnsOem8OF">✦ 点击任意表头排序 ✦ 再次点击切换升降序 ✦ 排序箭头高亮显示</div>
+  </div>
+
+  <!-- 右上角浮动警告提示容器 -->
+  <div class="floating-alert-container" id="floatingAlertContainer" data-page-node-id="Q4vClkN6omz8icJvKjSPhr">
+    <div class="floating-alert warning" id="demoFloatingAlert" data-page-node-id="XyR9rEPKRpClM2JXq1Yf0o">
+      <div class="floating-alert-icon" data-page-node-id="iaWeIeZVfPGjfSzJvUOEWM">⚠️</div>
+      <div class="floating-alert-content" data-page-node-id="Gi5XsYcgWTOBlF1YOHrEtr">
+        <div class="floating-alert-title" data-page-node-id="bcFbQdLfSNlGTQ7MrG6Rlq">
+          <span data-page-node-id="QgeJyZTol7GE5w8P2ukROE">系统响应预警</span>
+          <button class="floating-alert-close" onclick="closeFloatingAlert(this)" data-page-node-id="gIcz6dHipP6sJ7Z8mOQm9N">✕</button>
+        </div>
+        <div class="floating-alert-body" data-page-node-id="ej25v0FOrvORmY1LU9UG0s">
+          检测到天猫平台 API 响应延迟较高 (520ms)，当前不影响数据计算与页面操作。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 容器 -->
+  <div class="toast-container" id="toastContainer" data-page-node-id="Qo6hhEfR9fOZJe2xmtDTfE"></div>
+
+  <!-- Modal 弹窗 -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()" data-page-node-id="dEx4VDHglnW4H5SWMHWEC9">
+    <div class="modal-box" onclick="event.stopPropagation()" data-page-node-id="viahp8bUMPEWJ2XHgxV7u4">
+      <div class="modal-header" data-page-node-id="1G2GAHLrcO4eKt0FJpatOK">
+        <h3 id="modalTitle" data-page-node-id="ubsvaU9EiSzOvkMiMOVe6F">提示</h3>
+        <button class="modal-close" onclick="closeModal()" data-page-node-id="lxvaD8QsChjV4IB5QcFRJD">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody" data-page-node-id="sVR56HtStPfLYkNTzQRmgU">弹窗内容</div>
+      <div class="modal-footer" id="modalFooter" data-page-node-id="6N1wzh3qPzozDz54BcBpUV">
+        <button class="btn secondary" onclick="closeModal()" data-page-node-id="iCwDgAOTE2mA3XJpUUDyaQ">取消</button>
+        <button class="btn primary" onclick="closeModal()" data-page-node-id="4wXZ6GxSweWHS9XV80tx0d">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 交互效果 -->
+  <div class="section-title" data-page-node-id="qiCM8ph5AObgVKhlEWmIJP">交互动效 <small data-page-node-id="I7SQf7TCBdYbEU5XayyaY5">Animations — 让页面动起来</small></div>
+  <div class="card" data-page-node-id="ShtdC85A6ZYNLVlxVsGC2p">
+    <h3 data-page-node-id="kG6zsaaNVCqF3qOytFXPQC">悬停 + 点击效果 <small data-page-node-id="k1i67LEVHvmvzehusSf7q9">Hover & Click</small></h3>
+    <div style="display:flex;flex-direction:column;gap:12px" data-page-node-id="BJw02AOUJlI9Lb014ERSBH">
+      <div data-page-node-id="2Kf7GvMAWeNHxwxqSazXUp">
+        <div style="font-size:12px;font-weight:600;margin-bottom:6px" data-page-node-id="ab7rEzqrCCCyZ3vmenZAUi">✦ 悬停效果</div>
+        <div class="anim-demo" data-page-node-id="65wALkcM96aQFZScQBNo20">
+          <div class="anim-box" data-page-node-id="KSFHZwDPicLlm32eb4wEPJ"></div>
+          <div style="display:flex;flex-direction:column;justify-content:center;font-size:12px;color:var(--text-muted)" data-page-node-id="QGQZdK7yLPyvyFDhxsxxzc">
+            <b data-page-node-id="taPM8AZcs8re05YKkcwCqR">上浮 + 阴影</b><br data-page-node-id="8uWamH4VseCUhV1EZPCOKC">卡片、按钮悬停时向上移动 2px
+          </div>
+        </div>
+      </div>
+      <div data-page-node-id="RCaZQYRqxICTYaOUyJTS5P">
+        <div style="font-size:12px;font-weight:600;margin-bottom:6px" data-page-node-id="R6LXjCnnBgSdnYF4K3sn8z">✦ 点击效果</div>
+        <div class="anim-demo" data-page-node-id="5iKFkmj2fN1Lo0i74KeHxS">
+          <div class="anim-box bounce" data-page-node-id="2gXCUP5ECGNv1IwXpC6oI4"></div>
+          <div style="display:flex;flex-direction:column;justify-content:center;font-size:12px;color:var(--text-muted)" data-page-node-id="VC2HDcVnvO2ceyuAv5zSls">
+            <b data-page-node-id="mPW0qNsDdqkEOVssLU45WI">弹性缩放 + 回弹</b><br data-page-node-id="VIwRwHSzulwLtYAiCbhBOP">点击按钮时缩放 0.97，松手回弹
+          </div>
+        </div>
+      </div>
+      <div data-page-node-id="IbfBDqLhhEx27Evc3oFhK3">
+        <div style="font-size:12px;font-weight:600;margin-bottom:6px" data-page-node-id="QbpVX3JHaNQWBO9a9tYy3J">✦ 进场动画</div>
+        <div style="font-size:12px;color:var(--text-muted)" data-page-node-id="DDlJj6PaThlOCGFCWnW3fq">
+          元素出现时从下方上移 12px + 淡入，0.35s 完成
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div style="text-align:center;color:var(--text-muted);font-size:12px;margin-top:32px;padding:16px;border-top:1px solid var(--border-default)" data-page-node-id="PUObSohiIXjlVMoDAP8eU1">
+    「Beautify」模板 #1 · 经典·商务蓝白风 · 2026
+  </div>
+
+</div>
+</body>
+<script>
+function toggleDrill(header){
+  var body=header.nextElementSibling;
+  var arrow=header.querySelector('.drill-arrow');
+  var isOpen=body.classList.contains('open');
+  document.querySelectorAll('.drill-body.open').forEach(function(b){
+    if(b!==body){b.classList.remove('open');b.previousElementSibling.querySelector('.drill-arrow').classList.remove('open')}
+  });
+  if(isOpen){body.classList.remove('open');arrow.classList.remove('open')}
+  else{body.classList.add('open');arrow.classList.add('open')}
+}
+function toggleAccordion(header){
+  var body=header.nextElementSibling;
+  var arrow=header.querySelector('.acc-arrow');
+  var isOpen=body.classList.contains('open');
+  if(isOpen){body.classList.remove('open');arrow.classList.remove('open')}
+  else{body.classList.add('open');arrow.classList.add('open')}
+}
+function openModal(type){
+  var overlay=document.getElementById('modalOverlay');
+  var title=document.getElementById('modalTitle');
+  var body=document.getElementById('modalBody');
+  var footer=document.getElementById('modalFooter');
+  if(type==='info'){
+    title.textContent='店铺详情 - 京东旗舰店A';
+    body.innerHTML='<b>京东旗舰店A</b> 是京东平台的核心店铺，主营显示器品类。<br><br>近 30 天销售额 ¥2,180万，同比增长 12.4%。客服团队 18 人，人均销售额 ¥121万。满意度 97.2%，排名部门第一。';
+    footer.innerHTML='<button class="btn primary" onclick="closeModal()">知道了</button>';
+  }else{
+    title.textContent='确认操作';
+    body.innerHTML='确认要导出当前看板数据为 Excel 文件吗？导出包含所有筛选条件下的完整数据。';
+    footer.innerHTML='<button class="btn secondary" onclick="closeModal()">取消</button><button class="btn primary" onclick="closeModal()">确认导出</button>';
+  }
+  overlay.classList.add('show');
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+function toggleDropdown(btn){
+  var menu=btn.nextElementSibling;
+  menu.classList.toggle('show');
+  document.addEventListener('click',function close(e){
+    if(!btn.contains(e.target)&&!menu.contains(e.target)){
+      menu.classList.remove('show');
+      document.removeEventListener('click',close);
+    }
+  });
+}
+function closeFloatingAlert(btn){
+  var alert=btn.closest('.floating-alert');
+  if(alert){
+    alert.classList.add('hide');
+    setTimeout(function(){alert.style.display='none';alert.classList.remove('hide');},250);
+  }
+}
+function triggerFloatingAlert(type){
+  var alert=document.getElementById('demoFloatingAlert');
+  if(!alert)return;
+  alert.style.display='flex';
+  alert.className='floating-alert '+(type||'warning');
+}
+function showToast(type){
+  var container=document.getElementById('toastContainer');
+  var msgs={success:'导出成功！文件已保存到下载目录',error:'导出失败，请检查网络连接后重试',info:'数据已更新至最新时间'};
+  var icons={success:'✓',error:'✕',info:'ℹ'};
+  var toast=document.createElement('div');
+  toast.className='toast '+type;
+  toast.innerHTML='<b>'+icons[type]+'</b> '+msgs[type];
+  container.appendChild(toast);
+  setTimeout(function(){toast.style.animation='toastOut 0.3s forwards';setTimeout(function(){toast.remove()},300)},3000);
+}
+function toggleSidebar(){
+  var side=document.getElementById('sidebarDemo');
+  var btn=side.querySelector('.sidebar-toggle-btn');
+  side.classList.toggle('collapsed');
+  btn.textContent=side.classList.contains('collapsed')?'▶':'◀';
+}
+var sortDir=[];
+function sortTable(col){
+  var table=document.getElementById('sortableTable');
+  var tbody=table.querySelector('tbody');
+  var rows=Array.from(tbody.querySelectorAll('tr'));
+  if(sortDir[col]===undefined)sortDir[col]=true;
+  else sortDir[col]=!sortDir[col];
+  var dir=sortDir[col]?1:-1;
+  rows.sort(function(a,b){
+    var va=a.children[col].textContent.trim();
+    var vb=b.children[col].textContent.trim();
+    var na=parseFloat(va.replace(/[¥%,万s]/g,''));
+    var nb=parseFloat(vb.replace(/[¥%,万s]/g,''));
+    if(!isNaN(na)&&!isNaN(nb))return (na-nb)*dir;
+    return va.localeCompare(vb)*dir;
+  });
+  rows.forEach(function(r){tbody.appendChild(r)});
+  table.querySelectorAll('.sort-icon').forEach(function(i){i.classList.remove('active');i.textContent='▲▼'});
+  var icon=table.querySelectorAll('th')[col].querySelector('.sort-icon');
+  icon.classList.add('active');
+  icon.textContent=sortDir[col]?'▲':'▼';
+}
+</script>
+</html>

@@ -1,0 +1,511 @@
+{
+  "name": "小清新风",
+  "id": "fresh-green",
+  "description": "清新透亮、充满空气感与微风拂过般的高透冰晶玻璃质感（Multi-dimensional Glassmorphism），包含流光闪烁、液态进度条、漂浮自然叶片与动态绿白极光背板",
+  "version": "1.1.0",
+  "dynamicBackground": true,
+  "glassmorphism": true,
+
+  "tokens": {
+    "colors": {
+      "primary": {
+        "50":  "#f0fdf4",
+        "100": "#dcfce7",
+        "200": "#bbf7d0",
+        "300": "#86efac",
+        "400": "#4ade80",
+        "500": "#10b981",
+        "600": "#059669",
+        "700": "#047857",
+        "800": "#065f46",
+        "900": "#064e3b"
+      },
+      "neutral": {
+        "0":   "#ffffff",
+        "50":  "#f8fbf8",
+        "100": "#f0f5f1",
+        "200": "#e2ece4",
+        "300": "#cbdcd0",
+        "400": "#9eb8aa",
+        "500": "#729381",
+        "600": "#50715f",
+        "700": "#385242",
+        "800": "#223628",
+        "900": "#101e15"
+      },
+      "glass": {
+        "bg": "rgba(255, 255, 255, 0.75)",
+        "bgSubtle": "rgba(255, 255, 255, 0.55)",
+        "bgHover": "rgba(255, 255, 255, 0.88)",
+        "border": "rgba(255, 255, 255, 0.85)",
+        "borderSubtle": "rgba(226, 236, 228, 0.75)",
+        "highlight": "rgba(255, 255, 255, 0.95)",
+        "shadow": "0 8px 32px 0 rgba(16, 185, 129, 0.08)",
+        "shadowHover": "0 14px 40px 0 rgba(16, 185, 129, 0.15)",
+        "blur": "blur(20px) saturate(180%)"
+      },
+      "success":  { "bg": "rgba(240, 253, 244, 0.85)", "text": "#059669", "border": "rgba(187, 247, 208, 0.8)" },
+      "warning":  { "bg": "rgba(255, 251, 235, 0.85)", "text": "#d97706", "border": "rgba(253, 230, 138, 0.8)" },
+      "danger":   { "bg": "rgba(255, 241, 242, 0.85)", "text": "#e11d48", "border": "rgba(254, 205, 211, 0.8)" },
+      "info":     { "bg": "rgba(240, 253, 244, 0.85)", "text": "#059669", "border": "rgba(220, 252, 231, 0.8)" }
+    },
+
+    "typography": {
+      "fontFamily": "-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
+      "fontMono": "'SF Mono', 'Fira Code', 'Consolas', monospace",
+      "scale": {
+        "xs":   "11px",
+        "sm":   "12px",
+        "base": "13px",
+        "md":   "15px",
+        "lg":   "18px",
+        "xl":   "24px",
+        "xxl":  "30px",
+        "hero": "36px"
+      },
+      "weights": {
+        "normal":  "400",
+        "medium":  "500",
+        "semibold": "600",
+        "bold":    "700"
+      },
+      "letterSpacing": {
+        "tight": "-0.01em",
+        "normal": "0.01em",
+        "wide": "0.03em"
+      }
+    },
+
+    "spacing": {
+      "xs":  "6px",
+      "sm":  "10px",
+      "md":  "14px",
+      "lg":  "20px",
+      "xl":  "28px",
+      "xxl": "40px"
+    },
+
+    "radii": {
+      "sm":    "8px",
+      "md":    "12px",
+      "lg":    "16px",
+      "xl":    "22px",
+      "pill":  "999px",
+      "hero":  "28px"
+    },
+
+    "shadows": {
+      "sm":  "0 4px 16px rgba(16, 185, 129, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+      "md":  "0 8px 24px rgba(16, 185, 129, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
+      "lg":  "0 16px 36px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
+      "xl":  "0 24px 48px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95)",
+      "hero":"0 20px 40px rgba(16, 185, 129, 0.10), inset 0 1px 1px rgba(255, 255, 255, 0.95)"
+    },
+
+    "animation": {
+      "duration": {
+        "fast":   "0.18s",
+        "normal": "0.28s",
+        "slow":   "0.4s"
+      },
+      "easing": {
+        "default":  "cubic-bezier(0.22, 1, 0.36, 1)",
+        "bounce":   "cubic-bezier(0.34, 1.45, 0.64, 1)",
+        "smooth":   "cubic-bezier(0.4, 0, 0.2, 1)"
+      }
+    }
+  },
+
+  "components": {
+    "button": {
+      "primary": {
+        "bg": "linear-gradient(135deg, rgba(16, 185, 129, 0.92) 0%, rgba(5, 150, 105, 0.96) 100%)",
+        "text": "#ffffff",
+        "border": "1px solid rgba(255, 255, 255, 0.4)",
+        "radius": "{radii.pill}",
+        "padding": "10px 24px",
+        "fontSize": "{typography.scale.sm}",
+        "fontWeight": "{typography.weights.semibold}",
+        "shadow": "0 6px 20px rgba(16, 185, 129, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
+        "hover": {
+          "bg": "linear-gradient(135deg, rgba(16, 185, 129, 1) 0%, rgba(4, 120, 87, 1) 100%)",
+          "shadow": "0 8px 26px rgba(16, 185, 129, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.8)",
+          "transform": "translateY(-2px)"
+        },
+        "active": {
+          "transform": "scale(0.97)"
+        }
+      },
+      "secondary": {
+        "bg": "rgba(255, 255, 255, 0.65)",
+        "text": "{colors.primary.700}",
+        "border": "1px solid rgba(187, 247, 208, 0.85)",
+        "radius": "{radii.pill}",
+        "padding": "10px 24px",
+        "fontSize": "{typography.scale.sm}",
+        "fontWeight": "{typography.weights.medium}",
+        "backdropFilter": "blur(12px)",
+        "shadow": "0 2px 10px rgba(16, 185, 129, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+        "hover": {
+          "bg": "rgba(255, 255, 255, 0.88)",
+          "border": "1px solid {colors.primary.400}",
+          "shadow": "0 4px 16px rgba(16, 185, 129, 0.12)"
+        }
+      }
+    },
+
+    "card": {
+      "default": {
+        "bg": "rgba(255, 255, 255, 0.72)",
+        "border": "1px solid rgba(255, 255, 255, 0.85)",
+        "backdropFilter": "blur(20px) saturate(180%)",
+        "radius": "{radii.xl}",
+        "shadow": "0 8px 32px 0 rgba(16, 185, 129, 0.08), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 1px 0 rgba(16, 185, 129, 0.05)",
+        "padding": "{spacing.xl}",
+        "hover": {
+          "shadow": "0 14px 40px 0 rgba(16, 185, 129, 0.15), inset 0 1.5px 1px 0 rgba(255, 255, 255, 1)",
+          "transform": "translateY(-3px)"
+        }
+      },
+      "soft": {
+        "bg": "linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 244, 0.7) 100%)",
+        "border": "1px solid rgba(187, 247, 208, 0.85)",
+        "backdropFilter": "blur(20px)",
+        "radius": "{radii.xl}",
+        "shadow": "0 8px 28px 0 rgba(16, 185, 129, 0.09), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95)",
+        "padding": "{spacing.xl}"
+      }
+    },
+
+    "input": {
+      "bg": "rgba(255, 255, 255, 0.65)",
+      "border": "1px solid rgba(226, 236, 228, 0.85)",
+      "backdropFilter": "blur(12px)",
+      "radius": "{radii.md}",
+      "padding": "10px 16px",
+      "fontSize": "{typography.scale.base}",
+      "shadow": "inset 0 1px 2px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      "focus": {
+        "border": "{colors.primary.500}",
+        "bg": "rgba(255, 255, 255, 0.92)",
+        "shadow": "0 0 0 3px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 1)"
+      }
+    },
+
+    "table": {
+      "headerBg": "rgba(240, 253, 244, 0.75)",
+      "headerText": "{colors.neutral.700}",
+      "headerWeight": "600",
+      "border": "1px solid rgba(226, 236, 228, 0.8)",
+      "rowHover": "rgba(240, 253, 244, 0.6)",
+      "radius": "{radii.lg}",
+      "cellPadding": "12px 16px",
+      "fontSize": "{typography.scale.sm}"
+    },
+
+    "badge": {
+      "radius": "{radii.pill}",
+      "padding": "4px 12px",
+      "fontSize": "{typography.scale.xs}",
+      "fontWeight": "{typography.weights.medium}",
+      "variants": {
+        "default": { "bg": "rgba(240, 253, 244, 0.85)", "text": "{colors.primary.700}", "border": "1px solid rgba(187, 247, 208, 0.8)" },
+        "success": { "bg": "{colors.success.bg}", "text": "{colors.success.text}", "border": "1px solid {colors.success.border}" },
+        "warning": { "bg": "{colors.warning.bg}", "text": "{colors.warning.text}", "border": "1px solid {colors.warning.border}" },
+        "danger":  { "bg": "{colors.danger.bg}", "text": "{colors.danger.text}", "border": "1px solid {colors.danger.border}" }
+      }
+    },
+
+    "tab": {
+      "radius": "{radii.pill}",
+      "padding": "8px 20px",
+      "fontSize": "{typography.scale.sm}",
+      "fontWeight": "{typography.weights.medium}",
+      "inactive": {
+        "bg": "rgba(255, 255, 255, 0.5)",
+        "text": "{colors.neutral.600}"
+      },
+      "active": {
+        "bg": "linear-gradient(135deg, {colors.primary.500}, {colors.primary.600})",
+        "text": "#ffffff",
+        "shadow": "0 4px 14px rgba(16, 185, 129, 0.25)"
+      },
+      "hover": {
+        "bg": "rgba(240, 253, 244, 0.8)"
+      }
+    },
+
+    "pill": {
+      "radius": "{radii.pill}",
+      "padding": "6px 16px",
+      "fontSize": "{typography.scale.sm}",
+      "bg": "rgba(255, 255, 255, 0.75)",
+      "border": "1px solid rgba(187, 247, 208, 0.85)",
+      "text": "{colors.primary.800}",
+      "blur": "backdrop-filter: blur(12px)",
+      "shadow": "0 2px 8px rgba(16, 185, 129, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9)"
+    },
+
+    "tag": {
+      "radius": "{radii.sm}",
+      "padding": "3px 10px",
+      "fontSize": "{typography.scale.xs}",
+      "fontWeight": "{typography.weights.medium}"
+    },
+
+    "insight": {
+      "bg": "rgba(240, 253, 244, 0.8)",
+      "text": "{colors.primary.800}",
+      "border": "3px solid {colors.primary.400}",
+      "radius": "{radii.lg}",
+      "padding": "12px 18px",
+      "fontSize": "{typography.scale.base}",
+      "backdropFilter": "blur(12px)"
+    },
+
+    "drillDown": {
+      "item": {
+        "radius": "{radii.lg}",
+        "border": "1px solid rgba(226, 236, 228, 0.85)",
+        "headerBg": "rgba(255, 255, 255, 0.75)",
+        "headerHover": "rgba(240, 253, 244, 0.85)",
+        "padding": "16px 20px"
+      },
+      "icon": {
+        "size": "38px",
+        "radius": "{radii.md}",
+        "textColor": "#ffffff"
+      },
+      "body": {
+        "bg": "rgba(248, 251, 248, 0.7)",
+        "padding": "0 20px 20px",
+        "animation": "max-height 0.35s {animation.easing.default}"
+      },
+      "arrow": { "size": "20px", "color": "{colors.neutral.400}", "rotate": "180deg" }
+    },
+
+    "accordion": {
+      "radius": "{radii.lg}",
+      "border": "1px solid rgba(226, 236, 228, 0.85)",
+      "headerBg": "rgba(255, 255, 255, 0.75)",
+      "headerHover": "rgba(240, 253, 244, 0.85)",
+      "headerPadding": "14px 20px",
+      "bodyBg": "rgba(240, 253, 244, 0.75)",
+      "bodyPadding": "14px 20px",
+      "bodyText": "{colors.neutral.700}",
+      "animation": "max-height 0.28s {animation.easing.default}",
+      "arrow": { "rotate": "180deg", "color": "{colors.neutral.400}" }
+    },
+
+    "modal": {
+      "overlayBg": "rgba(16, 30, 21, 0.35)",
+      "backdropFilter": "blur(8px)",
+      "boxBg": "rgba(255, 255, 255, 0.88)",
+      "radius": "{radii.xl}",
+      "shadow": "0 24px 60px rgba(16, 185, 129, 0.18), inset 0 1.5px 1px rgba(255, 255, 255, 1)",
+      "headerPadding": "20px 24px 8px",
+      "headerBorder": "none",
+      "bodyPadding": "8px 24px 20px",
+      "footerPadding": "14px 24px 24px",
+      "footerBorder": "none",
+      "animation": "fadeIn 0.2s, slideUp 0.3s {animation.easing.bounce}"
+    },
+
+    "dropdown": {
+      "radius": "{radii.lg}",
+      "border": "1px solid rgba(255, 255, 255, 0.85)",
+      "bg": "rgba(255, 255, 255, 0.92)",
+      "backdropFilter": "blur(20px)",
+      "shadow": "0 12px 36px rgba(16, 185, 129, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+      "itemPadding": "10px 16px",
+      "itemRadius": "{radii.md}",
+      "itemHover": "rgba(240, 253, 244, 0.85)",
+      "itemHoverText": "{colors.primary.700}",
+      "dividerColor": "rgba(226, 236, 228, 0.6)",
+      "animation": "slideUp 0.18s {animation.easing.default}"
+    },
+
+    "tooltip": {
+      "bg": "rgba(34, 54, 40, 0.9)",
+      "text": "#ffffff",
+      "radius": "{radii.sm}",
+      "padding": "6px 12px",
+      "fontSize": "{typography.scale.xs}",
+      "backdropFilter": "blur(8px)",
+      "animation": "slideUp 0.15s {animation.easing.default}"
+    },
+
+    "toast": {
+      "radius": "{radii.pill}",
+      "padding": "12px 22px",
+      "shadow": "0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
+      "animation": "slideIn 0.3s {animation.easing.bounce}",
+      "variants": {
+        "success": { "bg": "linear-gradient(135deg, {colors.primary.500}, {colors.primary.600})", "text": "#ffffff", "border": "1px solid rgba(255, 255, 255, 0.4)" },
+        "error":   { "bg": "{colors.danger.bg}", "text": "{colors.danger.text}", "border": "1px solid {colors.danger.border}" },
+        "info":    { "bg": "rgba(255, 255, 255, 0.9)", "text": "{colors.neutral.800}", "border": "1px solid {colors.primary.200}" }
+      }
+    },
+
+    "floatingAlert": {
+      "padding": "16px 20px",
+      "bg": "rgba(255, 255, 255, 0.88)",
+      "backdropFilter": "blur(20px) saturate(180%)",
+      "border": "1px solid rgba(255, 255, 255, 0.9)",
+      "borderLeft": "4px solid {colors.primary.500}",
+      "radius": "{radii.xl}",
+      "shadow": "0 14px 36px rgba(16, 185, 129, 0.12), inset 0 1.5px 1px rgba(255, 255, 255, 0.95)",
+      "animation": "alertSlideInRight 0.35s {animation.easing.default}",
+      "iconSize": "20px",
+      "iconColor": "{colors.primary.600}",
+      "titleFontSize": "{typography.scale.base}",
+      "titleFontWeight": "{typography.weights.semibold}",
+      "titleColor": "{colors.neutral.800}",
+      "bodyFontSize": "{typography.scale.sm}",
+      "bodyColor": "{colors.neutral.600}",
+      "closeSize": "24px",
+      "closeFontSize": "12px",
+      "closeRadius": "50%",
+      "closeBg": "rgba(240, 253, 244, 0.8)",
+      "closeColor": "{colors.primary.600}",
+      "closeHoverBg": "{colors.primary.200}",
+      "closeHoverColor": "{colors.primary.800}",
+      "variants": {
+        "warning": { "bg": "rgba(255, 251, 235, 0.88)", "borderColor": "rgba(253, 230, 138, 0.9)", "borderLeftColor": "{colors.warning.text}" },
+        "info":    { "bg": "rgba(240, 253, 244, 0.88)", "borderColor": "rgba(187, 247, 208, 0.9)", "borderLeftColor": "{colors.primary.500}" },
+        "danger":  { "bg": "rgba(255, 241, 242, 0.88)", "borderColor": "rgba(254, 205, 211, 0.9)", "borderLeftColor": "{colors.danger.text}" }
+      }
+    },
+
+    "sidebarCollapse": {
+      "width": "200px",
+      "collapsedWidth": "60px",
+      "bg": "rgba(255, 255, 255, 0.75)",
+      "backdropFilter": "blur(16px)",
+      "textColor": "{colors.neutral.600}",
+      "activeColor": "{colors.primary.600}",
+      "animation": "width 0.3s {animation.easing.default}",
+      "itemRadius": "{radii.md}",
+      "itemHover": "rgba(240, 253, 244, 0.85)"
+    },
+
+    "sortableTable": {
+      "headerBg": "rgba(240, 253, 244, 0.75)",
+      "headerHover": "rgba(220, 252, 231, 0.85)",
+      "sortIcon": { "color": "{colors.neutral.400}", "activeColor": "{colors.primary.600}" },
+      "rowHover": "rgba(240, 253, 244, 0.6)"
+    },
+
+    "progress": {
+      "bg": "rgba(226, 236, 228, 0.6)",
+      "radius": "{radii.pill}",
+      "height": "10px",
+      "fill": "linear-gradient(90deg, #34d399, #10b981, #059669)",
+      "shimmer": "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 50%, transparent 100%)"
+    },
+
+    "leaderboard": {
+      "itemBg": "rgba(255, 255, 255, 0.72)",
+      "backdropFilter": "blur(16px)",
+      "itemBorder": "1px solid rgba(255, 255, 255, 0.85)",
+      "itemRadius": "{radii.lg}",
+      "shadow": "0 4px 16px rgba(16, 185, 129, 0.06)",
+      "rank1": { "bg": "linear-gradient(135deg, #fef08a, #facc15)", "text": "#854d0e", "border": "1px solid #fef08a" },
+      "rank2": { "bg": "rgba(226, 232, 240, 0.85)", "text": "#334155", "border": "1px solid #cbd5e1" },
+      "rank3": { "bg": "rgba(254, 215, 170, 0.85)", "text": "#9a3412", "border": "1px solid #ffedd5" },
+      "rankOther": { "bg": "rgba(240, 253, 244, 0.75)", "text": "{colors.primary.700}" }
+    },
+
+    "statCard": {
+      "bg": "rgba(255, 255, 255, 0.72)",
+      "backdropFilter": "blur(20px)",
+      "border": "1px solid rgba(255, 255, 255, 0.85)",
+      "radius": "{radii.xl}",
+      "padding": "18px 22px",
+      "shadow": "0 8px 28px rgba(16, 185, 129, 0.08), inset 0 1.5px 1px rgba(255, 255, 255, 0.95)",
+      "labelColor": "{colors.neutral.600}",
+      "valueColor": "{colors.neutral.900}"
+    },
+
+    "steps": {
+      "numberBg": "rgba(226, 236, 228, 0.6)",
+      "numberText": "{colors.neutral.600}",
+      "activeBg": "linear-gradient(135deg, {colors.primary.500}, {colors.primary.600})",
+      "activeText": "#ffffff",
+      "lineColor": "rgba(187, 247, 208, 0.8)"
+    },
+
+    "switch": {
+      "width": "46px",
+      "height": "25px",
+      "bg": "rgba(226, 236, 228, 0.8)",
+      "activeBg": "linear-gradient(135deg, {colors.primary.500}, {colors.primary.600})",
+      "handleBg": "#ffffff"
+    }
+  },
+
+  "layouts": {
+    "hero": {
+      "bg": "rgba(255, 255, 255, 0.75)",
+      "backdropFilter": "blur(20px) saturate(180%)",
+      "border": "1px solid rgba(255, 255, 255, 0.9)",
+      "text": "{colors.neutral.800}",
+      "radius": "{radii.hero}",
+      "shadow": "0 12px 36px rgba(16, 185, 129, 0.08), inset 0 1.5px 1px rgba(255, 255, 255, 0.95)",
+      "padding": "40px 36px"
+    },
+    "page": {
+      "bg": "transparent",
+      "maxWidth": "1200px",
+      "padding": "0 24px 60px"
+    },
+    "nav": {
+      "adapter": {
+        "top": {
+          "bg": "rgba(255, 255, 255, 0.82)",
+          "backdropFilter": "blur(20px) saturate(180%)",
+          "text": "{colors.neutral.800}",
+          "activeColor": "{colors.primary.600}",
+          "height": "60px",
+          "border": "1px solid rgba(255, 255, 255, 0.85)",
+          "shadow": "0 6px 20px rgba(16, 185, 129, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+          "hover": { "bg": "rgba(240, 253, 244, 0.8)" }
+        },
+        "left": {
+          "bg": "rgba(255, 255, 255, 0.75)",
+          "backdropFilter": "blur(16px)",
+          "text": "{colors.neutral.600}",
+          "activeColor": "{colors.primary.600}",
+          "width": "200px",
+          "borderRight": "1px solid rgba(226, 236, 228, 0.8)",
+          "hover": { "bg": "rgba(240, 253, 244, 0.8)" }
+        }
+      }
+    }
+  },
+
+  "cssVariables": {
+    "--bg-page": "#f6faf6",
+    "--bg-card": "rgba(255, 255, 255, 0.72)",
+    "--bg-card-soft": "linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 244, 0.7) 100%)",
+    "--bg-chart": "rgba(255, 255, 255, 0.65)",
+    "--bg-insight": "rgba(240, 253, 244, 0.8)",
+    "--bg-table-header": "rgba(240, 253, 244, 0.75)",
+    "--bg-row-hover": "rgba(240, 253, 244, 0.6)",
+    "--bg-filter": "rgba(255, 255, 255, 0.75)",
+    "--bg-warning-card": "rgba(255, 251, 235, 0.85)",
+    "--bg-danger-card": "rgba(255, 241, 242, 0.85)",
+    "--text-primary": "#101e15",
+    "--text-muted": "#50715f",
+    "--text-on-hero": "#101e15",
+    "--border-default": "rgba(226, 236, 228, 0.85)",
+    "--border-glass": "rgba(255, 255, 255, 0.85)",
+    "--border-chart": "rgba(240, 253, 244, 0.8)",
+    "--scrollbar-thumb": "#cbdcd0",
+    "--line-chart-grid": "rgba(226, 236, 228, 0.6)",
+    "--bar-primary": "linear-gradient(180deg, #34d399, #10b981)",
+    "--bar-green": "linear-gradient(180deg, #10b981, #059669)",
+    "--bar-orange": "linear-gradient(180deg, #fbbf24, #d97706)",
+    "--bar-purple": "linear-gradient(180deg, #a78bfa, #7c3aed)"
+  }
+}

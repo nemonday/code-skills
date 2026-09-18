@@ -1,7 +1,7 @@
 {
   "name": "code-skills",
   "description": "nemonday 的 skill 工厂：编写、打磨可分发的 Agent Skills。Claude Code 为主力平台，本体保持跨工具可移植。",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "author": {
     "name": "nemonday"

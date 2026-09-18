@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="kROuB5UKnBRku0ObCB4MNB">
+<head data-page-node-id="ofTXLGNMym1ztE6ntOm0M1">
+<meta charset="UTF-8" data-page-node-id="rDviRjmiV8Z2NcWSEA4vXI">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="5wgzP7kRxOSTtoZ7hic82v">
+<title>Beautify — 小清新风 (Multi-dimensional Glassmorphism) Demo</title>
+<style>
+  :root {
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --primary-light: rgba(240, 253, 244, 0.85);
+    --primary-border: rgba(187, 247, 208, 0.85);
+    --bg-page: #f6faf6;
+    --text-primary: #101e15;
+    --text-muted: #50715f;
+    --border-default: rgba(226, 236, 228, 0.85);
+    --border-glass: rgba(255, 255, 255, 0.88);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
+    --radius-pill: 999px;
+    --shadow-glass: 0 8px 32px 0 rgba(16, 185, 129, 0.08), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95);
+    --shadow-glass-hover: 0 16px 40px 0 rgba(16, 185, 129, 0.16), inset 0 1.5px 1px 0 rgba(255, 255, 255, 1);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* --- Dynamic Flowing Green & White Background (绿白极光流动背板) --- */
+  .fresh-dynamic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: #f6faf6;
+    pointer-events: none;
+  }
+  .fresh-bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.72;
+    animation: orbFloat 22s ease-in-out infinite alternate;
+  }
+  .orb-1 {
+    width: 680px;
+    height: 680px;
+    background: radial-gradient(circle, #bbf7d0 0%, rgba(187, 247, 208, 0) 70%);
+    top: -150px;
+    left: -150px;
+    animation-duration: 22s;
+  }
+  .orb-2 {
+    width: 750px;
+    height: 750px;
+    background: radial-gradient(circle, #86efac 0%, rgba(134, 239, 172, 0) 70%);
+    bottom: -200px;
+    right: -150px;
+    animation-duration: 26s;
+    animation-delay: -6s;
+  }
+  .orb-3 {
+    width: 580px;
+    height: 580px;
+    background: radial-gradient(circle, #dcfce7 0%, rgba(220, 252, 231, 0) 70%);
+    top: 35%;
+    left: 25%;
+    animation-duration: 18s;
+    animation-delay: -12s;
+  }
+  .orb-4 {
+    width: 620px;
+    height: 620px;
+    background: radial-gradient(circle, #ffffff 0%, rgba(255, 255, 255, 0) 75%);
+    top: 15%;
+    right: 15%;
+    animation-duration: 28s;
+    animation-delay: -4s;
+  }
+
+  @keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate(70px, 90px) scale(1.15) rotate(120deg); }
+    66% { transform: translate(-50px, 130px) scale(0.88) rotate(240deg); }
+    100% { transform: translate(90px, -50px) scale(1.12) rotate(360deg); }
+  }
+
+  /* --- Leaf & Spark Particles (微风自然浮叶粒子) --- */
+  .leaf-particle {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    font-size: 16px;
+    opacity: 0.5;
+    animation: floatLeaf 18s linear infinite;
+  }
+  @keyframes floatLeaf {
+    0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+    15% { opacity: 0.6; }
+    85% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* --- Glass Navbar --- */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+    padding: 0 24px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-pill);
+    margin-top: 16px;
+    box-shadow: var(--shadow-glass);
+    position: sticky;
+    top: 16px;
+    z-index: 500;
+  }
+  .navbar .logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .navbar .logo span { color: var(--primary); }
+  .navbar .nav-links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+  }
+  .navbar .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    transition: all 0.2s var(--ease);
+    font-weight: 500;
+  }
+  .navbar .nav-links a:hover, .navbar .nav-links a.active {
+    color: var(--primary-dark);
+    background: rgba(240, 253, 244, 0.9);
+  }
+  .navbar .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* --- Glass Hero --- */
+  .hero {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 244, 0.75) 100%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    padding: 42px 40px;
+    margin: 24px 0 32px;
+    box-shadow: 0 16px 40px rgba(16, 185, 129, 0.10), inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.25) 50%, transparent 55%);
+    animation: glassShimmer 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes glassShimmer {
+    0% { transform: translate(-30%, -30%) rotate(0deg); }
+    100% { transform: translate(30%, 30%) rotate(0deg); }
+  }
+  .hero::after {
+    content: "🍃";
+    position: absolute;
+    right: 20px;
+    bottom: -15px;
+    font-size: 130px;
+    opacity: 0.14;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 12px rgba(16,185,129,0.3));
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 720px;
+    line-height: 1.8;
+  }
+
+  /* --- Section Title --- */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 36px 0 18px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title small {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  /* --- Grid --- */
+  .grid { display: grid; gap: 20px; }
+  .col-2 { grid-template-columns: repeat(2, 1fr); }
+  .col-3 { grid-template-columns: repeat(3, 1fr); }
+  .col-4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* --- Multi-dimensional Glass Cards --- */
+  .card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    box-shadow: var(--shadow-glass);
+    transition: all 0.3s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 60%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-glass-hover);
+    transform: translateY(-3px);
+  }
+  .card.soft {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 244, 0.7) 100%);
+    border-color: rgba(187, 247, 208, 0.85);
+  }
+  .card h3 {
+    margin: 0 0 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card h3 small { font-size: 12px; font-weight: 400; color: var(--text-muted); }
+
+  /* --- Glass Buttons --- */
+  .btn-group { display: flex; gap: 12px; align-items: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+    transition: all 0.25s var(--ease);
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn.primary {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.92) 0%, rgba(5, 150, 105, 0.96) 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  }
+  .btn.primary::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--ease);
+  }
+  .btn.primary:hover::after {
+    transform: translateX(100%);
+  }
+  .btn.primary:hover {
+    box-shadow: 0 8px 26px rgba(16, 185, 129, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+  }
+  .btn.secondary {
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--primary-dark);
+    border: 1px solid rgba(187, 247, 208, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  }
+  .btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* --- Glass Badges & Glass Pills --- */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+  .badge.green { background: rgba(240, 253, 244, 0.85); color: #059669; border: 1px solid rgba(187, 247, 208, 0.8); }
+  .badge.orange { background: rgba(255, 251, 235, 0.85); color: #d97706; border: 1px solid rgba(253, 230, 138, 0.8); }
+  .badge.red { background: rgba(255, 241, 242, 0.85); color: #e11d48; border: 1px solid rgba(254, 205, 211, 0.8); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(187, 247, 208, 0.85);
+    color: var(--primary-dark);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    transition: all 0.2s var(--ease);
+  }
+  .pill:hover {
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+  }
+
+  /* --- Glass Form & Custom Select --- */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid rgba(226, 236, 228, 0.85);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    font-size: 13px;
+    color: var(--text-primary);
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.2s var(--ease);
+  }
+  input[type="text"]:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .custom-select { position: relative; width: 100%; user-select: none; }
+  .custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 236, 228, 0.85);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.2s;
+  }
+  .custom-select-trigger:hover { border-color: var(--primary); background: rgba(255, 255, 255, 0.9); }
+  .custom-select-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 36px rgba(16, 185, 129, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    z-index: 200;
+    padding: 6px;
+    animation: selectSlideDown 0.2s ease;
+  }
+  .custom-select.open .custom-select-options { display: block; }
+  .custom-select-option {
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .custom-select-option:hover, .custom-select-option.selected {
+    background: rgba(240, 253, 244, 0.85);
+    color: var(--primary-dark);
+    font-weight: 600;
+  }
+  .custom-select-option.selected::after { content: "✓"; font-size: 12px; color: var(--primary); }
+  @keyframes selectSlideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* --- Liquid Glass Progress Bar --- */
+  .glass-progress-wrap { margin-bottom: 12px; }
+  .glass-progress-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: var(--text-muted); }
+  .glass-progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(226, 236, 228, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .glass-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #34d399, #10b981, #059669);
+    border-radius: var(--radius-pill);
+    transition: width 0.6s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-progress-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 50%, transparent 100%);
+    animation: shimmerWave 2.5s infinite;
+  }
+  @keyframes shimmerWave { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+  /* --- Glass Table --- */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+  }
+  th {
+    background: rgba(240, 253, 244, 0.75);
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-default);
+    text-align: left;
+    backdrop-filter: blur(8px);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-default);
+    color: var(--text-primary);
+  }
+  tr:hover td { background: rgba(240, 253, 244, 0.6); }
+
+  /* --- Glass Drill-down --- */
+  .drill-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .drill-item { border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); }
+  .drill-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px; cursor: pointer; user-select: none; transition: background 0.2s;
+  }
+  .drill-header:hover { background: rgba(240, 253, 244, 0.85); }
+  .drill-header .left { display: flex; align-items: center; gap: 12px; }
+  .drill-header .icon { width: 38px; height: 38px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.12); color: var(--primary-dark); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.8); }
+  .drill-header .info h4 { margin: 0; font-size: 14px; font-weight: 600; }
+  .drill-header .info span { font-size: 12px; color: var(--text-muted); }
+  .drill-arrow { transition: transform 0.3s; color: var(--text-muted); font-size: 12px; }
+  .drill-arrow.open { transform: rotate(180deg); }
+  .drill-body { max-height: 0; overflow: hidden; transition: max-height 0.35s var(--ease), padding 0.35s var(--ease); padding: 0 20px; background: rgba(248, 251, 248, 0.7); }
+  .drill-body.open { max-height: 240px; padding: 0 20px 20px; }
+
+  /* --- Glass Accordion --- */
+  .accordion-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .accordion-item { border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; backdrop-filter: blur(12px); }
+  .accordion-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px; cursor: pointer; background: rgba(255, 255, 255, 0.75); font-size: 13px; font-weight: 600; transition: background 0.2s;
+  }
+  .accordion-header:hover { background: rgba(240, 253, 244, 0.85); }
+  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.28s var(--ease); padding: 0 20px; background: rgba(240, 253, 244, 0.75); font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .accordion-body.open { max-height: 120px; padding: 14px 20px; }
+  .acc-arrow { transition: transform 0.3s; color: var(--text-muted); font-size: 12px; }
+  .acc-arrow.open { transform: rotate(180deg); }
+
+  /* --- Glass Modal --- */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(16, 30, 21, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; animation: fadeIn 0.2s; }
+  .modal-overlay.show { display: flex; }
+  .modal-box { background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); width: 440px; max-width: 90vw; box-shadow: 0 24px 60px rgba(16, 185, 129, 0.18), inset 0 1.5px 1px rgba(255, 255, 255, 1); animation: slideUp 0.3s var(--ease); }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 22px 24px 8px; }
+  .modal-header h3 { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .modal-close { width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(240, 253, 244, 0.8); cursor: pointer; font-size: 13px; color: var(--primary-dark); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .modal-close:hover { background: var(--primary-border); }
+  .modal-body { padding: 8px 24px 20px; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 14px 24px 24px; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* --- Glass Dropdown Menu --- */
+  .dropdown-wrap { position: relative; display: inline-block; }
+  .dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 6px); left: 0; min-width: 170px;
+    background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-glass); border-radius: var(--radius-lg);
+    box-shadow: 0 12px 36px rgba(16, 185, 129, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9); z-index: 100; padding: 6px; animation: slideUp 0.18s var(--ease);
+  }
+  .dropdown-menu.show { display: block; }
+  .dropdown-menu a {
+    display: block; padding: 8px 14px; border-radius: var(--radius-md); font-size: 13px;
+    text-decoration: none; color: var(--text-primary); transition: all 0.15s;
+  }
+  .dropdown-menu a:hover { background: rgba(240, 253, 244, 0.85); color: var(--primary-dark); font-weight: 500; }
+  .dropdown-menu .divider { height: 1px; background: rgba(226, 236, 228, 0.6); margin: 6px 8px; }
+
+  /* --- Glass Tooltip --- */
+  .tooltip-wrap { position: relative; display: inline-flex; cursor: pointer; }
+  .tooltip-bubble {
+    display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: rgba(34, 54, 40, 0.9); backdrop-filter: blur(8px); color: #ffffff; font-size: 11px; padding: 6px 12px; border-radius: var(--radius-sm);
+    white-space: nowrap; z-index: 100; animation: slideUp 0.15s var(--ease); box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+  .tooltip-bubble:after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: rgba(34, 54, 40, 0.9); }
+  .tooltip-wrap:hover .tooltip-bubble { display: block; }
+
+  /* --- Glass Toast --- */
+  .toast-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
+  .toast {
+    padding: 12px 22px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 600;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6); display: flex; align-items: center; gap: 10px; min-width: 280px;
+    animation: toastPop 0.3s var(--ease); pointer-events: auto; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #ffffff; border: 1px solid rgba(255,255,255,0.4);
+  }
+  @keyframes toastPop { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+  @keyframes toastOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.92); } }
+
+  /* --- Glass Floating Alert Banner (右上角非阻塞浮动警告) --- */
+  .floating-alert-container { position: fixed; top: 24px; right: 24px; z-index: 2500; display: flex; flex-direction: column; gap: 12px; width: 380px; max-width: calc(100vw - 48px); pointer-events: none; }
+  .floating-alert {
+    pointer-events: auto; display: flex; align-items: flex-start; gap: 12px;
+    padding: 16px 20px; background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-glass); border-left: 4px solid var(--primary);
+    border-radius: var(--radius-xl); box-shadow: 0 14px 36px rgba(16, 185, 129, 0.12), inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+    animation: alertSlideInRight 0.35s var(--ease); transition: all 0.25s; position: relative;
+  }
+  .floating-alert.hide { opacity: 0; transform: translateY(-10px) scale(0.95); pointer-events: none; }
+  .floating-alert-icon { font-size: 20px; line-height: 1; flex-shrink: 0; color: var(--primary-dark); margin-top: 2px; }
+  .floating-alert-content { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .floating-alert-title { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+  .floating-alert-body { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .floating-alert-close {
+    background: rgba(240, 253, 244, 0.8); border: none; color: var(--primary-dark);
+    font-size: 12px; font-weight: bold; cursor: pointer; padding: 0; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;
+    transition: all 0.15s; flex-shrink: 0; line-height: 1; box-shadow: inset 0 1px 1px rgba(255,255,255,0.8);
+  }
+  .floating-alert-close:hover { background: var(--primary-border); }
+  @keyframes alertSlideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+
+  /* Breathing Pulse Dot */
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulseGlow 2s infinite;
+  }
+  @keyframes pulseGlow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  /* --- Glass Collapsible Sidebar Demo (60px Collapsed Width) --- */
+  .sidebar-demo-wrap { display: flex; border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; min-height: 160px; backdrop-filter: blur(12px); }
+  .sidebar-demo-side {
+    width: 200px; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); padding: 14px 8px; border-right: 1px solid var(--border-default);
+    transition: width 0.3s var(--ease), padding 0.3s var(--ease); overflow: hidden; flex-shrink: 0;
+  }
+  .sidebar-demo-side.collapsed { width: 60px; padding: 14px 6px; }
+  .sidebar-demo-side .sd-item {
+    display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-md);
+    margin-bottom: 4px; font-size: 13px; color: var(--text-muted); white-space: nowrap; transition: all 0.2s; cursor: pointer;
+  }
+  .sidebar-demo-side.collapsed .sd-item { padding: 8px 4px; justify-content: center; }
+  .sidebar-demo-side .sd-item:hover { background: rgba(240, 253, 244, 0.85); color: var(--primary-dark); }
+  .sidebar-demo-side .sd-item.active { color: var(--primary-dark); font-weight: 600; background: rgba(240, 253, 244, 0.95); box-shadow: inset 0 1px 1px rgba(255,255,255,0.9); }
+  .sidebar-demo-side .sd-item .sd-icon { font-size: 16px; flex-shrink: 0; width: 24px; min-width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .sidebar-demo-side .sd-item .sd-label { transition: opacity 0.2s; }
+  .sidebar-demo-side.collapsed .sd-item .sd-label { display: none; }
+  .sidebar-demo-content { flex: 1; padding: 20px; background: rgba(240, 253, 244, 0.6); font-size: 13px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; }
+  .sidebar-toggle-btn {
+    display: flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+    border-radius: var(--radius-md); border: 0; cursor: pointer; font-size: 13px; transition: all 0.2s; background: transparent; color: var(--text-muted);
+  }
+  .sidebar-toggle-btn:hover { background: rgba(240, 253, 244, 0.8); color: var(--primary-dark); }
+
+  /* --- Sortable Table --- */
+  .sortable th { cursor: pointer; user-select: none; }
+  .sortable th:hover { background: rgba(220, 252, 231, 0.85); }
+  .sortable th .sort-icon { display: inline-block; margin-left: 4px; font-size: 10px; color: var(--text-muted); opacity: 0.5; }
+  .sortable th .sort-icon.active { opacity: 1; color: var(--primary-dark); }
+
+  @media(max-width:700px) { .col-2, .col-3, .col-4 { grid-template-columns: repeat(1, 1fr); } }
+</style>
+
+
+
+<style data-beautify="fresh-green">
+.beautify-root, body.beautify-full-page, body.beautify-root {
+  --bg-page: #f6faf6;
+  --bg-card: rgba(255, 255, 255, 0.72);
+  --bg-card-soft: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 244, 0.7) 100%);
+  --bg-chart: rgba(255, 255, 255, 0.65);
+  --bg-insight: rgba(240, 253, 244, 0.8);
+  --bg-table-header: rgba(240, 253, 244, 0.75);
+  --bg-row-hover: rgba(240, 253, 244, 0.6);
+  --bg-filter: rgba(255, 255, 255, 0.75);
+  --bg-warning-card: rgba(255, 251, 235, 0.85);
+  --bg-danger-card: rgba(255, 241, 242, 0.85);
+  --text-primary: #101e15;
+  --text-muted: #50715f;
+  --text-on-hero: #101e15;
+  --border-default: rgba(226, 236, 228, 0.85);
+  --border-glass: rgba(255, 255, 255, 0.85);
+  --border-chart: rgba(240, 253, 244, 0.8);
+  --scrollbar-thumb: #cbdcd0;
+  --line-chart-grid: rgba(226, 236, 228, 0.6);
+  --bar-primary: linear-gradient(180deg, #34d399, #10b981);
+  --bar-green: linear-gradient(180deg, #10b981, #059669);
+  --bar-orange: linear-gradient(180deg, #fbbf24, #d97706);
+  --bar-purple: linear-gradient(180deg, #a78bfa, #7c3aed);
+}
+
+/* Beautify - 小清新风 */
+.beautify-root .btn, .beautify-root .btn.primary {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.92) 0%, rgba(5, 150, 105, 0.96) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  position: relative; overflow: hidden;
+}
+.beautify-root .btn.primary:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 1) 0%, rgba(4, 120, 87, 1) 100%);
+  box-shadow: 0 8px 26px rgba(16, 185, 129, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+.beautify-root .btn.primary:active {
+  transform: scale(0.97);
+  transition-duration: 0.18s;
+}
+.beautify-root .btn.secondary {
+  background: rgba(255, 255, 255, 0.65);
+  color: #047857;
+  border: 1px solid rgba(187, 247, 208, 0.85);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex; align-items: center; gap: 6px;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.beautify-root .btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #4ade80;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+}
+.beautify-root .card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.08), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 1px 0 rgba(16, 185, 129, 0.05);
+  padding: 28px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+.beautify-root .card:hover {
+  box-shadow: 0 14px 40px 0 rgba(16, 185, 129, 0.15), inset 0 1.5px 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-3px);
+}
+.beautify-root .card.soft {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 244, 0.7) 100%);
+  border: 1px solid rgba(187, 247, 208, 0.85);
+  border-radius: 22px;
+  box-shadow: 0 8px 28px 0 rgba(16, 185, 129, 0.09), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95);
+  padding: 28px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.beautify-root input, .beautify-root textarea {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(226, 236, 228, 0.85);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--text-primary, inherit);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  outline: none;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.beautify-root input:focus, .beautify-root textarea:focus {
+  border-color: #10b981;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+.beautify-root select { background: rgba(255, 255, 255, 0.65); color: var(--text-primary, #1d1d1f); border: 1px solid rgba(226, 236, 228, 0.85); border-radius: 12px; padding: 10px 16px; font-size: 13px; outline: none; transition: all 0.2s; }
+.beautify-root select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 1); }
+.beautify-root select option { background: var(--bg-card, #ffffff); color: var(--text-primary, #1d1d1f); padding: 8px; }
+.beautify-root .custom-select { position: relative; width: 100%; user-select: none; }
+.beautify-root .custom-select-trigger { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(226, 236, 228, 0.85); border-radius: 12px; font-size: 13px; color: var(--text-primary, #1d1d1f); cursor: pointer; transition: all 0.2s; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.beautify-root .custom-select-trigger:hover { background: rgba(240, 253, 244, 0.85); border-color: #047857; color: #047857; }
+.beautify-root .custom-select-options, .beautify-root .dropdown-menu, .beautify-root .dropdown-menu-box { display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 16px; box-shadow: 0 12px 36px rgba(16, 185, 129, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9); z-index: 200; padding: 6px; animation: selectSlideDown 0.2s ease; }
+.beautify-root .custom-select.open .custom-select-options, .beautify-root .dropdown-wrap.open .dropdown-menu, .beautify-root .dropdown-wrap.open .dropdown-menu-box { display: block; }
+.beautify-root .custom-select-option, .beautify-root .dropdown-item { padding: 10px 16px; border-radius: 12px; font-size: 13px; color: var(--text-primary, #1d1d1f); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
+.beautify-root .custom-select-option:hover, .beautify-root .custom-select-option.selected, .beautify-root .dropdown-item:hover { background: rgba(240, 253, 244, 0.85); color: #047857; font-weight: 500; }
+.beautify-root .custom-select-option.selected:after { content: "✓"; font-size: 12px; color: #047857; }
+.beautify-root table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12px; }
+.beautify-root th { background: rgba(240, 253, 244, 0.75); color: #385242; font-weight: 600; padding: 12px 16px; border-bottom: 1px solid rgba(226, 236, 228, 0.8); }
+.beautify-root td { padding: 12px 16px; border-bottom: 1px solid rgba(226, 236, 228, 0.8); color: inherit; }
+.beautify-root tr:hover td { background: rgba(240, 253, 244, 0.6); }
+.beautify-root .tab { border-radius: 999px; padding: 8px 20px; font-size: 12px; background: rgba(255, 255, 255, 0.5); color: #50715f; cursor: pointer; border: 0; transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1); }
+.beautify-root .tab:hover { background: rgba(240, 253, 244, 0.8); }
+.beautify-root .tab.active { background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; }
+.beautify-root .badge { display: inline-block; border-radius: 999px; padding: 4px 12px; font-size: 11px; font-weight: 500; }
+.beautify-root .badge { background: rgba(240, 253, 244, 0.85); color: #047857; }
+.beautify-root .badge.green, .beautify-root .badge.success { background: rgba(240, 253, 244, 0.85); color: #059669; }
+.beautify-root .badge.orange, .beautify-root .badge.warning { background: rgba(255, 251, 235, 0.85); color: #d97706; }
+.beautify-root .badge.red, .beautify-root .badge.danger { background: rgba(255, 241, 242, 0.85); color: #e11d48; }
+.beautify-root .insight { background: rgba(240, 253, 244, 0.8); color: #065f46; border-left: 3px solid #4ade80; border-radius: 16px; padding: 12px 18px; font-size: 13px; }
+.beautify-root .accordion-item { border: 1px solid rgba(226, 236, 228, 0.85); border-radius: 16px; overflow: hidden; }
+.beautify-root .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; cursor: pointer; background: rgba(255, 255, 255, 0.75); font-size: 13px; font-weight: 600; transition: all 0.2s; }
+.beautify-root .accordion-header:hover { background: rgba(240, 253, 244, 0.85); }
+.beautify-root .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.28s cubic-bezier(0.22, 1, 0.36, 1); padding: 0 16px; background: rgba(240, 253, 244, 0.75); font-size: 13px; color: #385242; line-height: 1.6; }
+.beautify-root .accordion-body.open { max-height: 120px; padding: 14px 20px; }
+.beautify-root .accordion-header .acc-arrow { transition: transform 0.3s; color: #9eb8aa; font-size: 12px; }
+.beautify-root .accordion-header .acc-arrow.open { transform: rotate(180deg); }
+.beautify-root .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(16, 30, 21, 0.35); z-index: 1000; justify-content: center; align-items: center; animation: modalFadeIn 0.2s; }
+.beautify-root .modal-overlay.show { display: flex; }
+.beautify-root .modal-box { background: rgba(255, 255, 255, 0.88); border-radius: 22px; width: 420px; max-width: 90vw; box-shadow: 0 24px 60px rgba(16, 185, 129, 0.18), inset 0 1.5px 1px rgba(255, 255, 255, 1); animation: modalSlideUp 0.25s; }
+.beautify-root .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px 8px; border-bottom: none; }
+.beautify-root .modal-body { padding: 8px 24px 20px; font-size: 13px; color: var(--text-muted, #6b7a99); line-height: 1.6; }
+.beautify-root .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 14px 24px 24px; border-top: none; }
+.beautify-root .modal-close { width: 28px; height: 28px; border-radius: 50%; border: 0; background: transparent; cursor: pointer; font-size: 16px; color: var(--text-muted, #6b7a99); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.beautify-root .modal-close:hover { background: rgba(0,0,0,0.05); }
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.beautify-root .tooltip-wrap { position: relative; display: inline-flex; cursor: pointer; }
+.beautify-root .tooltip-bubble { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: rgba(34, 54, 40, 0.9); color: #ffffff; font-size: 11px; padding: 6px 12px; border-radius: 8px; white-space: nowrap; z-index: 100; }
+.beautify-root .tooltip-bubble:after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: rgba(34, 54, 40, 0.9); }
+.beautify-root .tooltip-wrap:hover .tooltip-bubble { display: block; }
+.beautify-root .toast-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
+.beautify-root .toast { padding: 12px 22px; border-radius: 999px; font-size: 13px; font-weight: 500; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6); display: flex; align-items: center; gap: 10px; min-width: 260px; pointer-events: auto; }
+.beautify-root .toast.success { background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; border: 1px solid 1px solid rgba(255, 255, 255, 0.4); }
+.beautify-root .toast.error { background: rgba(255, 241, 242, 0.85); color: #e11d48; border: 1px solid 1px solid rgba(254, 205, 211, 0.8); }
+.beautify-root .toast.info { background: rgba(255, 255, 255, 0.9); color: #223628; border: 1px solid 1px solid #bbf7d0; }
+@keyframes toastSlideIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+@keyframes toastOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.92); } }
+.beautify-root .toast { animation: toastSlideIn 0.3s; }
+.beautify-root .floating-alert-container { position: fixed; top: 24px; right: 24px; z-index: 2500; display: flex; flex-direction: column; gap: 12px; width: 380px; max-width: calc(100vw - 48px); pointer-events: none; }
+.beautify-root .floating-alert { pointer-events: auto; display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; background: rgba(255, 255, 255, 0.88); border: 1px solid rgba(255, 255, 255, 0.9); border-left: 4px solid #10b981; border-radius: 22px; box-shadow: 0 14px 36px rgba(16, 185, 129, 0.12), inset 0 1.5px 1px rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); animation: alertSlideInRight 0.35s cubic-bezier(0.22, 1, 0.36, 1); transition: all 0.25s; position: relative; }
+.beautify-root .floating-alert.hide { opacity: 0; transform: translateY(-10px) scale(0.95); pointer-events: none; }
+.beautify-root .floating-alert-icon { font-size: 20px; line-height: 1; flex-shrink: 0; color: #059669; margin-top: 2px; }
+.beautify-root .floating-alert-content { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.beautify-root .floating-alert-title { font-size: 13px; font-weight: 600; color: #223628; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.beautify-root .floating-alert-body { font-size: 12px; color: #50715f; line-height: 1.5; }
+.beautify-root .floating-alert-close { background: rgba(240, 253, 244, 0.8); border: none; color: #059669; font-size: 12px; font-weight: bold; cursor: pointer; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; transition: all 0.15s; flex-shrink: 0; box-shadow: none; line-height: 1; }
+.beautify-root .floating-alert-close:hover { background: #bbf7d0; color: #065f46; }
+.beautify-root .floating-alert-close:active { transform: scale(0.92); }
+.beautify-root .floating-alert.warning { background: rgba(255, 251, 235, 0.88); border-color: rgba(253, 230, 138, 0.9); border-left-color: #d97706; }
+.beautify-root .floating-alert.info { background: rgba(240, 253, 244, 0.88); border-color: rgba(187, 247, 208, 0.9); border-left-color: #10b981; }
+.beautify-root .floating-alert.danger { background: rgba(255, 241, 242, 0.88); border-color: rgba(254, 205, 211, 0.9); border-left-color: #e11d48; }
+@keyframes alertSlideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes appleAlertFadeIn { from { opacity: 0; transform: translateY(-12px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes pixelAlertPop { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+.beautify-root .up, .beautify-root .rise { color: #059669; }
+.beautify-root .down, .beautify-root .fall { color: #e11d48; }
+.beautify-root .warn { color: #d97706; }
+.beautify-root .progress-bar, .beautify-root .glass-progress-bar { width: 100%; height: 10px; background: rgba(226, 236, 228, 0.6); border: none; border-radius: 999px; overflow: hidden; position: relative; box-shadow: none; }
+.beautify-root .progress-fill, .beautify-root .glass-progress-fill { height: 100%; background: linear-gradient(90deg, #34d399, #10b981, #059669); border-radius: 999px; transition: width 0.6s ease; position: relative; overflow: hidden; }
+.beautify-root .progress-fill::after, .beautify-root .glass-progress-fill::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 50%, transparent 100%); animation: shimmerWave 2.5s infinite; }
+@keyframes shimmerWave { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.beautify-root .leaderboard-list { display: flex; flex-direction: column; gap: 10px; }
+.beautify-root .leaderboard-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 16px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.06); backdrop-filter: blur(16px); transition: all 0.2s; }
+.beautify-root .leaderboard-item:hover { background: var(--primary-light); transform: translateY(-2px);  }
+.beautify-root .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-weight: bold; font-size: 13px; margin-right: 12px; flex-shrink: 0; }
+.beautify-root .rank-badge.rank-1 { background: linear-gradient(135deg, #fef08a, #facc15); color: #854d0e; border: 1px solid #fef08a; }
+.beautify-root .rank-badge.rank-2 { background: rgba(226, 232, 240, 0.85); color: #334155; border: 1px solid #cbd5e1; }
+.beautify-root .rank-badge.rank-3 { background: rgba(254, 215, 170, 0.85); color: #9a3412; border: 1px solid #ffedd5; }
+.beautify-root .rank-badge.rank-other { background: rgba(240, 253, 244, 0.75); color: #047857; border: none; }
+.beautify-root .rank-medal { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-weight: 800; font-size: 13px; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+.beautify-root .rank-medal.gold { background: linear-gradient(135deg, #fef08a, #f59e0b); color: #78350f; border: 1px solid #fcd34d; }
+.beautify-root .rank-medal.silver { background: linear-gradient(135deg, #f3f4f6, #9ca3af); color: #1f2937; border: 1px solid #e5e7eb; }
+.beautify-root .rank-medal.bronze { background: linear-gradient(135deg, #ffedd5, #ea580c); color: #7c2d12; border: 1px solid #fed7aa; }
+.beautify-root .rank-medal.normal { background: #f3f4f6; color: #6b7280; font-weight: 600; }
+.beautify-root .sf-rank { font-size: 20px; font-weight: 700; color: var(--text-muted, #86868b); width: 32px; flex-shrink: 0; font-feature-settings: "tnum"; }
+.beautify-root .sf-rank.rank-1 { color: #1d1d1f; font-weight: 800; }
+.beautify-root .sf-rank.rank-2 { color: #424245; font-weight: 800; }
+.beautify-root .sf-rank.rank-3 { color: #6e6e73; font-weight: 700; }
+.beautify-root .app-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.beautify-root .glass-rank { width: 32px; height: 32px; border-radius: 50%; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.8); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; }
+.beautify-root .glass-rank.rank-1 { background: rgba(52, 211, 153, 0.25); color: #065f46; box-shadow: 0 0 12px rgba(52, 211, 153, 0.4); }
+.beautify-root .glass-rank.rank-2 { background: rgba(16, 185, 129, 0.18); color: #047857; }
+.beautify-root .glass-rank.rank-3 { background: rgba(110, 231, 183, 0.2); color: #064e3b; }
+.beautify-root .glass-rank.rank-other { background: rgba(243, 244, 246, 0.5); color: #4b5563; }
+.beautify-root .stat-card { background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 22px; padding: 18px 22px; box-shadow: 0 8px 28px rgba(16, 185, 129, 0.08), inset 0 1.5px 1px rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); display: flex; flex-direction: column; gap: 6px; position: relative; overflow: hidden; transition: all 0.25s; }
+.beautify-root .stat-card:hover { transform: translateY(-2px); }
+.beautify-root .stat-card .stat-label { font-size: 12px; color: #50715f; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+.beautify-root .stat-card .stat-value { font-size: 26px; font-weight: 700; color: #101e15; letter-spacing: -0.01em; margin: 2px 0; }
+.beautify-root .stat-card .stat-trend { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.beautify-root .steps-wrap { display: flex; justify-content: space-between; position: relative; width: 100%; margin: 16px 0; padding: 0 10px; }
+.beautify-root .step-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; flex: 1; z-index: 2; position: relative; color: var(--text-muted); font-size: 12px; }
+.beautify-root .step-number { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: rgba(226, 236, 228, 0.6); color: #50715f; border: none; transition: all 0.25s; flex-shrink: 0; }
+.beautify-root .step-item.active .step-number { background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; box-shadow: none; }
+.beautify-root .step-item.active { color: var(--text-primary); font-weight: 600; }
+.beautify-root .step-item.active .step-title { color: var(--text-primary); font-weight: 700; }
+.beautify-root .step-content { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.beautify-root .step-title { font-size: 13px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+.beautify-root .step-desc { font-size: 11px; color: var(--text-muted); opacity: 0.8; white-space: nowrap; }
+.beautify-root .steps-line { position: absolute; top: 16px; left: 12%; right: 12%; height: 2px; background: rgba(187, 247, 208, 0.8); z-index: 1; }
+.beautify-root .switch { position: relative; display: inline-block; width: 46px; height: 25px; user-select: none; vertical-align: middle; }
+.beautify-root .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.beautify-root .switch-slider { position: absolute; cursor: pointer; inset: 0; background-color: rgba(226, 236, 228, 0.8); transition: .3s; border-radius: 999px; border: none; }
+.beautify-root .switch-slider:before { position: absolute; content: ""; height: calc(25px - 6px); width: calc(25px - 6px); left: 3px; bottom: 3px; background-color: #ffffff; transition: .3s; border-radius: 50%; }
+.beautify-root .switch input:checked + .switch-slider { background: linear-gradient(135deg, #10b981, #059669); }
+.beautify-root .switch input:checked + .switch-slider:before { transform: translateX(calc(46px - 25px)); }
+/* Dynamic Animated Flowing Background & Glass FX */
+.beautify-root .fresh-dynamic-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #f6faf6; }
+.beautify-root .fresh-bg-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.65; animation: orbFloat 22s ease-in-out infinite alternate; }
+.beautify-root .orb-1 { width: 650px; height: 650px; background: radial-gradient(circle, #bbf7d0 0%, rgba(187, 247, 208, 0) 70%); top: -150px; left: -150px; animation-duration: 22s; }
+.beautify-root .orb-2 { width: 700px; height: 700px; background: radial-gradient(circle, #86efac 0%, rgba(134, 239, 172, 0) 70%); bottom: -200px; right: -150px; animation-duration: 26s; animation-delay: -6s; }
+.beautify-root .orb-3 { width: 550px; height: 550px; background: radial-gradient(circle, #dcfce7 0%, rgba(220, 252, 231, 0) 70%); top: 35%; left: 25%; animation-duration: 18s; animation-delay: -12s; }
+.beautify-root .orb-4 { width: 600px; height: 600px; background: radial-gradient(circle, #ffffff 0%, rgba(255, 255, 255, 0) 70%); top: 15%; right: 15%; animation-duration: 28s; animation-delay: -4s; }
+@keyframes orbFloat { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 33% { transform: translate(70px, 90px) scale(1.15) rotate(120deg); } 66% { transform: translate(-50px, 130px) scale(0.88) rotate(240deg); } 100% { transform: translate(90px, -50px) scale(1.12) rotate(360deg); } }
+.beautify-root .fresh-leaf-particle { position: absolute; pointer-events: none; opacity: 0.45; animation: floatLeaf 18s linear infinite; }
+@keyframes floatLeaf { 0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; } }
+</style>
+
+
+</head>
+<body class="beautify-root beautify-full-page" data-page-node-id="GlVSz6wp0TI54AUIGKzPHK">
+
+  <!-- 动态绿白极光模糊流动背板 (Dynamic Flowing Background) -->
+  <div class="fresh-dynamic-bg" data-page-node-id="cII4CzHG3ezz5nvCgEKDjJ">
+    <div class="fresh-bg-orb orb-1" data-page-node-id="GgqyjTvuWHb6QUiVp1ncYv"></div>
+    <div class="fresh-bg-orb orb-2" data-page-node-id="ezgXv5O0uWaZ1TGUWUNu9r"></div>
+    <div class="fresh-bg-orb orb-3" data-page-node-id="XpnMcvXORGAB4Wl6Z4i13B"></div>
+    <div class="fresh-bg-orb orb-4" data-page-node-id="XyNCQSajfGnJiLzyVRlqOY"></div>
+  </div>
+
+  <!-- 自然微风浮叶粒子 (Floating Leaf & Sparkles Particles) -->
+  <div class="leaf-particle" style="left: 10%; animation-delay: 0s;" data-page-node-id="Qg1jHk3nfkbcGAxgZlGLbL">🍃</div>
+  <div class="leaf-particle" style="left: 28%; animation-delay: -5s; font-size:12px;" data-page-node-id="xSeW2nBYzs2lNZvavPpTb4">✨</div>
+  <div class="leaf-particle" style="left: 55%; animation-delay: -11s;" data-page-node-id="mCJ07yQMZs3cYt0PAeKAf4">🌱</div>
+  <div class="leaf-particle" style="left: 78%; animation-delay: -3s; font-size:14px;" data-page-node-id="9IncJQ8qCwHSp3koIH61QQ">🍃</div>
+  <div class="leaf-particle" style="left: 92%; animation-delay: -8s; font-size:11px;" data-page-node-id="kiJajeOV3emyjBnX4fHhGj">✨</div>
+
+<div class="page" data-page-node-id="BdKjipLyRtfYED3uiaEK62">
+
+  <!-- Nav -->
+  <nav class="navbar" data-page-node-id="AFxCvycwrLlgY1vq3hsC4T">
+    <div class="logo" data-page-node-id="mRyBGTSd892IAbQMhewraU">🍃 Beautify <span data-page-node-id="N0Lq4zhuCMaif2RRtCNUtV">.</span> Mint Glass</div>
+    <div class="nav-links" data-page-node-id="kdZjcjGOxYWdW2KeCRwaH8">
+      <a href="#" class="active" data-page-node-id="voLGZm0CIscjfrYzZYwofb">模板预览</a>
+      <a href="#" data-page-node-id="rQET2Cm2knR4qLAju0mYmg">水晶玻璃</a>
+      <a href="#" data-page-node-id="oR9AtrYqFo2vKmXlPRLaBC">液态动效</a>
+      <a href="#" data-page-node-id="8mrBdKQZCJIrT8BY4Uixhi">关于</a>
+    </div>
+    <div class="nav-right" data-page-node-id="FvOpfjjw8dzxyDbvznVwks">
+      <span class="badge green" data-page-node-id="0RJPYKW9dWPCjasoTJQ4yZ"><span class="pulse-dot" data-page-node-id="Z5xxXRY5ZBghOAEdFFyo8k"></span> v1.1 多维玻璃质感</span>
+      <button class="btn primary" style="padding: 6px 16px; font-size: 12px;" data-page-node-id="1hB35Qvo9smgY0wadmlCB3">使用此模板</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero" data-page-node-id="ZIPwR3DNTP7NArQ35FtdrS">
+    <h1 data-page-node-id="iHI34VnaveL0meR5dhW3Rt"><span class="pulse-dot" style="width:12px; height:12px;" data-page-node-id="i3uA227Fdl2l8ActtKDtQe"></span> 小清新风 · 多维度玻璃质感与空气动效</h1>
+    <p data-page-node-id="wf731ZXLT9JTFN2LJBZYSO">「Beautify」模板 #4 — 结合 Crystal Frosted Glass 晶莹高透折射、薄荷绿流光微弧、液态流动进度条与自然漂浮微风，打造极致空灵、充满呼吸感的现代前端视觉体验。</p>
+    <div style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;" data-page-node-id="CAw3uu9TYGDQvKYAVAgrBE">
+      <span class="pill" data-page-node-id="DWZRI4l2QSmODtzWzBi0e9">🍃 高透 Crystal Glass</span>
+      <span class="pill" data-page-node-id="c4Z73WVTv4GCcC6dE1kHYo">✨ 晶莹 Top-lit 顶部折射</span>
+      <span class="pill" data-page-node-id="JdltDxNwmYIa51LYWIW8A6">🪴 呼吸感自然微弧 22px</span>
+      <span class="pill" data-page-node-id="vodS5pEiSyj5iEL89UzndW">💧 液态流光进度条</span>
+      <span class="pill" data-page-node-id="VL82dA2zmtI9Kw4GXEsTCd">☁️ 极光平滑流动背板</span>
+    </div>
+  </div>
+
+  <!-- 核心数据指标卡 (Stat Cards Showcase) -->
+  <div class="section-title" data-page-node-id="lGhCB2xD1NGWMoXE0A4Hiu">核心数据指标卡 <small data-page-node-id="ef3UEpprgo9bvDrjCduL0o">Stat Cards & Glass KPI Grid</small></div>
+  <div class="grid col-4" style="margin-bottom:24px" data-page-node-id="2DgIqi5TgXg77hneJbbcLc">
+    <div class="stat-card" data-page-node-id="4npjPQtuAlUR1M3pD4L4pb">
+      <div class="stat-label" data-page-node-id="KIZDASZuxbX7Sp4HlgqJMG">
+        <span data-page-node-id="Wls7J5j8yylLMD8HZBtonL">生态指数 Eco Index</span>
+        <span class="badge green" data-page-node-id="2juVHlGybshWT9ssOKJB3F">+24.5% ▲</span>
+      </div>
+      <div class="stat-value" data-page-node-id="mDPqyCSdk8LJEIbVXwpdB0">98.4 PTS</div>
+      <div class="glass-progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="YW8aqbotQUhsieol7LxLmT">
+        <div class="glass-progress-fill" style="width:88%;" data-page-node-id="C2lnWMsBnk6adCYBcyG4gU"></div>
+      </div>
+    </div>
+    <div class="stat-card" data-page-node-id="MCCnDGxHJwDA1za9KEJJFw">
+      <div class="stat-label" data-page-node-id="46UMSUwG9eDHhUl6KsvPVx">
+        <span data-page-node-id="IqRpMuH0vOTzYjQhjK5bR3">社区活跃度 Community</span>
+        <span class="badge green" data-page-node-id="jPJNGOB8iUkibnbiyutOAT">+15.2% ▲</span>
+      </div>
+      <div class="stat-value" data-page-node-id="GOKqLV5kTAMkxTeQPcbWZv">52,380</div>
+      <div class="glass-progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="XM7VCbsh3v4Ozza7XAAvFO">
+        <div class="glass-progress-fill" style="width:72%;" data-page-node-id="c749z1GOSZCVc6orZhbQZY"></div>
+      </div>
+    </div>
+    <div class="stat-card" data-page-node-id="Z8mb0txZRwxwx1r8zRB3LJ">
+      <div class="stat-label" data-page-node-id="rFGcswicIqf3PPAV6jFebN">
+        <span data-page-node-id="QaaaEWFifCVDunGvfiK8iW">阅读满意度 Satisfaction</span>
+        <span class="badge green" data-page-node-id="ZZGO8aartKAw734av8AR0K">4.96 / 5.0</span>
+      </div>
+      <div class="stat-value" data-page-node-id="JGOCFQtzpSkSHsEUEYCfd4">99.2%</div>
+      <div class="glass-progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="XXRrBT6DI42yNPYjKQQh0b">
+        <div class="glass-progress-fill" style="width:99.2%;" data-page-node-id="JvBdyXwxisqArhCEFa5wNx"></div>
+      </div>
+    </div>
+    <div class="stat-card" data-page-node-id="GrloBf0QE37bruD1JtHoOz">
+      <div class="stat-label" data-page-node-id="QhJmhkmjYeRxZ9RSblLh2h">
+        <span data-page-node-id="3tCCdzio0UX43OeI98ZHEU">微风响应 Sparkle Rate</span>
+        <span class="badge green" data-page-node-id="ATQF3N0tpJzlzDwHJKH7q6">12ms 极速</span>
+      </div>
+      <div class="stat-value" data-page-node-id="BeaegwhGSryttLbcmLmT6S">99.98%</div>
+      <div class="glass-progress-bar" style="height:6px; margin-top:8px;" data-page-node-id="Dkbxn1TuZH2SVu2kfvyJFt">
+        <div class="glass-progress-fill" style="width:99.98%;" data-page-node-id="VdxlmeDpjUKYizYaamvBHb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设计原子 -->
+  <div class="section-title" data-page-node-id="pdD6q2xBRekk2GSbeNoTRs">设计原子 <small data-page-node-id="TLh1Knk3JswQBhTqZnCy20">Design Tokens — 薄荷色彩与玻璃折射语言</small></div>
+  <div class="grid col-2" data-page-node-id="qP3ZHcv2749pbHFV0eGSQV">
+    <div class="card" data-page-node-id="oU7QNKzeqanzxuHExxyWdO">
+      <h3 data-page-node-id="3SCfGDMiMtwrRH7C5Pl4qn">色彩与高透贴合 <small data-page-node-id="ENpCCXEx0LmtoHBYWfZlEa">Glassmorphism Palette</small></h3>
+      <div style="display:flex; flex-direction:column; gap:12px;" data-page-node-id="YuXASE5bDRpyly7vBakvyl">
+        <div data-page-node-id="NO5LBE41evUYv5Wg92Bo9y">
+          <span style="font-size:12px; font-weight:600;" data-page-node-id="whGozTUPlToDd0Zpe1tLeG">薄荷玻璃色阶</span>
+          <div style="display:flex; gap:8px; margin-top:8px;" data-page-node-id="HSJz4VF0YcYM3RnBoU4O8u">
+            <span style="width:40px; height:28px; border-radius:8px; background:rgba(255,255,255,0.72); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.9); box-shadow:0 2px 6px rgba(0,0,0,0.04);" title="Glass Base" data-page-node-id="kaIF9JkQXnyGE6vfgVOkUn"></span>
+            <span style="width:40px; height:28px; border-radius:8px; background:rgba(240,253,244,0.85); border:1px solid #bbf7d0;" title="Mint Light" data-page-node-id="bugJOYnFERvJWaOaga0hJV"></span>
+            <span style="width:40px; height:28px; border-radius:8px; background:#bbf7d0;" title="Mint Border" data-page-node-id="8Z3Lx3xRw2Nd6rchOh3tbn"></span>
+            <span style="width:40px; height:28px; border-radius:8px; background:#10b981; box-shadow:0 4px 10px rgba(16,185,129,0.3);" title="Mint Primary" data-page-node-id="ctGdCLqc7KSAM2GHGkHdSJ"></span>
+            <span style="width:40px; height:28px; border-radius:8px; background:#059669;" title="Mint Dark" data-page-node-id="4ekbVzKoH0EVtbWJUNm00m"></span>
+            <span style="width:40px; height:28px; border-radius:8px; background:#047857;" title="Mint Deep" data-page-node-id="ILTteci1EwU5hxklKFSLmi"></span>
+          </div>
+        </div>
+        <div data-page-node-id="Qc9nd27urH9Ku9mNmjme09">
+          <span style="font-size:12px; font-weight:600;" data-page-node-id="qsYss5tAxNThY0gUSEVtTu">状态徽章 (Glass Badges)</span>
+          <div style="display:flex; gap:8px; margin-top:8px;" data-page-node-id="eXvCqw2bHtyoP4HikFjoD8">
+            <span class="badge green" data-page-node-id="33fRzglD4LGCe2q82YSymd"><span class="pulse-dot" data-page-node-id="2iSEu8rWkLjVl4YoKJNJ5E"></span> 运行中 99.8%</span>
+            <span class="badge orange" data-page-node-id="QgPxIu6jsM0JauWo3mzLlD">提示 12ms</span>
+            <span class="badge red" data-page-node-id="g03wEKTuFCRUDYatXwbirZ">预警 0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-page-node-id="vdiVAwVpzA3zjF6YRmOvw3">
+      <h3 data-page-node-id="xvZSCGUEg370wqT35PCF0Y">多维玻璃特效 <small data-page-node-id="hg8ahUD6CeKgqu3FCrryex">Glass Refraction & Motion</small></h3>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text-muted);" data-page-node-id="Gu4kzFBaGSqu7nLgCV60tk">
+        <div data-page-node-id="apVDmna3Mu5xR445dsEWDu">✦ <b data-page-node-id="bIFetfXvK5XKQsIDuov7gj">高透毛玻璃：</b>`backdrop-filter: blur(20px) saturate(180%)` 通透不闷哑</div>
+        <div data-page-node-id="7W4p8CvCpZ7ZFPRfWKhDws">✦ <b data-page-node-id="BxHdU1tKfMsqBjhNrVPwE5">顶光高亮边：</b>`inset 0 1.5px 1px 0 rgba(255,255,255,0.95)` 呈现真实晶体质感</div>
+        <div data-page-node-id="x4zytjtALKkMs4IQoCDK5q">✦ <b data-page-node-id="tTdkVtE0MAwCWrDuTOKJkp">流光扫过动效：</b>`@keyframes glassShimmer` 悬停时柔光轻盈滑过</div>
+        <div data-page-node-id="shweE1DjLUXDDiogeqTEW8">✦ <b data-page-node-id="10gy9kTbV3aihK4BqAZrnR">呼吸悬浮阴影：</b>`0 16px 40px rgba(16, 185, 129, 0.16)` 浮化自然起伏</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 动态组件与进度条展现 -->
+  <div class="section-title" data-page-node-id="DTRtDwXvH4bwj5erbMOgGR">基础组件 <small data-page-node-id="NeBkGET9eRWm0Tfkcj1MPd">Components — 玻璃按钮、输入框、Custom Select 与液态进度条</small></div>
+
+  <div class="grid col-2" style="margin-bottom:20px;" data-page-node-id="CzC0G918MxHLBZpCu4o0sl">
+    <div class="card" data-page-node-id="viiWYxPxGQHVwgusDGBcsT">
+      <h3 data-page-node-id="7CI721AjSIeGtutBw8R5Af">玻璃流光按钮 <small data-page-node-id="MZkBcbyRlagOh0a9IUdqvB">Glass Buttons</small></h3>
+      <div class="btn-group" style="margin-bottom:14px;" data-page-node-id="ws09u8UQsnTkaBxJqN453p">
+        <button class="btn primary" data-page-node-id="UJdjNi3bMYUKWBGmA2P5ki">主要按钮 🍃</button>
+        <button class="btn secondary" data-page-node-id="mEajiSoYAgh3X8VovT9WOp">次要玻璃按钮</button>
+      </div>
+      <div style="font-size:12px; color:var(--text-muted);" data-page-node-id="kkEAenUxpElEuNv2wZ08k1">
+        ✦ 鼠标悬停触发<b data-page-node-id="GnvVdKFH6OKCNuyxKE8dhB">晶莹扫光 (Shimmer Wave)</b> ✦ 内加顶光反射 line ✦ 触发时呈现轻微弹性缩放
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="nRRZkIOAL7YWGTKCYF6u5F">
+      <h3 data-page-node-id="0chfKpHLkG64eCVoQi3iBw">液态玻璃进度条 <small data-page-node-id="k0t6U9CnvIWE3AXmKJAL3p">Liquid Progress Bars</small></h3>
+      <div class="glass-progress-wrap" data-page-node-id="OufY2iHd5OGEwLmfOfrsFE">
+        <div class="glass-progress-header" data-page-node-id="Pk0Giq9q9okbaXOoYqQNST">
+          <span data-page-node-id="6Whhz8l9QamX8bNnQhFIv7">🍃 薄荷流量节点 A (实时填充中)</span>
+          <span style="font-weight:600; color:var(--primary-dark);" data-page-node-id="cMgMx0CIq076GHcLWOkW4j">82.4%</span>
+        </div>
+        <div class="glass-progress-bar" data-page-node-id="CPow3hFUTmKZTw6oXWR0eZ">
+          <div class="glass-progress-fill" style="width: 82.4%;" data-page-node-id="GDO3lTnyQ2D3Owt8xpCLq9"></div>
+        </div>
+      </div>
+      <div class="glass-progress-wrap" style="margin-bottom:0;" data-page-node-id="3ak4Rj3kNRbV9kfM5MUyyL">
+        <div class="glass-progress-header" data-page-node-id="fRTUBRsKffaUHPDxQHESOw">
+          <span data-page-node-id="pG2bZy7IrDbYqHUd4c2SvE">🌿 水晶计算负载 B</span>
+          <span style="font-weight:600; color:var(--primary-dark);" data-page-node-id="E0FlKWJrlgz0EOoLLNsYET">45.0%</span>
+        </div>
+        <div class="glass-progress-bar" data-page-node-id="Yd20FMhcPTnkGJIiQ6khx4">
+          <div class="glass-progress-fill" style="width: 45%; background: linear-gradient(90deg, #60a5fa, #10b981);" data-page-node-id="Yl3jdGxdi0jWBtg12gWZ3H"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid col-2" style="margin-bottom:20px;" data-page-node-id="kFWdsvAaytt00qnvGmkV0Z">
+    <div class="card" data-page-node-id="eSTHpD3SAr4J6V6dELbylE">
+      <h3 data-page-node-id="lb7yTs0lXdcsSio3sEySWu">自定义玻璃下拉框 <small data-page-node-id="wsiNCcQskW1j7V68MCdTMF">Glass Custom Select</small></h3>
+      <div class="custom-select" id="customSelectDemo" data-page-node-id="cFTYOWFT2fwnCaYvqQ89XS">
+        <div class="custom-select-trigger" onclick="toggleCustomSelect(this)" data-page-node-id="uNPMAalHue9pLUbeCRnMd1">
+          <span class="val" data-page-node-id="BL8ywZUuXk5s3CKAEGgLxK">🌱 选中的时间范围: 近 30 天</span>
+          <span style="font-size:10px; opacity:0.6;" data-page-node-id="hHWxvKUCXnS1rqXJ3U6VT9">▼</span>
+        </div>
+        <div class="custom-select-options" data-page-node-id="VpUJR6JNo5H3s3pvtadxBm">
+          <div class="custom-select-option selected" onclick="selectOption(this)" data-page-node-id="m2p05kkXniq5tA6EasQWfG">🌱 选中的时间范围: 近 30 天</div>
+          <div class="custom-select-option" onclick="selectOption(this)" data-page-node-id="7Ad3Nmca8OcILBpdxhcSRZ">🌿 近 7 天微风数据</div>
+          <div class="custom-select-option" onclick="selectOption(this)" data-page-node-id="DrkixBXTBCnkcy5AZ0QLg7">🍃 本月综合表现</div>
+        </div>
+      </div>
+      <div style="margin-top:12px; font-size:12px; color:var(--text-muted);" data-page-node-id="wcRNoF0PAixtFN1DvEW0EK">
+        ✦ 告别高亮蓝硬块 ✦ 晶莹通透 Floating Menu ✦ 薄荷清爽勾选反馈
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="DxlO8AIvPHDSVe5DgjforS">
+      <h3 data-page-node-id="E54T5FlPOfC9Ear7Ob9lVB">玻璃输入框 <small data-page-node-id="WWVa72LVN8qltG19N9lnHC">Glass Input</small></h3>
+      <input type="text" value="🍃 清新晶莹文本框 — 点击获得薄荷光晕聚焦" placeholder="请输入关键字..." data-page-node-id="yofRIUw7RBqkmFTzhclhDA">
+      <div style="margin-top:12px; font-size:12px; color:var(--text-muted);" data-page-node-id="59RxLCym5vYyaGLpEUcQ1U">
+        ✦ 聚焦时浮现薄荷绿外发光 ring ✦ 凹陷微影 Glass Depth ✦ 高可读性
+      </div>
+    </div>
+  </div>
+
+  <div class="grid col-2" style="margin-bottom:20px;" data-page-node-id="TM6x68G96om3m42fFN3Mw1">
+    <div class="card" data-page-node-id="6ERUl9L6D0ro6m7JjBKxD6">
+      <h3 data-page-node-id="s4uMFQsJY5mUg1mlCXnI1F">数据下钻 <small data-page-node-id="dj2dwkezvbZ2wHeBzbFhES">Glass Drill-down</small></h3>
+      <div class="drill-wrap" data-page-node-id="AVR1vOscQeyyjluyN5qg7E">
+        <div class="drill-item" data-page-node-id="heJUL1rYuednfqd3H0muFY">
+          <div class="drill-header" onclick="toggleDrill(this)" data-page-node-id="oxpZGYnANL6lR69CisZGvA">
+            <div class="left" data-page-node-id="zHML38M1tNGdoT5I5jePIQ">
+              <div class="icon" data-page-node-id="OfMHwBEAiRRQ4l2Di18HIY">京</div>
+              <div class="info" data-page-node-id="wSUBVEcrsMRvuqyVHauaUq"><h4 data-page-node-id="d3RlL6lCDVXW5oeNY4VVLk">京东战队</h4><span data-page-node-id="mxJBTPwUFkwp8wgm7cbiZH">店铺 3 个 · 满意度 98.2%</span></div>
+            </div>
+            <div class="drill-arrow" data-page-node-id="Ss6WMnvlWPqZDlo1i0SDpz">▼</div>
+          </div>
+          <div class="drill-body" data-page-node-id="6sO5pehKuySmrXGjtCuBht">
+            <div style="font-size:12px; font-weight:600; color:var(--text-muted); padding:10px 0 6px;" data-page-node-id="ECjigDBG5kGwdpHKK3Ockx">下属店铺明细</div>
+            <table data-page-node-id="wVGe41FSN1jWMX4Ml14cUV">
+              <thead data-page-node-id="P1XiAx3lAXZctuea9ONE56"><tr data-page-node-id="N7YboTUCLT76lJJJeJHv1j"><th data-page-node-id="TjNv7NKZrVKuImvE8ZzOQZ">店铺</th><th data-page-node-id="Gj4cg36lBub5scfk1nQSj3">响应</th><th data-page-node-id="TAZJuobYYR2C49DZ93rp3f">满意度</th></tr></thead>
+              <tbody data-page-node-id="5g5uh0j5yBPy30C0jKG5Wn">
+                <tr data-page-node-id="SJUH23cJOAt8NMQxHmZ4S7"><td data-page-node-id="3IlJwH9PN3Brd80d8DSHKm"><b data-page-node-id="xy4T281neaLDLoFyYs4DOo">京东旗舰店 A</b></td><td data-page-node-id="PPfIJWfZmoJA8Hbfk7E9cS">28s</td><td data-page-node-id="n5qL2yexp1CckdfGaFwznQ"><span class="badge green" data-page-node-id="ur5oH99Ucu6VaNmziEmwob">98.5%</span></td></tr>
+                <tr data-page-node-id="XlEyy66qyH7mAMh0FF6D6C"><td data-page-node-id="shfSX6lXgXIUDpuxRCQ8yS"><b data-page-node-id="k11ClxpvUtVw1GomsOp9Gy">京东专卖店 C</b></td><td data-page-node-id="Nmgfrk5LjTZLWunKPldQ22">32s</td><td data-page-node-id="HS7JYMIQS0GKjCN8FWYzie"><span class="badge green" data-page-node-id="bHJp0AsDES2JbfQiyd8TMY">97.8%</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="1vTFAoGUaExG5PMGfyrbxP">
+      <h3 data-page-node-id="NkODEsd2PW1S0pRdpGkil4">折叠面板 <small data-page-node-id="2wEi96ZBqqTy59F4DScRDc">Glass Accordion</small></h3>
+      <div class="accordion-wrap" data-page-node-id="T0WcMDFu5gjKMBy7wHSsxC">
+        <div class="accordion-item" data-page-node-id="SQLqujpbK2B9zBtdDE51Mk">
+          <div class="accordion-header" onclick="toggleAccordion(this)" data-page-node-id="SIXTDHkRIx6446365K4hM6">
+            <span data-page-node-id="1mgEpl0OAFkmoGKQHHQBmu">🌿 玻璃质感与空气感公约</span>
+            <span class="acc-arrow" data-page-node-id="ZtPPHQIFGJJYl6OGUI4KkW">▼</span>
+          </div>
+          <div class="accordion-body" data-page-node-id="6uZNG2Yr66rNIrAZhgd3d0">保持界面晶莹通透，不堆砌大面积浓重底色，配合顶部高亮反光边，赋予现代感。</div>
+        </div>
+        <div class="accordion-item" data-page-node-id="CBwsn74GueCHfVQHI588dM">
+          <div class="accordion-header" onclick="toggleAccordion(this)" data-page-node-id="f49DogkWRh5yPpnCaM9YTb">
+            <span data-page-node-id="8KNqipXFjtDqsgqW7YAD7G">🌱 自动响应与光晕提醒</span>
+            <span class="acc-arrow" data-page-node-id="WdkLlgOCpnHDGtePDDICk3">▼</span>
+          </div>
+          <div class="accordion-body" data-page-node-id="G732EvQ7bUgLGh6vF5PcHE">触发预警时会在右上角弹出高透玻璃框，伴随呼吸点与非阻塞式操作体验。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全量交互体验 -->
+  <div class="section-title" data-page-node-id="aaWh9u0RvHNcndAcuVarGi">全量交互体验 <small data-page-node-id="i7yaxy4goEE5f12jeB8By5">Interactions — 弹窗、下拉、Toast与右上角浮动警告</small></div>
+
+  <div class="grid col-2" style="margin-bottom:20px;" data-page-node-id="VGUmdklmdbjlvbYwOOGugd">
+    <div class="card" data-page-node-id="UoXBfCJ4yR3QKw7EnBTil9">
+      <h3 data-page-node-id="ecODuEFO5Bt1SKF9dJgkRi">弹窗与菜单 <small data-page-node-id="OUVSM3h66dG3LrGairu5cV">Modal & Dropdown</small></h3>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;" data-page-node-id="PfstGZAjNfPCbLXkK8b1LA">
+        <button class="btn primary" onclick="openModal()" data-page-node-id="mAzyotmF2SP51xLbXPPiNi">水晶玻璃弹窗 🍃</button>
+        <div class="dropdown-wrap" data-page-node-id="fe9aYjIVPymtmOegyQwvRQ">
+          <button class="btn secondary" onclick="toggleDropdown(this)" data-page-node-id="styS4ihC4NJU6BrNbPdqNR">更多操作 ▼</button>
+          <div class="dropdown-menu" data-page-node-id="t2i05QNEtZNPNDYWz3yhIj">
+            <a href="#" data-page-node-id="Hj8FcwMae7mqIiYlrd8xka">导出清新 Excel</a>
+            <a href="#" data-page-node-id="EwMLBvS5G1hxOJNtxW6gKH">保存工作台样式</a>
+            <div class="divider" data-page-node-id="GXJIGUswDJBu75KLhB1zQZ"></div>
+            <a href="#" style="color:#e11d48" data-page-node-id="ar1KP8723c2rmygA8ZpSpi">重置设置</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="frP1oMaUPjDvbd3AkGY2UA">
+      <h3 data-page-node-id="l3u7yaEHFaUqGK2chkx4AF">通知提示 <small data-page-node-id="EkeQxScS8EBzgPEUNPr6e3">Toast & Floating Alert</small></h3>
+      <div class="btn-group" style="flex-wrap:wrap;" data-page-node-id="lDY1FBrxNuVPxrjFfu2O8X">
+        <button class="btn primary" onclick="showToast()" data-page-node-id="TlWEeAHi8ntnhD54ZeMa8s">弹出 Toast 🍃</button>
+        <button class="btn secondary" onclick="triggerFloatingAlert()" data-page-node-id="y2uVBLcat7veKYonN8m4Mn">右上角警告 ⚠️</button>
+      </div>
+      <div style="font-size:12px; color:var(--text-muted); margin-top:12px;" data-page-node-id="aaXE8ZNWkOq5Ru1yfymDnP">
+        ✦ 右上角浮动警告框不阻塞主界面操作 ✦ 带有 Crystal Glass 晶莹高透与关闭按键
+      </div>
+    </div>
+  </div>
+
+  <div class="grid col-2" style="margin-bottom:20px;" data-page-node-id="Y3v2FyyXWzy1uftEoiIzp2">
+    <div class="card" data-page-node-id="EEBMTyNcSIBNhZIveFiHEa">
+      <h3 data-page-node-id="rlmCVGaEbmAkHcGAmcoEWl">侧边栏折叠 <small data-page-node-id="MVHpDcAWOANge7HtKVrmTD">Collapsible Sidebar</small></h3>
+      <div class="sidebar-demo-wrap" data-page-node-id="wXuTWQEnsYI33hVI6aXGFw">
+        <div class="sidebar-demo-side" id="sidebarDemo" data-page-node-id="pFJeNU32LMqEnwOnokwxmG">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;" data-page-node-id="6xCMQgboRJYNqVWxFU5nTI">
+            <span style="font-weight:600; font-size:13px; color:var(--primary-dark); white-space:nowrap;" data-page-node-id="IHZzB6WhXUgcoOvMPPVN0w">导航</span>
+            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" data-page-node-id="1ZbFBpTLh8PfUW3aIKRA2g">◀</button>
+          </div>
+          <div class="sd-item active" data-page-node-id="kLDuhw93wsYKVjdB8ZuSJw"><span class="sd-icon" data-page-node-id="AlBvFAU34BglJIORLtgYlX">🌿</span><span class="sd-label" data-page-node-id="cVl2kMbRkmnminNxdpMoqq">数据概览</span></div>
+          <div class="sd-item" data-page-node-id="J1XuPISoulkggoz3lBhxQd"><span class="sd-icon" data-page-node-id="5Kpn1AvsCFXp00aLdTOhNu">🌱</span><span class="sd-label" data-page-node-id="DmCd5w3iTFaFptHQWePALQ">客服工作台</span></div>
+          <div class="sd-item" data-page-node-id="NSnOIhjPOU0hUjQR605LL5"><span class="sd-icon" data-page-node-id="aZHNyN4CeHPnY0FrOAjHqy">🍃</span><span class="sd-label" data-page-node-id="dOx8DhDYppCcr9GDcwrOiW">系统配置</span></div>
+        </div>
+        <div class="sidebar-demo-content" data-page-node-id="LDP2vDp7MADF8msYK4BanB">点击 ◀ 折叠侧边栏（折叠图标 24x24 完整居中）</div>
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="WxqjQqnowHACdJ2M2frvjK">
+      <h3 data-page-node-id="wq5DawSShr4o4AH30paifu">表格排序 <small data-page-node-id="C4LcknhdfzeAdrlsz2M9Bu">Glass Sortable Table</small></h3>
+      <div style="overflow-x:auto;" data-page-node-id="PSqtJzU4eMXZR9RNjCthp4">
+        <table class="sortable" id="sortableTable" data-page-node-id="Lnswj78fAMRdnV7QiQZhMj">
+          <thead data-page-node-id="UYL7poodH5Z9j01K4REzGC">
+            <tr data-page-node-id="D8BdHBPonk7nCOSipRxpJd">
+              <th onclick="sortTable(0)" data-page-node-id="BLAQT3UT5j9NXFnOrLXnA0">店铺 <span class="sort-icon" data-page-node-id="LPFdeC3jwcS5vDXP4eNLG1">▲▼</span></th>
+              <th onclick="sortTable(1)" data-page-node-id="2N8j1SaVzV9KxVqw3ax5Uq">销售额 <span class="sort-icon" data-page-node-id="aRX9p0hoVrc8RNInyOCiAr">▲▼</span></th>
+              <th onclick="sortTable(2)" data-page-node-id="IHj75izwMZAd3jes0X71WF">满意度 <span class="sort-icon" data-page-node-id="mZyF2kPtyH0fBwjZ1fOjUz">▲▼</span></th>
+            </tr>
+          </thead>
+          <tbody data-page-node-id="JcJR2WVzlYpCvsmYcdqdyI">
+            <tr data-page-node-id="hAvEJANMM8M5okjoqOFR9M"><td data-page-node-id="uf34SgOxQRSbzuFhGn1f4q"><b data-page-node-id="IBJj28lUXjWeGQN9qrJISj">京东旗舰店 A</b></td><td data-page-node-id="DxRC8RHn5uf4JkovvoKGqJ">¥2,180万</td><td data-page-node-id="EXEJj0jALSi9UthwUJcOlR"><span class="badge green" data-page-node-id="s95g1vHUt3dIXuxLsdZeGK">98.5%</span></td></tr>
+            <tr data-page-node-id="5SIqSbBRqMIxk1Z5e9yQAf"><td data-page-node-id="UmAuc2ZQFD0pFqVgdiEG7W"><b data-page-node-id="RGCjlugWFm48kg8IDRWAaV">天猫旗舰店 B</b></td><td data-page-node-id="iFjEalNM92GRBLzHZFJWHS">¥1,936万</td><td data-page-node-id="eysksd5aPS4Kylw7gixjLR"><span class="badge green" data-page-node-id="zkWljn1hyepcpM5sTiLDsX">97.2%</span></td></tr>
+            <tr data-page-node-id="9a0RcdNU0zJJWKdTEG9XPU"><td data-page-node-id="I77rSpAFvEoojvNhQG8W6B"><b data-page-node-id="BR3osqDwyHhc3AQmWtz0mD">天猫专卖店 D</b></td><td data-page-node-id="QdybGqsaIFAX1ZVL77oFht">¥980万</td><td data-page-node-id="JUYWZW0rjEWIxvzd7PVrYL"><span class="badge orange" data-page-node-id="snBpOhHpVHiUVKysODzXjF">95.4%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 排行榜与进阶指标 -->
+  <div class="section-title" data-page-node-id="EWlZl2Z4LIyNdukOzOyTL3">排行榜与进阶指标 <small data-page-node-id="hRatifypJHeZKrUTvu6xF1">Glass Leaderboard & Switch — 实时战报、极光进度条与空气感控制</small></div>
+
+  <div class="grid col-2" style="margin-bottom:20px;" data-page-node-id="0xxDCzMQMoAiqqUWHEiv3T">
+    <!-- 薄荷水晶风排行榜 (Crystal Glass Breeze Leaderboard) -->
+    <div class="card" style="padding:22px" data-page-node-id="S5z3W8Pnovjr8gWYQ64GED">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px" data-page-node-id="lkrrGWBMeMe4zvdBL6Cx9i">
+        <h3 data-page-node-id="tIDBmiLfYyOS1nRb2DHMd6">🌱 薄荷水晶风战报榜 <small style="color:var(--text-muted); font-weight:400" data-page-node-id="uI0ZYJEmLuPtWFt3lohbCl">Crystal Glass Leaderboard</small></h3>
+        <span class="tag green" style="font-size:11px" data-page-node-id="Qs6RPDCF69jvyxjRvliwyh">🍃 极光微风</span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px" data-page-node-id="oyddQXUZP4BwMHV0MmvCpl">
+        <!-- Item 1 -->
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255, 255, 255, 0.7); backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.9); border-radius:16px; box-shadow:0 4px 16px rgba(16, 185, 129, 0.06)" data-page-node-id="5YDZy4Wznl2gKADyomspcE">
+          <div style="display:flex; align-items:center; gap:12px" data-page-node-id="JLvcG3y4CYcDly23kCENrq">
+            <span class="glass-rank rank-1" data-page-node-id="L5mcbW4yJMIOWM56Bj2IFY">1</span>
+            <div data-page-node-id="mGr9fW9lF0rdgyqhUJ2XR2">
+              <div style="font-weight:700; color:#064e3b; font-size:14px" data-page-node-id="0nucSFDRrOhm6zHfZwYkF7">🌿 华东绿洲战队</div>
+              <small style="color:var(--text-muted)" data-page-node-id="HmWbUBU50QOTmdLSFNhFY2">满意度 99.2% · 京东 & 天猫领跑</small>
+            </div>
+          </div>
+          <div style="text-align:right" data-page-node-id="xUfEQ75yOfGVu7eJQoLdDI">
+            <div style="font-weight:700; color:#047857; font-size:15px" data-page-node-id="Z0KLWcJfQO9EnJbukEtzX3">¥ 4,116万</div>
+            <div class="glass-progress-bar" style="width:90px; height:6px; margin-top:4px" data-page-node-id="8RSW3GE3HAtLyAPe26UVvb"><div class="glass-progress-fill" style="width:95%" data-page-node-id="AJG1sCDvratRIf0F6zitgr"></div></div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255, 255, 255, 0.55); backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.8); border-radius:16px; box-shadow:0 4px 16px rgba(16, 185, 129, 0.04)" data-page-node-id="Kii65ArglLKQrmn5x0bh52">
+          <div style="display:flex; align-items:center; gap:12px" data-page-node-id="XedfELf06PdEXPLQPohZiK">
+            <span class="glass-rank rank-2" data-page-node-id="lu59LmMMSJd8coxML4hSQi">2</span>
+            <div data-page-node-id="CXqx8fiG5Xxc7ZubuJToE3">
+              <div style="font-weight:700; color:#064e3b; font-size:14px" data-page-node-id="IuEMEMFPpVJ0tFYxnkPD7v">🌱 华南清风战队</div>
+              <small style="color:var(--text-muted)" data-page-node-id="1PNt1obCxwhIVH4o1x6U4L">平均响应 24s · 专卖店先锋</small>
+            </div>
+          </div>
+          <div style="text-align:right" data-page-node-id="8oEndDOhiWPhbBfyu4ZLiU">
+            <div style="font-weight:700; color:#047857; font-size:15px" data-page-node-id="HtyqWbkHQi93sgIR6fPAwO">¥ 2,840万</div>
+            <div class="glass-progress-bar" style="width:90px; height:6px; margin-top:4px" data-page-node-id="atSy5rkck6rJFR8bUb7dld"><div class="glass-progress-fill" style="width:72%" data-page-node-id="U9AICbvWCNrWRTHllC7YFZ"></div></div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255, 255, 255, 0.45); backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.7); border-radius:16px" data-page-node-id="oAavdxZukyoktB2kjMIihS">
+          <div style="display:flex; align-items:center; gap:12px" data-page-node-id="L5DmQYcD6WobrM0ZZsAxTD">
+            <span class="glass-rank rank-3" data-page-node-id="3S97mxg4G6Ard04UAzQAOU">3</span>
+            <div data-page-node-id="t9FXSII7TermSiR27jfd10">
+              <div style="font-weight:700; color:#064e3b; font-size:14px" data-page-node-id="ZHaMjBzikGoWmiifCO39FZ">🍃 华北微风战队</div>
+              <small style="color:var(--text-muted)" data-page-node-id="yV9cT21R86TYydBZCxHfsD">转化率 26.8% · 持续冲刺中</small>
+            </div>
+          </div>
+          <div style="text-align:right" data-page-node-id="3kreT2gdJ0O2v68fw7m7IP">
+            <div style="font-weight:700; color:#047857; font-size:15px" data-page-node-id="wUrhn1TFPuSgdHlbbfwtqe">¥ 1,856万</div>
+            <div class="glass-progress-bar" style="width:90px; height:6px; margin-top:4px" data-page-node-id="5lNzk8hQacbrjHm2jmGFN0"><div class="glass-progress-fill" style="width:50%" data-page-node-id="FAXBpSdfBZztAWlbBDBiAz"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 薄荷水晶风指标与极光控制卡 (Crystal Glass Breeze Metrics & Wave Controller) -->
+    <div class="card" style="padding:22px" data-page-node-id="BlpEMtPXQ0AFHPABn1tMTF">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px" data-page-node-id="kjYwvsjK8BUKRBqHAM3N1s">
+        <h3 data-page-node-id="URH71FFNBq70srpIiD6G0e">🌱 水晶空气感指标 <small style="color:var(--text-muted); font-weight:400" data-page-node-id="OpAHSA0FAWVB1pHPtDEyMc">Glass Breeze Metrics</small></h3>
+        <span class="tag green" style="font-size:11px" data-page-node-id="mWLiJxAOoZA8xLHOleGHQK">🍃 极光微光</span>
+      </div>
+
+      <!-- 2 列晶莹 Glass 指标卡 -->
+      <div class="grid col-2" style="margin-bottom:14px; gap:12px" data-page-node-id="oDFKgqtWDIgpsCzbDa0Wts">
+        <div style="background:rgba(255, 255, 255, 0.65); backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.85); border-radius:16px; padding:16px; box-shadow:0 4px 16px rgba(16, 185, 129, 0.05)" data-page-node-id="SpjJfrBp8D5DSSlAYmE8xD">
+          <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--text-muted)" data-page-node-id="6BPuP35FBPowbwYCSwGA6S">
+            <span data-page-node-id="gYMOaEhmequWOeJaqlPWZp">绿洲目标完成度</span>
+            <span class="tag green" style="font-size:11px" data-page-node-id="iMaRKNvFrofSIgABRMH13W">🌿 +12.4%</span>
+          </div>
+          <div style="font-size:24px; font-weight:700; color:#064e3b; margin:6px 0" data-page-node-id="rmVbeM4jf0Minc9Lac9ElR">88.5%</div>
+          <div class="glass-progress-bar" style="height:6px" data-page-node-id="G1WEzk1Tj2KflWxRDENBpo"><div class="glass-progress-fill" style="width:88.5%" data-page-node-id="bzbzPFew3NvrY4lYGhMeW7"></div></div>
+        </div>
+
+        <div style="background:rgba(255, 255, 255, 0.65); backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.85); border-radius:16px; padding:16px; box-shadow:0 4px 16px rgba(16, 185, 129, 0.05)" data-page-node-id="7xDVmfnAvxtbGNjLi8VBNu">
+          <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--text-muted)" data-page-node-id="8K5BHItLFTUuQ4uQC6TKy5">
+            <span data-page-node-id="rcIpphiakewdE3eT1ma4Wf">薄荷极速响应</span>
+            <span class="tag green" style="font-size:11px" data-page-node-id="Rvngv1KKH3KdGnwpHXtj0f">🍃 极速</span>
+          </div>
+          <div style="font-size:24px; font-weight:700; color:#064e3b; margin:6px 0" data-page-node-id="nmZCu3ey7uZujJ1PuBsikV">28.4s</div>
+          <div class="glass-progress-bar" style="height:6px" data-page-node-id="dTXTEU8aJqKSSMecFdEfEL"><div class="glass-progress-fill" style="width:92%" data-page-node-id="2Zp2WNthBreNwhnAQbcRzK"></div></div>
+        </div>
+      </div>
+
+      <!-- 水晶开关行 -->
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255, 255, 255, 0.5); backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.8); border-radius:14px" data-page-node-id="FUZZjaBiggR1pMcNYyB3kP">
+        <div data-page-node-id="dP7yjCdevtaz55V5VzjWGN">
+          <div style="font-size:13px; font-weight:700; color:#064e3b" data-page-node-id="VjEKDWTVHKg6tQo4Os4xXz">🍃 开启 AI 水晶排班与空气感预警</div>
+          <small style="color:var(--text-muted); font-size:11px" data-page-node-id="KLBftlz8WniaHKXjQNjfmQ">高斯模糊与极光流动全效护航</small>
+        </div>
+        <label class="switch" data-page-node-id="M3mwAyDOuUUfvepf2EDeB4">
+          <input type="checkbox" checked data-page-node-id="PbOV2nPuNblOWCgV4lLFAV">
+          <span class="switch-slider" data-page-node-id="Vk5YuaO5TL0YSvbCNmKZeL"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 独立薄荷水晶空气感流程卡 -->
+  <div class="card" style="margin-bottom:20px; padding:22px" data-page-node-id="QC2OaUdzPwr4HFshCDxdK0">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px" data-page-node-id="CHaEtYm3O8mp1RlYMyH1qb">
+      <h3 data-page-node-id="LZsUssUjvcZNl1dMuSA3UG">🌱 薄荷水晶流转流程 <small style="color:var(--text-muted); font-weight:400" data-page-node-id="4fYzbbhOAMcn1w5kz8vKAq">Crystal Glass Stepper</small></h3>
+      <span class="tag green" style="font-size:11px" data-page-node-id="OCUoEOx6KrY7Nb8pYfM76e">🍃 空气感节点</span>
+    </div>
+
+    <div class="steps-wrap" style="padding:10px 20px" data-page-node-id="GYKS2QuruCkADB7pL9oXw5">
+      <div class="steps-line" style="background:rgba(52, 211, 153, 0.35); top:16px; left:8%; right:8%" data-page-node-id="6BHLH3d7gfTwyzyMZh5cLa"></div>
+      <div class="step-item active" data-page-node-id="EArIxQXk2WFpzUrJe0mafQ">
+        <div class="step-number" style="background:linear-gradient(135deg, #34d399, #10b981); color:#fff; box-shadow:0 0 12px rgba(52, 211, 153, 0.5)" data-page-node-id="PgACXPnFEDgl1EhmyN7HkC">1</div>
+        <div class="step-content" data-page-node-id="pboWRWO5aWIBI8nex9wEjZ">
+          <div class="step-title" style="color:#064e3b; font-weight:700" data-page-node-id="9tKMPzdBGfddKdFWWEiDcz">清风接入</div>
+          <div class="step-desc" data-page-node-id="DMC3MMZdPPCClCoFJAu3Ox">🌱 10:15 实时受理</div>
+        </div>
+      </div>
+      <div class="step-item active" data-page-node-id="i5l3Ze7nEJvSCU6tbwKkHZ">
+        <div class="step-number" style="background:linear-gradient(135deg, #34d399, #10b981); color:#fff; box-shadow:0 0 12px rgba(52, 211, 153, 0.5)" data-page-node-id="oIOWX0Y17Zv2YX97wyAacp">2</div>
+        <div class="step-content" data-page-node-id="I4CCNebp9KCfS2w7M47Eej">
+          <div class="step-title" style="color:#064e3b; font-weight:700" data-page-node-id="nrHvQYEvYgRuL0UlO7gr7A">水晶预判</div>
+          <div class="step-desc" data-page-node-id="snfCB1T0bhOWEfwt1btP8c">🍃 AI 智能理解</div>
+        </div>
+      </div>
+      <div class="step-item active" data-page-node-id="1Gy1oLsuBw4ty7H1KuTg1s">
+        <div class="step-number" style="background:linear-gradient(135deg, #34d399, #10b981); color:#fff; box-shadow:0 0 12px rgba(52, 211, 153, 0.5)" data-page-node-id="Fo9SpHLNrVA6Yb6mw05Pyk">3</div>
+        <div class="step-content" data-page-node-id="MPDf1ioDThPDorGSLBx8Vz">
+          <div class="step-title" style="color:#064e3b; font-weight:700" data-page-node-id="uCbelEHr8vJKgWganx3uKV">专家解答</div>
+          <div class="step-desc" data-page-node-id="X2wMSbOqMuSkf03BVSjd9k">🌿 绿洲专席回复中</div>
+        </div>
+      </div>
+      <div class="step-item" data-page-node-id="74RxAVzqCZYCSaGa8C4jy9">
+        <div class="step-number" style="background:rgba(255,255,255,0.8); color:var(--text-muted); border:1px solid rgba(255,255,255,0.9)" data-page-node-id="mFkUYIcFvf24XUKFqc5Eq2">4</div>
+        <div class="step-content" data-page-node-id="zrFFBpypTGx1wSBWYBHNmd">
+          <div class="step-title" data-page-node-id="b9rHkpE7Tz5JPmxCq4aUKB">满分归档</div>
+          <div class="step-desc" data-page-node-id="y6Tc38nY3FvdBbg1AqdaT7">✨ 回访与评价</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右上角非阻塞浮动警告容器 -->
+  <div class="floating-alert-container" id="floatingAlertContainer" data-page-node-id="1M2SDH3Z3Sf1HKMAWDX2rY">
+    <div class="floating-alert warning" id="demoFloatingAlert" data-page-node-id="NMpw5Hv19GPBAPNE8EF5g4">
+      <div class="floating-alert-icon" data-page-node-id="nEqQy8aUdXIRZmM4mLqkbc">🍃</div>
+      <div class="floating-alert-content" data-page-node-id="Pk4LXglKgE89FZWk65aXld">
+        <div class="floating-alert-title" data-page-node-id="o9HLzCNWlG4mLEAI6HC38H">
+          <span data-page-node-id="4gTcbgFGf11oN30OrP1oKa"><span class="pulse-dot" data-page-node-id="CttNQKJdex4nX4r1aJpywC"></span> 小清新玻璃质感预警</span>
+          <button class="floating-alert-close" onclick="closeFloatingAlert(this)" data-page-node-id="wv50mxzR5MWO92PGZsu3w0">✕</button>
+        </div>
+        <div class="floating-alert-body" data-page-node-id="CHL2TaB3G7KjSBM6NhqocR">
+          系统已全面开启 Crystal Frosted Glass 多维玻璃质感。当前提示框浮动右上角，不影响您对页面其它按键进行交互。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 容器 -->
+  <div class="toast-container" id="toastContainer" data-page-node-id="RHxR5MytlLfCtphJyffAZ9"></div>
+
+  <!-- Modal 弹窗 -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()" data-page-node-id="jHYi14PEOsHJpm1CCJEEEK">
+    <div class="modal-box" onclick="event.stopPropagation()" data-page-node-id="iRDNF2Ma5CD1zAfSClCbhe">
+      <div class="modal-header" data-page-node-id="AU0E8La9WDcY3kKx4Y0caF">
+        <h3 data-page-node-id="eZd7kuAg2GmOHuLBNhbbX6">🌱 水晶玻璃微风弹窗</h3>
+        <button class="modal-close" onclick="closeModal()" data-page-node-id="PXwWwG2BKltztEglIMJLNK">✕</button>
+      </div>
+      <div class="modal-body" data-page-node-id="tsQAM74oxFu52CTz2L013f">
+        通透晶莹的 Crystal Frosted Glass 质感，配合 24px 高度高斯模糊与顶部高亮反光折射线。点击遮罩或按键均可轻松关闭。
+      </div>
+      <div class="modal-footer" data-page-node-id="CxBO8lgRjz4Pz7i9okRQa8">
+        <button class="btn secondary" onclick="closeModal()" data-page-node-id="Yy1vCEvOAXtUphibE6DH9m">取消</button>
+        <button class="btn primary" onclick="closeModal()" data-page-node-id="GcUKzWDHvnFVLayD4C3M4t">确认了解</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div style="text-align:center; color:var(--text-muted); font-size:13px; margin-top:40px; padding-top:20px; border-top:1px solid var(--border-default);" data-page-node-id="FFTANFTzQVln7ULLsfA9xe">
+    「Beautify」模板 #4 · 小清新风 (Glassmorphism & Dynamic Motion) · 2026
+  </div>
+
+</div>
+
+<script>
+function toggleCustomSelect(trigger) {
+  var select = trigger.closest('.custom-select');
+  select.classList.toggle('open');
+  document.addEventListener('click', function close(e) {
+    if (!select.contains(e.target)) {
+      select.classList.remove('open');
+      document.removeEventListener('click', close);
+    }
+  });
+}
+function selectOption(opt) {
+  var select = opt.closest('.custom-select');
+  var valSpan = select.querySelector('.val');
+  select.querySelectorAll('.custom-select-option').forEach(function(o) { o.classList.remove('selected'); });
+  opt.classList.add('selected');
+  valSpan.textContent = opt.textContent;
+  select.classList.remove('open');
+}
+function toggleDrill(header) {
+  var body = header.nextElementSibling;
+  var arrow = header.querySelector('.drill-arrow');
+  var isOpen = body.classList.contains('open');
+  if (isOpen) { body.classList.remove('open'); arrow.classList.remove('open'); }
+  else { body.classList.add('open'); arrow.classList.add('open'); }
+}
+function toggleAccordion(header) {
+  var body = header.nextElementSibling;
+  var arrow = header.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  if (isOpen) { body.classList.remove('open'); arrow.classList.remove('open'); }
+  else { body.classList.add('open'); arrow.classList.add('open'); }
+}
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  menu.classList.toggle('show');
+  document.addEventListener('click', function close(e) {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('show');
+      document.removeEventListener('click', close);
+    }
+  });
+}
+function showToast() {
+  var container = document.getElementById('toastContainer');
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = '🍃 刷新成功，感受晶莹玻璃与清新微风！';
+  container.appendChild(toast);
+  setTimeout(function() { toast.style.animation = 'toastOut 0.3s forwards'; setTimeout(function() { toast.remove(); }, 300); }, 3000);
+}
+function closeFloatingAlert(btn) {
+  var alert = btn.closest('.floating-alert');
+  if (alert) {
+    alert.classList.add('hide');
+    setTimeout(function() { alert.style.display = 'none'; alert.classList.remove('hide'); }, 250);
+  }
+}
+function triggerFloatingAlert() {
+  var alert = document.getElementById('demoFloatingAlert');
+  if (!alert) return;
+  alert.style.display = 'flex';
+}
+function toggleSidebar() {
+  var side = document.getElementById('sidebarDemo');
+  var btn = side.querySelector('.sidebar-toggle-btn');
+  side.classList.toggle('collapsed');
+  btn.textContent = side.classList.contains('collapsed') ? '▶' : '◀';
+}
+var sortDir = [];
+function sortTable(col) {
+  var table = document.getElementById('sortableTable');
+  var tbody = table.querySelector('tbody');
+  var rows = Array.from(tbody.querySelectorAll('tr'));
+  if (sortDir[col] === undefined) sortDir[col] = true;
+  else sortDir[col] = !sortDir[col];
+  var dir = sortDir[col] ? 1 : -1;
+  rows.sort(function(a, b) {
+    var va = a.children[col].textContent.trim();
+    var vb = b.children[col].textContent.trim();
+    var na = parseFloat(va.replace(/[¥%,万s]/g, ''));
+    var nb = parseFloat(vb.replace(/[¥%,万s]/g, ''));
+    if (!isNaN(na) && !isNaN(nb)) return (na - nb) * dir;
+    return va.localeCompare(vb) * dir;
+  });
+  rows.forEach(function(r) { tbody.appendChild(r); });
+  table.querySelectorAll('.sort-icon').forEach(function(i) { i.classList.remove('active'); i.textContent = '▲▼'; });
+  var icon = table.querySelectorAll('th')[col].querySelector('.sort-icon');
+  icon.classList.add('active');
+  icon.textContent = sortDir[col] ? '▲' : '▼';
+}
+</script>
+</body>
+</html>

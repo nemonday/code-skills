@@ -9,7 +9,7 @@
     {
       "name": "code-skills",
       "source": "./",
-      "description": "Distributable Agent Skills, authored and polished for Claude Code. bug-corpus: archive fixed-bug knowledge and distill patterns for a future Runtime QA skill.",
+      "description": "Distributable Agent Skills, authored and polished for Claude Code. bug-corpus: archive fixed-bug knowledge and distill patterns for a future Runtime QA skill. beautify: full-fidelity UI re-skin for existing frontends across 8 built-in themes.",
       "repository": "https://github.com/nemonday/code-skills"
     }
   ]

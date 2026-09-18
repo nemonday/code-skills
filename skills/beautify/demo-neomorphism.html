@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN" data-page-node-id="gXhhDxfHfrXUnYDMx6ixIv"><head data-page-node-id="DYMaDoUYKVFPpT98nMXItu"><meta charset="utf-8" data-page-node-id="Qofoo5pvxkydAQFvM2lTkA"><meta name="viewport" content="width=device-width,initial-scale=1" data-page-node-id="X37EYuNeS0ZDNGHM9BuWC1"><title>NEOMORPHISM / 新拟态 Demo</title><style>
+*{box-sizing:border-box} body{margin:0;min-height:100vh} .shell{max-width:1240px;margin:auto;padding:32px 24px 64px}.hero{min-height:220px;display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;opacity:.8}.hero h1{font-size:clamp(38px,6vw,72px);line-height:.92;margin:12px 0 16px;letter-spacing:-.055em}.hero p{max-width:620px;margin:0;line-height:1.7;font-size:15px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.section{margin-top:30px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px}.section-head p{margin:0;color:var(--text-muted);font-size:13px}.stat-card{min-height:150px}.stat-icon{font-size:24px;margin-bottom:8px}.stat-value{font-variant-numeric:tabular-nums}.card{min-width:0}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.toolbar input{min-width:220px}.custom-select{max-width:220px}.leaderboard-item+.leaderboard-item{margin-top:12px}.rank-copy{display:flex;align-items:center;gap:12px}.rank-copy strong{display:block}.rank-copy small,.muted{color:var(--text-muted)}.demo-table{overflow:auto}.demo-table table{text-align:left}.steps-wrap{min-width:560px}.steps-scroll{overflow:auto}.component-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.accent-card{min-height:220px;display:flex;flex-direction:column;justify-content:space-between}.palette{display:flex;gap:8px}.swatch{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.8)}.modal-overlay{display:none}.modal-overlay.show{display:flex}.toast-container{position:fixed;right:22px;bottom:22px;z-index:3000}.toast{margin-top:8px}.custom-select-options{display:none}.custom-select.open .custom-select-options{display:block}.custom-select-trigger{width:100%}.accordion-body{max-height:0}.accordion-body.open{max-height:160px}.accordion-item+.accordion-item{margin-top:12px}.sparkle-line{letter-spacing:.45em;font-size:20px}.clay-icon{font-size:20px}.footer-note{text-align:center;margin-top:42px;color:var(--text-muted);font-size:12px}@media(max-width:760px){.shell{padding:20px 14px 48px}.hero{align-items:start;flex-direction:column}.toolbar>*{width:100%;max-width:none!important}.toolbar input{min-width:0}.section-head{align-items:start;flex-direction:column}}
+</style>
+
+<style data-beautify="neomorphism">
+.beautify-root, body.beautify-full-page, body.beautify-root {
+  --bg-page: #e4e9f0;
+  --bg-card: #e4e9f0;
+  --bg-card-soft: #e4e9f0;
+  --bg-chart: #e4e9f0;
+  --bg-insight: #e0e4f3;
+  --bg-table-header: #e4e9f0;
+  --bg-row-hover: #e9edf3;
+  --bg-filter: #e4e9f0;
+  --bg-warning-card: #eee7d9;
+  --bg-danger-card: #f0dfe3;
+  --text-primary: #2b3542;
+  --text-muted: #687789;
+  --text-on-hero: #2b3542;
+  --border-default: rgba(152,166,182,.28);
+  --border-chart: rgba(152,166,182,.24);
+  --scrollbar-thumb: #aeb9c6;
+  --line-chart-grid: #cdd5df;
+  --bar-primary: linear-gradient(180deg,#8794f5,#667eea);
+  --bar-green: linear-gradient(180deg,#5cb8a4,#257c69);
+  --bar-orange: linear-gradient(180deg,#d4a34f,#9b6b20);
+  --bar-purple: linear-gradient(180deg,#a58bee,#7d62ca);
+}
+
+/* Beautify - Neomorphism-新拟态 */
+.beautify-root .btn, .beautify-root .btn.primary {
+  background: linear-gradient(145deg, #7189f5, #5b70dc);
+  color: #ffffff;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 6px 6px 12px #b8c2cf, -6px -6px 12px #ffffff;
+  position: relative; overflow: hidden;
+}
+.beautify-root .btn.primary:hover {
+  background: linear-gradient(145deg, #7890ff, #6077e8);
+  box-shadow: 8px 8px 16px #b8c2cf, -8px -8px 16px #ffffff;
+  transform: translateY(-1px);
+}
+.beautify-root .btn.primary:active {
+  transform: translateY(1px);
+  transition-duration: 0.14s;
+}
+.beautify-root .btn.secondary {
+  background: #e4e9f0;
+  color: #536173;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex; align-items: center; gap: 6px;
+  box-shadow: 4px 4px 9px #bec8d4, -4px -4px 9px #ffffff;
+}
+.beautify-root .btn.secondary:hover {
+  background: #e8edf3;
+  box-shadow: 7px 7px 15px #bec8d4, -7px -7px 15px #ffffff;
+}
+.beautify-root .card {
+  background: #e4e9f0;
+  border: 0;
+  border-radius: 22px;
+  box-shadow: 10px 10px 22px #bec8d4, -10px -10px 22px #ffffff;
+  padding: 20px;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+.beautify-root .card:hover {
+  box-shadow: 14px 14px 30px #b8c2cf, -14px -14px 30px #ffffff;
+  transform: translateY(-2px);
+}
+.beautify-root .card.soft {
+  background: #e4e9f0;
+  border: 0;
+  border-radius: 22px;
+  box-shadow: inset 5px 5px 11px #c1cad6, inset -5px -5px 11px #ffffff;
+  padding: 16px;
+}
+.beautify-root input, .beautify-root textarea {
+  background: #e4e9f0;
+  border: 0;
+  border-radius: 14px;
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--text-primary, inherit);
+  box-shadow: inset 4px 4px 9px #c1cad6, inset -4px -4px 9px #ffffff;
+  outline: none;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.beautify-root input:focus, .beautify-root textarea:focus {
+  border-color: #667eea;
+  background: #e7ebf2;
+  box-shadow: inset 4px 4px 9px #c1cad6, inset -4px -4px 9px #ffffff, 0 0 0 3px rgba(102,126,234,.18);
+}
+.beautify-root select { background: #e4e9f0; color: var(--text-primary, #1d1d1f); border: 0; border-radius: 14px; padding: 11px 14px; font-size: 13px; outline: none; transition: all 0.2s; }
+.beautify-root select:focus { border-color: #667eea; box-shadow: inset 4px 4px 9px #c1cad6, inset -4px -4px 9px #ffffff, 0 0 0 3px rgba(102,126,234,.18); }
+.beautify-root select option { background: var(--bg-card, #ffffff); color: var(--text-primary, #1d1d1f); padding: 8px; }
+.beautify-root .custom-select { position: relative; width: 100%; user-select: none; }
+.beautify-root .custom-select-trigger { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; background: #e4e9f0; border: 0; border-radius: 14px; font-size: 13px; color: var(--text-primary, #1d1d1f); cursor: pointer; transition: all 0.2s;  }
+.beautify-root .custom-select-trigger:hover { background: #dce2eb; border-color: #5368d4; color: #5368d4; }
+.beautify-root .custom-select-options, .beautify-root .dropdown-menu, .beautify-root .dropdown-menu-box { display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: #e4e9f0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 0; border-radius: 18px; box-shadow: 10px 10px 22px #bec8d4, -10px -10px 22px #ffffff; z-index: 200; padding: 6px; animation: selectSlideDown 0.2s ease; }
+.beautify-root .custom-select.open .custom-select-options, .beautify-root .dropdown-wrap.open .dropdown-menu, .beautify-root .dropdown-wrap.open .dropdown-menu-box { display: block; }
+.beautify-root .custom-select-option, .beautify-root .dropdown-item { padding: 10px 14px; border-radius: 14px; font-size: 13px; color: var(--text-primary, #1d1d1f); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
+.beautify-root .custom-select-option:hover, .beautify-root .custom-select-option.selected, .beautify-root .dropdown-item:hover { background: #dce2eb; color: #5368d4; font-weight: 500; }
+.beautify-root .custom-select-option.selected:after { content: "✓"; font-size: 12px; color: #5368d4; }
+.beautify-root table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12px; }
+.beautify-root th { background: #e4e9f0; color: #536173; font-weight: 750; padding: 12px 10px; border-bottom: 1px solid rgba(152,166,182,.28); }
+.beautify-root td { padding: 12px 10px; border-bottom: 1px solid rgba(152,166,182,.28); color: inherit; }
+.beautify-root tr:hover td { background: #e9edf3; }
+.beautify-root .tab { border-radius: 999px; padding: 6px 10px; font-size: 12px; background: #e0e4f3; color: #3f5f8a; cursor: pointer; border: 0; transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.beautify-root .tab:hover { background: #dde1ff; }
+.beautify-root .tab.active { background: #667eea; color: #ffffff; }
+.beautify-root .badge { display: inline-block; border-radius: 999px; padding: 3px 7px; font-size: 11px; font-weight: 700; }
+.beautify-root .badge { background: #e0e4f3; color: #5368d4; }
+.beautify-root .badge.green, .beautify-root .badge.success { background: #dfece8; color: #257c69; }
+.beautify-root .badge.orange, .beautify-root .badge.warning { background: #eee7d9; color: #9b6b20; }
+.beautify-root .badge.red, .beautify-root .badge.danger { background: #f0dfe3; color: #a24c62; }
+.beautify-root .insight { background: #e0e4f3; color: #28517c; border-left: 4px solid #667eea; border-radius: 14px; padding: 10px 12px; font-size: 13px; }
+.beautify-root .accordion-item { border: 1px solid #d2dae4; border-radius: 18px; overflow: hidden; }
+.beautify-root .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; background: #e8edf3; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+.beautify-root .accordion-header:hover { background: #eef0ff; }
+.beautify-root .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); padding: 0 16px; background: #e4e9f0; font-size: 13px; color: #536173; line-height: 1.6; }
+.beautify-root .accordion-body.open { max-height: 120px; padding: 12px 16px; }
+.beautify-root .accordion-header .acc-arrow { transition: transform 0.3s; color: #687789; font-size: 12px; }
+.beautify-root .accordion-header .acc-arrow.open { transform: rotate(180deg); }
+.beautify-root .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(52,65,82,.28); z-index: 1000; justify-content: center; align-items: center; animation: modalFadeIn 0.2s; }
+.beautify-root .modal-overlay.show { display: flex; }
+.beautify-root .modal-box { background: #e4e9f0; border-radius: 22px; width: 420px; max-width: 90vw; box-shadow: 14px 14px 30px #b8c2cf, -14px -14px 30px #ffffff; animation: modalSlideUp 0.25s; }
+.beautify-root .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; border-bottom: none; }
+.beautify-root .modal-body { padding: 22px; font-size: 13px; color: var(--text-muted, #6b7a99); line-height: 1.6; }
+.beautify-root .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 14px 22px; border-top: none; }
+.beautify-root .modal-close { width: 28px; height: 28px; border-radius: 50%; border: 0; background: transparent; cursor: pointer; font-size: 16px; color: var(--text-muted, #6b7a99); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.beautify-root .modal-close:hover { background: rgba(0,0,0,0.05); }
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.beautify-root .tooltip-wrap { position: relative; display: inline-flex; cursor: pointer; }
+.beautify-root .tooltip-bubble { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #1f2731; color: #ffffff; font-size: 11px; padding: 6px 10px; border-radius: 14px; white-space: nowrap; z-index: 100; }
+.beautify-root .tooltip-bubble:after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #1f2731; }
+.beautify-root .tooltip-wrap:hover .tooltip-bubble { display: block; }
+.beautify-root .toast-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
+.beautify-root .toast { padding: 12px 16px; border-radius: 18px; font-size: 13px; font-weight: 500; box-shadow: 10px 10px 22px #bec8d4, -10px -10px 22px #ffffff; display: flex; align-items: center; gap: 10px; min-width: 260px; pointer-events: auto; }
+.beautify-root .toast.success { background: #dfece8; color: #0f6e56; border: 1px solid #b9d9d0; }
+.beautify-root .toast.error { background: #f0dfe3; color: #a32d2d; border: 1px solid #dfbdc6; }
+.beautify-root .toast.info { background: #e0e4f3; color: #0c447c; border: 1px solid #c9cfea; }
+@keyframes toastSlideIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+@keyframes toastOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.92); } }
+.beautify-root .toast { animation: toastSlideIn 0.3s; }
+.beautify-root .floating-alert-container { position: fixed; top: 24px; right: 24px; z-index: 2500; display: flex; flex-direction: column; gap: 12px; width: 380px; max-width: calc(100vw - 48px); pointer-events: none; }
+.beautify-root .floating-alert { pointer-events: auto; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #ffffff; border: 1px solid #ffe58f; border-left: 4px solid #9b6b20; border-radius: 18px; box-shadow: 10px 10px 22px #bec8d4, -10px -10px 22px #ffffff; backdrop-filter: none; -webkit-backdrop-filter: none; animation: alertSlideInRight 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); transition: all 0.25s; position: relative; }
+.beautify-root .floating-alert.hide { opacity: 0; transform: translateY(-10px) scale(0.95); pointer-events: none; }
+.beautify-root .floating-alert-icon { font-size: 18px; line-height: 1; flex-shrink: 0; color: #9b6b20; margin-top: 2px; }
+.beautify-root .floating-alert-content { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.beautify-root .floating-alert-title { font-size: 13px; font-weight: 600; color: #2b3542; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.beautify-root .floating-alert-body { font-size: 12px; color: #536173; line-height: 1.5; }
+.beautify-root .floating-alert-close { background: transparent; border: none; color: #98a6b6; font-size: 14px; font-weight: bold; cursor: pointer; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; transition: all 0.15s; flex-shrink: 0; box-shadow: none; line-height: 1; }
+.beautify-root .floating-alert-close:hover { background: #dde3eb; color: #2b3542; }
+.beautify-root .floating-alert-close:active { transform: scale(0.92); }
+.beautify-root .floating-alert.warning { background: #fffbe6; border-color: #ffe58f; border-left-color: #9b6b20; }
+.beautify-root .floating-alert.info { background: #e0e4f3; border-color: #c9cfea; border-left-color: #667eea; }
+.beautify-root .floating-alert.danger { background: #f0dfe3; border-color: #dfbdc6; border-left-color: #a24c62; }
+@keyframes alertSlideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes appleAlertFadeIn { from { opacity: 0; transform: translateY(-12px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes pixelAlertPop { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+.beautify-root .up, .beautify-root .rise { color: #257c69; }
+.beautify-root .down, .beautify-root .fall { color: #a24c62; }
+.beautify-root .warn { color: #9b6b20; }
+.beautify-root .progress-bar, .beautify-root .glass-progress-bar { width: 100%; height: 10px; background: #e4e9f0; border: 0; border-radius: 999px; overflow: hidden; position: relative; box-shadow: inset 3px 3px 6px #c1cad6, inset -3px -3px 6px #ffffff; }
+.beautify-root .progress-fill, .beautify-root .glass-progress-fill { height: 100%; background: linear-gradient(90deg,#667eea,#8d74e8); border-radius: 999px; transition: width 0.6s ease; position: relative; overflow: hidden; }
+.beautify-root .leaderboard-list { display: flex; flex-direction: column; gap: 10px; }
+.beautify-root .leaderboard-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #e4e9f0; border: 0; border-radius: 18px; box-shadow: 4px 4px 9px #bec8d4, -4px -4px 9px #ffffff;  transition: all 0.2s; }
+.beautify-root .leaderboard-item:hover { background: #e8edf3; transform: translateY(-2px);  }
+.beautify-root .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-weight: bold; font-size: 13px; margin-right: 12px; flex-shrink: 0; }
+.beautify-root .rank-badge.rank-1 { background: linear-gradient(145deg,#ffe99f,#e2b957); color: #76520b; border: 0; }
+.beautify-root .rank-badge.rank-2 { background: linear-gradient(145deg,#ffffff,#c9d1dc); color: #52606e; border: 0; }
+.beautify-root .rank-badge.rank-3 { background: linear-gradient(145deg,#ffc49f,#d7855a); color: #733719; border: 0; }
+.beautify-root .rank-badge.rank-other { background: #e4e9f0; color: #687789; border: 0; }
+.beautify-root .rank-medal { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-weight: 800; font-size: 13px; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+.beautify-root .rank-medal.gold { background: linear-gradient(135deg, #fef08a, #f59e0b); color: #78350f; border: 1px solid #fcd34d; }
+.beautify-root .rank-medal.silver { background: linear-gradient(135deg, #f3f4f6, #9ca3af); color: #1f2937; border: 1px solid #e5e7eb; }
+.beautify-root .rank-medal.bronze { background: linear-gradient(135deg, #ffedd5, #ea580c); color: #7c2d12; border: 1px solid #fed7aa; }
+.beautify-root .rank-medal.normal { background: #f3f4f6; color: #6b7280; font-weight: 600; }
+.beautify-root .sf-rank { font-size: 20px; font-weight: 700; color: var(--text-muted, #86868b); width: 32px; flex-shrink: 0; font-feature-settings: "tnum"; }
+.beautify-root .sf-rank.rank-1 { color: #1d1d1f; font-weight: 800; }
+.beautify-root .sf-rank.rank-2 { color: #424245; font-weight: 800; }
+.beautify-root .sf-rank.rank-3 { color: #6e6e73; font-weight: 700; }
+.beautify-root .app-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.beautify-root .glass-rank { width: 32px; height: 32px; border-radius: 50%; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.8); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; }
+.beautify-root .glass-rank.rank-1 { background: rgba(52, 211, 153, 0.25); color: #065f46; box-shadow: 0 0 12px rgba(52, 211, 153, 0.4); }
+.beautify-root .glass-rank.rank-2 { background: rgba(16, 185, 129, 0.18); color: #047857; }
+.beautify-root .glass-rank.rank-3 { background: rgba(110, 231, 183, 0.2); color: #064e3b; }
+.beautify-root .glass-rank.rank-other { background: rgba(243, 244, 246, 0.5); color: #4b5563; }
+.beautify-root .stat-card { background: #e4e9f0; border: 0; border-radius: 18px; padding: 18px 20px; box-shadow: 7px 7px 15px #bec8d4, -7px -7px 15px #ffffff;  display: flex; flex-direction: column; gap: 6px; position: relative; overflow: hidden; transition: all 0.25s; }
+.beautify-root .stat-card:hover { transform: translateY(-2px); }
+.beautify-root .stat-card .stat-label { font-size: 12px; color: #687789; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+.beautify-root .stat-card .stat-value { font-size: 26px; font-weight: 700; color: #2b3542; letter-spacing: -0.01em; margin: 2px 0; }
+.beautify-root .stat-card .stat-trend { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.beautify-root .steps-wrap { display: flex; justify-content: space-between; position: relative; width: 100%; margin: 16px 0; padding: 0 10px; }
+.beautify-root .step-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; flex: 1; z-index: 2; position: relative; color: var(--text-muted); font-size: 12px; }
+.beautify-root .step-number { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #d2dae4; color: #536173; border: none; transition: all 0.25s; flex-shrink: 0; }
+.beautify-root .step-item.active .step-number { background: #667eea; color: #ffffff; box-shadow: none; }
+.beautify-root .step-item.active { color: var(--text-primary); font-weight: 600; }
+.beautify-root .step-item.active .step-title { color: var(--text-primary); font-weight: 700; }
+.beautify-root .step-content { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.beautify-root .step-title { font-size: 13px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+.beautify-root .step-desc { font-size: 11px; color: var(--text-muted); opacity: 0.8; white-space: nowrap; }
+.beautify-root .steps-line { position: absolute; top: 16px; left: 12%; right: 12%; height: 2px; background: #d2dae4; z-index: 1; }
+.beautify-root .switch { position: relative; display: inline-block; width: 48px; height: 26px; user-select: none; vertical-align: middle; }
+.beautify-root .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.beautify-root .switch-slider { position: absolute; cursor: pointer; inset: 0; background-color: #d8dee7; transition: .3s; border-radius: 999px; border: 0; }
+.beautify-root .switch-slider:before { position: absolute; content: ""; height: calc(26px - 6px); width: calc(26px - 6px); left: 3px; bottom: 3px; background-color: #eaf0f6; transition: .3s; border-radius: 50%; }
+.beautify-root .switch input:checked + .switch-slider { background: linear-gradient(135deg,#667eea,#8d74e8); }
+.beautify-root .switch input:checked + .switch-slider:before { transform: translateX(calc(48px - 26px)); }
+.beautify-root, body.beautify-full-page, body.beautify-root { background: var(--bg-page); color: var(--text-primary); font-family: 'Avenir Next', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+.beautify-root .grid { display: grid; gap: 18px; }
+.beautify-root .grid.col-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.beautify-root .grid.col-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.beautify-root .grid.col-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.beautify-root .tag, .beautify-root .pill { display: inline-flex; align-items: center; width: fit-content; border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 700; }
+.beautify-root .section-title { margin: 0 0 14px; color: var(--text-primary); font-size: 18px; font-weight: 800; }
+.beautify-root .hero { position: relative; overflow: hidden; color: var(--text-on-hero); }
+@media (max-width: 900px) { .beautify-root .grid.col-3, .beautify-root .grid.col-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .beautify-root .grid.col-2, .beautify-root .grid.col-3, .beautify-root .grid.col-4 { grid-template-columns: 1fr; } }
+.beautify-root .hero { background: #e4e9f0; color: #2b3542; border-radius: 28px; padding: 28px; box-shadow: 18px 18px 38px #b8c2cf, -18px -18px 38px #ffffff; }
+.beautify-root .card, .beautify-root .stat-card, .beautify-root .leaderboard-item { border-color: transparent; }
+.beautify-root .btn:active, .beautify-root .card.is-pressed { box-shadow: inset 5px 5px 10px #c1cad6, inset -5px -5px 10px #ffffff; }
+.beautify-root .progress-bar { box-shadow: inset 3px 3px 6px #c1cad6, inset -3px -3px 6px #ffffff; }
+.beautify-root .switch-slider:before { box-shadow: 3px 3px 7px rgba(158,170,184,.55), -3px -3px 7px #ffffff; }
+.beautify-root :focus-visible { outline: 3px solid rgba(102,126,234,.45); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .beautify-root *, .beautify-root *::before, .beautify-root *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+</style>
+
+</head>
+<body class="beautify-root beautify-full-page" data-page-node-id="ZWlBlD45ovnTLOExLrCsef"><main class="shell" data-page-node-id="B1pHuznfS92KUkP3refOr0">
+<section class="hero" data-page-node-id="oHb5jumbuiMNPnAXmE6LP8"><div data-page-node-id="ZpTySKRG0QCPpf7fOZSKQE"><div class="eyebrow" data-page-node-id="Gy3lU7G5ATYTFS4FQlpAyb">NEOMORPHISM / 新拟态</div><h1 class="" data-page-node-id="zeLJEKM8jOpocYb6wjyXm5">Soft Control</h1><p data-page-node-id="WLyZ7kYEFmFhgCUjBs6035">亮暗双向阴影让设置、指标与控制组件从同色表面自然生长。</p></div><div class="hero-actions" data-page-node-id="XCd4LFS0lcCjyQ10ZMMYPu"><button class="btn primary" onclick="showToast()" data-page-node-id="dCCJq9SEeGZkFDJLbym6WE">保存设置</button><button class="btn secondary" onclick="openModal()" data-page-node-id="D0ouV8StRfEDQCbHHRAWpU">查看详情</button></div></section>
+<section class="section" data-page-node-id="fqPCEvgowSNJnEIi82Mlaw"><div class="section-head" data-page-node-id="wIa5l2RQETXJ4sYPBgd3Mx"><div data-page-node-id="kCXQFIqGOwxknktdEi3sbr"><h2 class="section-title" data-page-node-id="05WX4ML94al4pfZxE4F3ol">今日概览</h2><p data-page-node-id="sDDPmb9CPZAUczDywcYYQl">同一套组件骨架，由主题契约决定材质、轮廓与反馈。</p></div><div class="toolbar" data-page-node-id="LQQDoae74R4v1qPjjKeFjP"><input placeholder="搜索项目、成员或标签" data-page-node-id="vMRZJinV5kvJ58QY717ZlG"><div class="custom-select" data-page-node-id="IxlurWSN56oqirJHjJ722d"><button class="custom-select-trigger" onclick="toggleSelect(this)" data-page-node-id="qT5miEqFoZ9ZeCczWWCKdt"><span class="select-value" data-page-node-id="MCBA8Qre08onltxb5KMG2z">本周</span><span data-page-node-id="nN0qWRuMsmkqzVvDtIcsUA">⌄</span></button><div class="custom-select-options" data-page-node-id="ZqAN1SDDL21umm2IgDofKf"><div class="custom-select-option selected" onclick="choose(this)" data-page-node-id="yzICfxhl7EmuDBDhYTnHUz">本周</div><div class="custom-select-option" onclick="choose(this)" data-page-node-id="Wjhc37a9UdU7EO7UGuaemH">本月</div><div class="custom-select-option" onclick="choose(this)" data-page-node-id="JRs7fOJwWe6jTJaM1HaFvQ">本季度</div></div></div></div></div>
+<div class="grid col-4" data-page-node-id="PBuLJYBgUuO15cs1ImbQrI"><article class="stat-card" data-page-node-id="lmOkcxbULMlbkRZBnICsd5"><div class="stat-icon" data-page-node-id="FLOuxIiPXXURE8vbFW6JIe">◉</div><div class="stat-label" data-page-node-id="CgGwb9xxBUWTanFdCLc9o6"><span data-page-node-id="AZefONF5RATBbWJbjiGD4n">完成任务</span><span class="badge success" data-page-node-id="4BcahCGJowsA9AEbirW19A">+18%</span></div><div class="stat-value" data-page-node-id="KUaePy9AWFXDib7TNFh1dn">128</div><div class="progress-bar" data-page-node-id="YtG3h59z3kp5L7O6Qby6f7"><div class="progress-fill" style="width:82%" data-page-node-id="sBzmP1zOkXytAEonD2oS5v"></div></div></article><article class="stat-card" data-page-node-id="AQpBY0PXB5mB0irwm5tKgJ"><div class="stat-icon" data-page-node-id="t6JvlJAE0h0c5gx6PdJjmw">◇</div><div class="stat-label" data-page-node-id="dFiY2unocSdtwn9n3tliZe"><span data-page-node-id="etCYohPVLwYl0zF80kTlpX">专注时长</span><span class="badge" data-page-node-id="WFNaPIhkIXH2Cp4bYkSAU2">本周</span></div><div class="stat-value" data-page-node-id="LACePXzV4YVHjHtvs1YCkI">36.5h</div><div class="stat-trend up" data-page-node-id="z2tvE2cNFKxWPkUUB4RQmR">↑ 6.4 小时</div></article><article class="stat-card" data-page-node-id="utbZ2UG0RaAdzN89mvxkWI"><div class="stat-icon" data-page-node-id="glSZHVsLGkKjnVl3hpiPuk">◎</div><div class="stat-label" data-page-node-id="8Mpq3jYWs7vBcs8qv0WQrB"><span data-page-node-id="Be7LdJtYrqFbsqFPDrK0Fo">团队协作</span><span class="badge warning" data-page-node-id="67OMNcYxj5jTYpFJcsJKyP">活跃</span></div><div class="stat-value" data-page-node-id="F55lNcCM9Vmm6CMzP3Dv3k">92%</div><div class="progress-bar" data-page-node-id="sJTOXv0wE9wK4sor87l5JW"><div class="progress-fill" style="width:92%" data-page-node-id="UwKhvyl97BYcr9eN0NSV2F"></div></div></article><article class="stat-card" data-page-node-id="Gt0lK5AeUpV99mxgh9L6KC"><div class="stat-icon" data-page-node-id="27WzsqwHl2A3CbsPrWUsjx">✦</div><div class="stat-label" data-page-node-id="OqxvY19ZuAT8RkvlYdAh1N"><span data-page-node-id="OlKrxx9aZapBJqTZGzsIXu">灵感收藏</span><span class="badge danger" data-page-node-id="G9voP7ETmBEC4QpCRaqPND">12 新增</span></div><div class="stat-value" data-page-node-id="eaIkT5kqdCSND1FTPXySBJ">246</div><div class="stat-trend" data-page-node-id="qZ2JXveHmb1gqUjdaMEx7p">今日 +8</div></article></div></section>
+<section class="section grid col-2" data-page-node-id="ARCL7WPHzr2lruutttN5kT"><article class="card accent-card" data-page-node-id="7lMVz7eELfWl6CH9C1u5SA"><div data-page-node-id="DL2Xq6Qjf62lrAGWFTqn7d"><h2 class="section-title" data-page-node-id="TACtwdtAxvImVtwonGvC8U">重点项目</h2><p class="muted" data-page-node-id="qrDx56jaiZHlfBvNr4onTr">产品发布准备已进入最终阶段，设计与开发同步收口。</p></div><div class="steps-scroll" data-page-node-id="IBBkAxa1ye4PtSlyBlFqFk"><div class="steps-wrap" data-page-node-id="mk04xFdsShxGPKLuSH5Uap"><div class="steps-line" data-page-node-id="5V4vEsmFUcVLS6nlDIujOf"></div><div class="step-item active" data-page-node-id="IAdByJGyr76HRoNHeJGRr5"><div class="step-number" data-page-node-id="eOZrjmjLgAWeupvmhWfXnH">1</div><div class="step-content" data-page-node-id="L4WlhtQlyTYp4ujfwU5WcF"><div class="step-title" data-page-node-id="kEEajfsR4mVpRUalvuzAvO">策略</div><div class="step-desc" data-page-node-id="YKFlFmnjqCy7g9qs7N8I0D">已完成</div></div></div><div class="step-item active" data-page-node-id="nRXlYVa7gky403S4V9v2Ae"><div class="step-number" data-page-node-id="GDcrLnKn7qGfgOGA3IuGp2">2</div><div class="step-content" data-page-node-id="gFDabx3e24A9XGSqiaJFF1"><div class="step-title" data-page-node-id="EoPswuPS8eSDO6qqSOVVuU">设计</div><div class="step-desc" data-page-node-id="QVUHyAkUjqPlh3PgZgLPeh">已完成</div></div></div><div class="step-item active" data-page-node-id="3kim3KD91oCMloHhLD0VgR"><div class="step-number" data-page-node-id="jaG2xmavJXPaCLXSUG1ygm">3</div><div class="step-content" data-page-node-id="tERhev4EzDfE7DeOXPIFxa"><div class="step-title" data-page-node-id="cSJYUMINSmhXfkCbkT82xp">开发</div><div class="step-desc" data-page-node-id="rToUGbcpKQe6kUiwvGBKqo">进行中</div></div></div><div class="step-item" data-page-node-id="2PKduF6IyHQOyZMWv3ckol"><div class="step-number" data-page-node-id="7Unnw4CHUBHFKSdHk6XbDU">4</div><div class="step-content" data-page-node-id="nLoCx1gjvYM1LEXaow8FZj"><div class="step-title" data-page-node-id="eYJtmtSIRAMhmmXNbIzBYY">上线</div><div class="step-desc" data-page-node-id="obdVP5tLfTjSrOtIszyuKW">待开始</div></div></div></div></div></article>
+<article class="card" data-page-node-id="VZBEuZXZ8dJH14TMf8DuMq"><div class="section-head" data-page-node-id="fmH5BzfBNZjQhhxvV2hXqE"><div data-page-node-id="r1uLg8cugxCkehuO1FDjkX"><h2 class="section-title" data-page-node-id="QvAAeIIhE9pNQV6f9AiaAy">团队排行榜</h2><p data-page-node-id="ccIe459CUDr2njy3lRxsCk">按本周任务贡献排序</p></div><span class="tag" data-page-node-id="ISgHQE7XvVdiCW51tKJZZH">TOP 3</span></div><div class="leaderboard-list" data-page-node-id="hgLEa455xQ0HEjzYqu46qX"><div class="leaderboard-item" data-page-node-id="9yUXMeuFDqrXxWdHcGGaFY"><div class="rank-copy" data-page-node-id="BokljD5iPFN7F1FYYmMId0"><span class="rank-badge rank-1" data-page-node-id="Qn4JE6zvcifX2oUEnTfPRU">1</span><div data-page-node-id="B8edJh4WBOzYX4f4pzhlF1"><strong data-page-node-id="klWaTSeNKAni89rnuU7X9W">体验设计组</strong><small data-page-node-id="kAOoSFl3KJ1inSLFKfstGh">42 项完成</small></div></div><b data-page-node-id="GTFTFF71seJkx0JH6chJJI">98%</b></div><div class="leaderboard-item" data-page-node-id="ROy2FghtSFkHa4jtGV5lqy"><div class="rank-copy" data-page-node-id="p26JmNnH6PvcQUYMxdHzIw"><span class="rank-badge rank-2" data-page-node-id="EnFuLcRm3DswjtTlZr4BK2">2</span><div data-page-node-id="VTmOElJtbcfQd2rPh9gmkJ"><strong data-page-node-id="foPoo1cBUAcc6CytzdvWJ1">前端平台组</strong><small data-page-node-id="2Kr0mMd6NSwhO95TB2cIJ7">38 项完成</small></div></div><b data-page-node-id="xQgv41Yaxt7nIgekN126v5">94%</b></div><div class="leaderboard-item" data-page-node-id="2qD7RuHfb7vMtd1bOhoChY"><div class="rank-copy" data-page-node-id="EJw82gAQ2R0cS8GqSI7269"><span class="rank-badge rank-3" data-page-node-id="kEDY2qntNDMq8A4EECVQTp">3</span><div data-page-node-id="fDgMH5kZL6rBcjTcgqRnDp"><strong data-page-node-id="xPgoUJJ6yDujNP2ElN0XM3">内容增长组</strong><small data-page-node-id="YEubsRt5G0wkyc1mOOHXsh">31 项完成</small></div></div><b data-page-node-id="kO1BNdH19VbVmZjF7arTZZ">89%</b></div></div></article></section>
+<section class="section grid col-2" data-page-node-id="23XrUKEAG882FHd155jsdh"><article class="card" data-page-node-id="mYcYgbzCaPC1rqUhPjmC1A"><h2 class="section-title" data-page-node-id="UI0AYWxQsJjolqMoIO4jcp">组件触感</h2><div class="component-row" data-page-node-id="FiLrd9VbR9BJ6iN8Rb13iJ"><button class="btn primary" onclick="showToast()" data-page-node-id="Qlr8CgIQXgeBBpwh4rHeOX">主按钮</button><button class="btn secondary" onclick="showToast('info')" data-page-node-id="TKQBI75mYu8QQ0GEV4fnIG">次按钮</button><span class="badge success" data-page-node-id="Gc440wUHuSfB3MjUO9ctSG">已完成</span><span class="badge warning" data-page-node-id="BNcU51beJDSZk0vGs6Qqty">待确认</span><label class="switch" data-page-node-id="vS6popaxt5YDrhcVjDGGdO"><input type="checkbox" checked data-page-node-id="DLTTczpRAyXFSPBnP1avzW"><span class="switch-slider" data-page-node-id="uf8RveLHnjqOMbD7bNT0Bp"></span></label></div><div style="margin-top:22px" class="accordion-item" data-page-node-id="LKKxmQAeBRFrLBBrnIVQyF"><div class="accordion-header" onclick="toggleAccordion(this)" data-page-node-id="Mu75QDWMm8WXVaLyfkAFRg"><span data-page-node-id="h2RHBrIthiUZ9Du835K9gU">为什么这个主题不是只换颜色？</span><span class="acc-arrow" data-page-node-id="VTOqhuRb6vrk4nCmfKThdJ">⌄</span></div><div class="accordion-body" data-page-node-id="o1R7eHKJAfDymgwETf22cV"><p data-page-node-id="EmxmfxrdQqXc0t93aYCfkj">因为卡片、输入框、按钮、进度、弹层与状态都使用了主题专属的材质和交互锚点。</p></div></div></article>
+<article class="card demo-table" data-page-node-id="dK9jP9BeFWexHK1qITQK5F"><h2 class="section-title" data-page-node-id="frPZ8zsGV07ZvI1VNuOB25">任务清单</h2><table data-page-node-id="SiFd6JBKAPxKVKbdqrZo4P"><thead data-page-node-id="2ioukGVYrpKmTFn5IGdkNf"><tr data-page-node-id="nsHVu0LPXazN9LyqbIIehG"><th data-page-node-id="rmBaGJ6EJsYxfVDcMxX3Vy">任务</th><th data-page-node-id="E9NUv3IrjfP6gc939JTcLB">负责人</th><th data-page-node-id="FcSxSulWdtXrPsugUJnWC6">进度</th><th data-page-node-id="WsOsRpu1bgx8eUVFAMMEMX">状态</th></tr></thead><tbody data-page-node-id="pJdqH6itTUxSahjCI5ZSjk"><tr data-page-node-id="LxjnwBA7hUSakPDlzEohcE"><td data-page-node-id="BLPnJlU5llMrVVVs7uGmFU">视觉系统收口</td><td data-page-node-id="KfWwMjtIwq4tKwxybYvWHC">林墨</td><td data-page-node-id="E1zMPvI6Y15KlpwgXSFWea">92%</td><td data-page-node-id="llLGHdepFHZsYQFBFMsBol"><span class="badge success" data-page-node-id="6Hp3s2V27D0cIvSBxjkf2v">正常</span></td></tr><tr data-page-node-id="PeDex1xJozHptTPBDy7qgZ"><td data-page-node-id="1UE8TKneub1xeQ1FB8vJyN">组件验收</td><td data-page-node-id="h3ST2obENKxaMacPmDY8H6">张弛</td><td data-page-node-id="5ZRsF6e9XkKvitdjFXZeCV">76%</td><td data-page-node-id="ms2JnaCq8EGTln3TubndnS"><span class="badge warning" data-page-node-id="vYcK2JNDppnxMEmwmFdVq6">跟进</span></td></tr><tr data-page-node-id="TdmsIbkiuIrb5KVfsD415a"><td data-page-node-id="VLZrBFdnR6z6yHzNUkmAkw">发布检查</td><td data-page-node-id="uONmM8V1ND0rWSyhyxIEs0">小禾</td><td data-page-node-id="294CF0VNSwyoBPNJtBBbHA">48%</td><td data-page-node-id="ca6nw9h70aphQP3memlZ8O"><span class="badge" data-page-node-id="BvfTmu9PwGyPKW0ZF6INVY">排期中</span></td></tr></tbody></table></article></section>
+<div class="footer-note" data-page-node-id="BUm7VVmWrQPyIT6YAlNyT1">Beautify · NEOMORPHISM / 新拟态 · 结构重构 + 主题设计契约 + 可交互验收</div></main>
+<div class="modal-overlay" id="demoModal" onclick="closeModal()" data-page-node-id="ZxzvYhszuEjr3fCBNYZpUp"><div class="modal-box" onclick="event.stopPropagation()" data-page-node-id="75vGYLZ88ZHbWE4xBFno5Y"><div class="modal-header" data-page-node-id="H21TZVyaYiEVVlGmVx9boL"><b data-page-node-id="lJOk5PFF1s7I5lb0yenQEI">主题详情</b><button class="modal-close" onclick="closeModal()" data-page-node-id="DR0P6kOXENQv5MFxRhAAJV">×</button></div><div class="modal-body" data-page-node-id="RebIpF0hAEoehWArg7Pbvw">该 Demo 展示指标卡、排行榜、步骤条、表格、表单、开关、下拉框、Toast 与弹窗的统一主题表达。</div><div class="modal-footer" data-page-node-id="q5V3ONSeY1bmRH4eBMayy9"><button class="btn secondary" onclick="closeModal()" data-page-node-id="l2wyG7JaxIfDC92eRUVWJR">关闭</button><button class="btn primary" onclick="closeModal();showToast()" data-page-node-id="62ARAXvj5yQ6kQmvfHijnk">确认</button></div></div></div><div class="toast-container" id="toasts" data-page-node-id="Cm2U3EhEALOIwTQcxRkQBr"></div><script>
+function toggleSelect(el){el.closest('.custom-select').classList.toggle('open')}
+function choose(el){const root=el.closest('.custom-select');root.querySelector('.select-value').textContent=el.textContent;root.querySelectorAll('.custom-select-option').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');root.classList.remove('open')}
+function toggleAccordion(el){el.nextElementSibling.classList.toggle('open');el.querySelector('.acc-arrow').classList.toggle('open')}
+function openModal(){document.getElementById('demoModal').classList.add('show')}
+function closeModal(){document.getElementById('demoModal').classList.remove('show')}
+function showToast(kind='success'){const c=document.getElementById('toasts');const t=document.createElement('div');t.className='toast '+kind;t.textContent=kind==='success'?'✓ 已保存主题设置':'提示已送达';c.appendChild(t);setTimeout(()=>t.remove(),2600)}
+document.addEventListener('click',e=>{document.querySelectorAll('.custom-select.open').forEach(x=>{if(!x.contains(e.target))x.classList.remove('open')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
+</script></body></html>
