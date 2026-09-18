@@ -8,10 +8,13 @@
 |---|---|
 | frontmatter | `name`、`description` 必填；其余字段非必要不加 |
 | name | 小写 kebab-case，≤64 字符，必须与目录名一致 |
-| description | ≤1024 字符；必须写清「何时用」和「何时不用」—— 这是唯一常驻 AI 上下文的行，像防火墙规则一样写边界 |
+| description | ≤1024 字符，第三人称；必须写清「何时用」（含触发词）和「何时不用」—— 这是唯一常驻 AI 上下文的行，像防火墙规则一样写边界 |
 | 正文 | ≤500 行；超了就把细节下沉到 `references/` |
 | 语言 | 正文全中文；name、目录名、文件名英文 |
 | 链接 | 一律相对路径 |
+| 引用链 | 只允许一层（SKILL.md → references/），不得链式再引 |
+| references 体积 | 单文件超过 100 行须在开头加目录 |
+| 跨工具字段白名单 | frontmatter 只用规范字段（name、description、license、compatibility、metadata、allowed-tools）；Claude Code 专有字段（如 disable-model-invocation）会让 claude.ai / Skills API 打包硬报错 |
 | 脚本 | 默认不写；写则零依赖、失效时指令能兜底、放 `scripts/` |
 
 ## 骨架（所有 skill 共用）
