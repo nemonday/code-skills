@@ -26,6 +26,7 @@ Skill 工厂：编写、打磨可分发给他人使用的 Agent Skills。Claude 
 - 正文全中文，`name` 与文件名用英文
 - 每个 skill 内部：`SKILL.md`（铁律 + 流程）→ `references/`（细节，用到才读）→ `docs/SPEC.md`（原始设计稿归档）
 - 指令优先、脚本后置：脚本须零依赖，且失效时指令能兜底
+- 新 skill 从 [docs/skill-template.md](docs/skill-template.md) 的骨架开工；发布前过一遍「质检五问」
 - 术语表见 [CONTEXT.md](CONTEXT.md)，架构决策见 [docs/adr/](docs/adr/)
 
 ## 许可证
