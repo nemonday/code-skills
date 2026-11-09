@@ -12,7 +12,26 @@ Skill 工厂：编写、打磨可分发给他人使用的 Agent Skills。Claude 
 
 安装方式见各包 README。
 
-## 安装
+## 一键安装（skills + DSH 插件，跨平台）
+
+clone 本仓库后，在仓库根目录执行一条命令，同时完成 skills 链接与 DSH 插件安装：
+
+```bash
+# macOS / Linux
+./install.sh
+
+# Windows (PowerShell)
+.\install.ps1
+
+# 或任何有 Node 的环境（DSH 自带 Node）
+node install.mjs
+```
+
+行为：`skills/*` 以链接方式装进 `~/.dsh/skills/`（Windows 用 junction，免管理员权限；仓库更新即生效）；`packages/dsh-memory-hub` 注册为 DSH desktop profile 的 `file:` 依赖并 `pnpm install`。
+
+选项：`--profile <名字>`（默认 desktop）、`--unlink`（一键卸载）。
+
+## 安装（仅 skills，手工方式）
 
 **Claude Code（整仓）**：
 
