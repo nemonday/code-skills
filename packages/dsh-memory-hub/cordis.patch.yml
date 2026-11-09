@@ -1,0 +1,6 @@
+# dsh-memory-hub bundle patch：向 profile 插入记忆区插件的 loader 行。
+- insert:
+    - id: memory-hub
+      name: dsh-memory-hub
+      config:
+        enabled: true

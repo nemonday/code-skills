@@ -1,0 +1,6 @@
+{
+  "name": "code-skills-monorepo",
+  "private": true,
+  "description": "code-skills 仓库：Agent Skills 工厂 + DeepSeek Harness (DSH) 插件 monorepo",
+  "license": "MIT"
+}

@@ -2,6 +2,16 @@
 
 Skill 工厂：编写、打磨可分发给他人使用的 Agent Skills。Claude Code 是主力分发平台；skill 本体保持跨工具（workbuddy、Codex 等）可移植。
 
+本仓库同时是 **DeepSeek Harness (DSH) 插件 monorepo**：`packages/` 下每个目录是一个独立插件包（pnpm workspace）。
+
+## DSH 插件
+
+| 包 | 用途 |
+| --- | --- |
+| [dsh-memory-hub](packages/dsh-memory-hub/) | 记忆区：DSH 侧边栏原生面板，集中查看/编辑全局与各工作区的 AGENTS.md |
+
+安装方式见各包 README。
+
 ## 安装
 
 **Claude Code（整仓）**：
